@@ -94,5 +94,9 @@
             "networkConnectionError": "Network connection error",
             "networkError": "Network error"
         }
+    },
+    "utils": {
+        "copySuccess": "Copy successful",
+        "copyFailed": "Copy failed, please copy manually"
     }
 }

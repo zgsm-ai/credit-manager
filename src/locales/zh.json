@@ -94,5 +94,9 @@
             "networkConnectionError": "网络连接错误",
             "networkError": "网络错误"
         }
+    },
+    "utils": {
+        "copySuccess": "复制成功",
+        "copyFailed": "复制失败，请手动复制"
     }
 }
