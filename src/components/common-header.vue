@@ -13,8 +13,7 @@
                     </template>
                     <div class="user-name">-</div>
                     <div class="user-menu-options">
-                        <div class="option-item">{{ t('common.header.accountAndUsage') }}</div>
-                        <div class="option-item">{{ t('common.header.logout') }}</div>
+                        <div class="option-item" @click="toCredit">{{ t('common.header.accountAndUsage') }}</div>
                     </div>
                 </n-popover>
             </div>
@@ -69,6 +68,11 @@ const handleSelectLang = (key: string) => {
 
 const isPopoverOpen = ref(false)
 const isUserMenuOpen = ref(false)
+
+const toCredit = () => {
+    router.push('/credits')
+    isUserMenuOpen.value = false
+}
 
 </script>
 
