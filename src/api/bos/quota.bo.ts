@@ -78,3 +78,38 @@ export interface PostQuotaTransferInRes {
     status: string
     message: string
 }
+
+export interface GetUserTokenRes {
+    access_token: string
+    message: string
+    state: string
+    success: boolean
+}
+
+export interface UserInfoData {
+    email: string
+    githubID: string
+    githubName: string
+    phone: string
+    username: string
+    uuid: string,
+    employee_number?: string
+}
+
+export interface GetUserInfoRes {
+    data: UserInfoData
+    message: string
+    state: string
+    success: boolean
+}
+
+export interface GetBindAccountReq {
+    bindType: string
+    state: string
+}
+
+export interface GetBindAccountRes {
+    URL: string
+    message: string
+    success: boolean
+}
