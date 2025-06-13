@@ -4,9 +4,13 @@
 
 import { get, post } from '@/utils/request'
 import type {
+    GetBindAccountReq,
+    GetBindAccountRes,
     GetQuotaAuditRecordsReq,
     GetQuotaAuditRecordsRes,
+    GetUserInfoRes,
     GetUserQuotaRes,
+    GetUserTokenRes,
     PostQuotaTransferInReq,
     PostQuotaTransferInRes,
     PostQuotaTransferOutReq,
@@ -29,4 +33,16 @@ export const postQuotaOut = (params: PostQuotaTransferOutReq): Promise<PostQuota
 
 export const postQuotaIn = (params: PostQuotaTransferInReq): Promise<PostQuotaTransferInRes> => {
     return post('/api/v1/quota/transfer-in', params)
+}
+
+export const getUserToken = (): Promise<GetUserTokenRes> => {
+    return get('/oidc_auth/manager/token')
+}
+
+export const getUserInfo = (): Promise<GetUserInfoRes> => {
+    return get('/oidc_auth/manager/userinfo')
+}
+
+export const getBindAccount = (params: GetBindAccountReq): Promise<GetBindAccountRes> => {
+    return get('/oidc_auth/manager/bind/account', params)
 }
