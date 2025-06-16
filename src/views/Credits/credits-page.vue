@@ -6,29 +6,28 @@
 				<div class="credits-usage-left__label">{{ t('creditsPage.remainingCredit') }}</div>
 				<div class="credits-usage-left__num">{{ restQuota }}</div>
 			</div>
-			<n-data-table :columns="columns" :data="columnData" :bordered="false" :max-height="650" :min-height="450"
-				size="small" />
+			<n-data-table :columns="columns" :data="columnData" :bordered="false" :max-height="650" size="small" />
 		</div>
 	</n-spin>
 </template>
 
 <script setup lang="ts">
+/**
+ * @file credits-page.vue
+ */
 import { NDataTable, NPopover, NSpin } from 'naive-ui'
 import { h, ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { getQuotaAuditRecords, getUserQuota } from '@/api/mods/quota.mod'
 import type { GetUserQuotaRes, QuotaAuditRecord } from '@/api/bos/quota.bo'
 import dayjs from 'dayjs'
+import type { GroupedItem } from './interface'
+import { OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE } from './const'
+import { formatDate } from '@/utils/date'
 
 const { t, locale } = useI18n()
 
 const isZh = computed(() => locale.value === 'zh');
-
-interface GroupedItem {
-	amount: number
-	expiry_date: string
-	isExpired: boolean
-}
 
 const popoverRender = (voucherCode: string) => {
 	return h(
@@ -42,12 +41,7 @@ const popoverRender = (voucherCode: string) => {
 			trigger: () => h(
 				'span',
 				{
-					style: {
-						color: '#1876F2',
-						cursor: 'pointer',
-						marginLeft: '5px',
-						fontWeight: 'bold',
-					},
+					style: POPOVER_SPAN_STYLE,
 				},
 				t('creditsPage.popoverTriggerText')
 			),
@@ -68,7 +62,7 @@ const columns = computed(() => [
 	{
 		title: t('creditsPage.effectiveDate'),
 		key: 'create_time',
-		render: (row: QuotaAuditRecord) => dayjs(row.create_time).format('YYYY-MM-DD HH:mm:ss'),
+		render: (row: QuotaAuditRecord) => formatDate(row.create_time),
 		width: 180
 	},
 	{
@@ -78,9 +72,9 @@ const columns = computed(() => [
 			const { operation, related_user, voucher_code, amount, details } = row;
 
 			switch (operation) {
-				case 'RECHARGE':
+				case OPERATION_TYPE.reCharge:
 					return t('creditsPage.githubActivityDesc')
-				case 'TRANSFER_OUT':
+				case OPERATION_TYPE.transferOut:
 					const transferOutBaseDescription = t('creditsPage.transferOutDesc', {
 						relatedUser: related_user,
 						amount: Math.abs(amount)
@@ -95,7 +89,7 @@ const columns = computed(() => [
 								: null,
 						]
 					)
-				case 'TRANSFER_IN':
+				case OPERATION_TYPE.transferIn:
 					const now = dayjs()
 					let validAmount = 0
 					let expiredAmount = 0
@@ -103,7 +97,7 @@ const columns = computed(() => [
 					const expiredDetails: string[] = []
 
 					const groupedItems = details?.items?.reduce<Record<string, GroupedItem>>((acc, detail) => {
-						const key = dayjs(detail.expiry_date).format('YYYY-MM-DD')
+						const key = formatDate(detail.expiry_date, 'YYYY-MM-DD')
 						const absAmount = Math.abs(detail.amount)
 
 						if (!acc[key]) {
@@ -119,7 +113,7 @@ const columns = computed(() => [
 
 					Object.values<GroupedItem>(groupedItems).forEach(item => {
 						const absAmount = Math.abs(item.amount)
-						const expiryDate = dayjs(item.expiry_date).format('YYYY-MM-DD')
+						const expiryDate = formatDate(item.expiry_date, 'YYYY-MM-DD')
 
 						if (item.isExpired) {
 							expiredAmount += absAmount
@@ -139,8 +133,8 @@ const columns = computed(() => [
 						: ''
 
 					const baseDescription = t('creditsPage.transferInBaseDesc', { relatedUser: related_user, amount: amount }) +
-						(validText ? `，${validText}` : '') +
-						(expiredText ? `，${expiredText}` : '') +
+						(validText ? `${t('common.comma')}${validText}` : '') +
+						(expiredText ? `${t('common.comma')}${expiredText}` : '') +
 						t('creditsPage.voucherCodeSuffix')
 
 					return h(
@@ -159,7 +153,7 @@ const columns = computed(() => [
 	{
 		title: t('creditsPage.expiryDate'),
 		key: 'expiry_date',
-		render: (row: QuotaAuditRecord) => dayjs(row.expiry_date).format('YYYY-MM-DD HH:mm:ss'),
+		render: (row: QuotaAuditRecord) => formatDate(row.expiry_date),
 		width: 180
 	},
 ])
@@ -171,16 +165,17 @@ const restQuota = ref(0)
 const isLoading = ref(false)
 
 const fetchQuotaAuditRecords = async () => {
-	const data = await getQuotaAuditRecords({
-		page: 1,
-		page_size: 10000,
-	})
+	const data = await getQuotaAuditRecords(PAGE_PARAMS)
 
 	columnData.value = data.records || []
 }
 
 const fetchUserQuota = async () => {
 	const data = await getUserQuota()
+
+	if (!data) {
+		return
+	}
 
 	restQuota.value = Number((data.total_quota - data.used_quota).toFixed(2)) || 0
 }

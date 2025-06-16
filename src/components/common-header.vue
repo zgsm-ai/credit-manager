@@ -11,7 +11,7 @@
                     <template #trigger>
                         <img src="../assets/user.png" alt="">
                     </template>
-                    <div class="user-name">-</div>
+                    <div class="user-name">{{ displayName }}</div>
                     <div class="user-menu-options">
                         <div class="option-item" @click="toCredit">{{ t('common.header.accountAndUsage') }}</div>
                     </div>
@@ -43,6 +43,8 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { NPopover } from 'naive-ui'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
+import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const { t, locale } = useI18n()
@@ -70,9 +72,13 @@ const isPopoverOpen = ref(false)
 const isUserMenuOpen = ref(false)
 
 const toCredit = () => {
-    router.push('/credits')
+    window.open('/credits')
     isUserMenuOpen.value = false
 }
+
+const userStore = useUserStore()
+
+const { displayName } = storeToRefs(userStore)
 
 </script>
 
