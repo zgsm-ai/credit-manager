@@ -1,11 +1,14 @@
 <template>
-    <div class="common-content">
-        <router-view />
-        <common-footer />
-    </div>
+	<div class="common-content">
+		<router-view />
+		<common-footer />
+	</div>
 </template>
 
 <script setup lang="ts">
+/**
+ * @file common-content.vue
+ */
 import CommonFooter from '@/components/common-footer.vue'
 import { setI18nComposer } from '@/utils/i18n'
 import { setMessageInstance } from '@/utils/request'
@@ -17,3 +20,12 @@ setMessageInstance(message)
 setI18nComposer(useI18n())
 
 </script>
+
+<style lang="less" scoped>
+.common-content {
+	min-height: calc(100vh - 68px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+</style>

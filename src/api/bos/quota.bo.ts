@@ -92,7 +92,8 @@ export interface UserInfoData {
     githubName: string
     phone: string
     username: string
-    uuid: string
+    uuid: string,
+    employee_number?: string
 }
 
 export interface GetUserInfoRes {
