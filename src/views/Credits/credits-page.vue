@@ -27,7 +27,7 @@ import { formatDate } from '@/utils/date'
 
 const { t, locale } = useI18n()
 
-const isZh = computed(() => locale.value === 'zh');
+const isZh = computed(() => locale.value === 'zh')
 
 const popoverRender = (voucherCode: string) => {
 	return h(
@@ -105,7 +105,7 @@ const columns = computed(() => [
 								amount: 0,
 								expiry_date: detail.expiry_date,
 								isExpired: now.isAfter(dayjs(detail.expiry_date)),
-							};
+							}
 						}
 						acc[key].amount += absAmount
 						return acc
@@ -122,7 +122,7 @@ const columns = computed(() => [
 							validAmount += absAmount
 							validDetails.push(t('creditsPage.validDetailItem', { amount: absAmount, expiryDate: expiryDate }))
 						}
-					});
+					})
 
 					const validText = validDetails.length > 0
 						? t('creditsPage.validCreditDetails', { validAmount: validAmount, validDetails: validDetails.join(t('common.comma')) })

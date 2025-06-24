@@ -51,11 +51,10 @@ const fetchUserInfo = async () => {
 	}
 
 	updateUserInfo({
-		githubAccount: data.email || '',
 		phoneNumber: data.phone || '',
 		userId: data.uuid || '',
 		employeeNumber: data.employee_number || '',
-		githubName: data.githubName || ''
+		githubName: data.githubName || '',
 	})
 }
 </script>

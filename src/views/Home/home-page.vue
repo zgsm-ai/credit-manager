@@ -8,9 +8,9 @@
 							<div class="item-account">
 								<div class="label">{{ t('homePage.githubAccount') }}</div>
 								<span
-									:style="{ color: !githubAccount ? '#1876F2' : '#fff', cursor: !githubAccount ? 'pointer' : 'default' }"
-									@click="!githubAccount && bindGithub()">
-									{{ githubAccount || t('homePage.bindText') }}
+									:style="{ color: !githubName ? '#1876F2' : '#fff', cursor: !githubName ? 'pointer' : 'default' }"
+									@click="!githubName && bindGithub()">
+									{{ githubName || t('homePage.bindText') }}
 								</span>
 							</div>
 							<div class="item-phone" v-if="isZh">
@@ -80,7 +80,7 @@
 						</div>
 						<div class="activity-tips" @click="toGithub">
 							<div class="tips-content">{{ t('homePage.githubStar') }}</div>
-							<img :src="t('homePage.tipsTag')" alt="">
+							<img :src="tag" alt="">
 						</div>
 					</template>
 				</common-card>
@@ -102,18 +102,22 @@ import { computed, ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { NProgress, NCollapse, NCollapseItem, NDataTable, NSpin } from 'naive-ui'
 import CommonCard from '@/components/common-card.vue'
-import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue';
-import CreditCodeModal from './credit-code-modal.vue';
+import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue'
+import CreditCodeModal from './credit-code-modal.vue'
 import { getUserQuota, getBindAccount } from '@/api/mods/quota.mod'
 import type { QuotaList } from '@/api/bos/quota.bo'
 import { useUserStore } from '@/store/user'
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia'
 import { BING_TYPE } from './const'
 import { formatDate } from '@/utils/date'
+import enTag from '@public/images/en/tag.svg'
+import zhTag from '@public/images/zh/tag.svg'
 
 const { t, locale } = useI18n()
 
-const isZh = computed(() => locale.value === 'zh');
+const isZh = computed(() => locale.value === 'zh')
+
+const tag = computed(() => isZh.value ? zhTag : enTag)
 
 const bindAction = async (bindType: keyof typeof BING_TYPE) => {
 	const data = await getBindAccount({
@@ -183,7 +187,7 @@ const columns = computed(() => [
 
 const columnsData = ref<QuotaList[]>([])
 
-const toCredits = () => window.open('/credits')
+const toCredits = () => window.open('/credit/manager/credits')
 
 const toGithub = () => window.open('https://github.com/zgsm-ai/zgsm')
 
@@ -191,7 +195,7 @@ const isLoading = ref(false)
 
 const userStore  = useUserStore()
 
-const { githubAccount, phoneNumber, userId } = storeToRefs(userStore)
+const { githubName, phoneNumber, userId } = storeToRefs(userStore)
 
 const fetchUserQuota = async () => {
 	const data = await getUserQuota()
