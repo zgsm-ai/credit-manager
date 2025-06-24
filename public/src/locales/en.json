@@ -1,0 +1,101 @@
+{
+    "creditCodeModal": {
+        "title": "Credit transfer",
+        "codeLabel": "Redemption Code:",
+        "codePlaceholder": "please input",
+        "copyTooltip": "copy",
+        "tip1": "Please copy the redemption code and provide it to the User ID. The recipient need go to the Credit Redemption page and enter the code to complete the redemption before the Credit expires.",
+        "tip2": "The records of this transfer (including the Redemption codes) can be viewed on the Credit history page."
+    },
+    "creditTransferModal": {
+        "title": "Credit transfer",
+        "tabCreditOut": "Transfer out",
+        "tabCreditIn": "Transfer in",
+        "receiverIdLabel": "Redemption Code：",
+        "receiverIdPlaceholder": "please input",
+        "receiverIdTip": "Can be viewed in Account & usage page > basic information",
+        "transferCreditLabel": "Credit Transfer out:",
+        "expiryDateColumn": "Expiration date",
+        "totalCreditColumn": "Credit ",
+        "transferOutCreditColumn": "Transfer out",
+        "redeemCodeLabel": "Redemption Code:",
+        "redeemCodePlaceholder": "please input",
+        "redeemSuccessStatus": "Redemption Successful",
+        "confirmButton": "Confirm",
+        "cancelButton": "Cancel",
+        "creditReceiveDetailTitle": "Credit Receiving Details:",
+        "viewReceiveRecordLeft": "Can be",
+        "viewReceiveRecordRight": "viewed in the Credit History page",
+        "validationReceiverIdRequired": "Please enter the recipient's User ID",
+        "validationSelectCreditRequired": "Please select at least one item to transfer Credits",
+        "generateVoucherCodeFailed": "Failed to generate redemption code!",
+        "generateVoucherCodeSuccess": "Redemption code generated successfully!",
+        "redeemSuccessMessage": "Redemption Successful!",
+        "redeemCodeAlreadyRedeemed": "This redemption code has already been used and cannot be redeemed again.",
+        "redeemCodeExpiredReminder": "Credit has expired. Please initiate a new transfer",
+        "redeemCodeError": "Invalid redemption code. Please try again",
+        "expiredTag": "Expired"
+    },
+    "creditsPage": {
+        "title": "Credit History",
+        "remainingCredit": "Remaining Credit:",
+        "creditChange": "Credit Changes",
+        "effectiveDate": "Start Time",
+        "description": "Description",
+        "expiryDate": "Expiration date",
+        "popoverTriggerText": "Hover to view",
+        "githubActivityDesc": "Earned by participating in the GitHub star event",
+        "transferOutDesc": "Transferred {amount} Credits to user {relatedUser}, redemption code:",
+        "transferInBaseDesc": "{amount} Credits received from user {relatedUser}",
+        "validCreditDetails": "Valid Credits: {validAmount} ({validDetails})",
+        "expiredCreditDetails": "Expired Credits: {expiredAmount} ({expiredDetails})",
+        "validDetailItem": "{amount} Credits will expire on {expiryDate}",
+        "expiredDetailItem": "{amount} Credits expired on {expiryDate}",
+        "voucherCodeSuffix": ", redemption code:"
+    },
+    "homePage": {
+        "basicInfo": "Basic Information",
+        "githubAccount": "Github Account:",
+        "bindText": "Bind Now",
+        "phoneLabel": "Phone Number:",
+        "userIdLabel": "User ID:",
+        "usageTitle": "Usage",
+        "creditTransfer": "Credit transfer",
+        "creditRecords": "Credit History >>",
+        "userCredits": "User Prompt Credits",
+        "creditDesc": "The credit consumption per request varies across different models，only advanced models will calculate the usage of Credit.",
+        "creditValidity": "Credit Validity",
+        "expiryDate": "Expiration Time",
+        "creditNum": "Credit Number",
+        "activityTitle": "activityTitle",
+        "creditPlan": "Credit Acquisition Plan",
+        "planDesc": "Once the usage limit is reached，you can continue use the Based model. To continue using Pro models (Claude/Gemini...), Participate in our activities！",
+        "githubStar": "Light up the star of Zhuge Shenma program on GitHub platform to obtain a credit limit of 30C",
+        "useCredit": "{used}/{total} Used ",
+        "restCredit": "{rest} left"
+    },
+    "common": {
+        "comma": ",",
+        "langZh": "中文",
+        "footer": {
+            "emailContactLabel": "Contact us",
+            "copyright": "©2025 SANGFOR TECHNOLOGIES. ALL RIGHTS RESERVED."
+        },
+        "header": {
+            "appName": "ZHUGE SHENMA",
+            "accountAndUsage": "ACCOUNT & USAGE",
+            "logout": "LOG OUT"
+        },
+        "request": {
+            "requestFailed": "Request failed",
+            "unauthorized": "Unauthorized. Please re-authenticate in VSCode.",
+            "requestTimeout": "Request timed out",
+            "networkConnectionError": "Network connection error",
+            "networkError": "Network error"
+        }
+    },
+    "utils": {
+        "copySuccess": "Copy successful",
+        "copyFailed": "Copy failed, please copy manually"
+    }
+}
