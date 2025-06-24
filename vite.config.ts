@@ -20,7 +20,7 @@ export default defineConfig({
     server: {
         host: true,
         proxy: {
-            '/api': {
+            '/quota-manager': {
                 target: 'http://10.48.19.1:9080',
                 changeOrigin: true,
             },

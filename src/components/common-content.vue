@@ -1,6 +1,8 @@
 <template>
 	<div class="common-content">
-		<router-view />
+		<div class="common-content-view">
+			<router-view />
+		</div>
 		<common-footer />
 	</div>
 </template>
@@ -27,5 +29,9 @@ setI18nComposer(useI18n())
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	&-view {
+		flex: 1;
+	}
 }
 </style>
