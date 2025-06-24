@@ -1,4 +1,5 @@
 import { getT } from './i18n'
+import copy from 'copy-to-clipboard'
 
 /**
  * copy util
@@ -16,20 +17,7 @@ export const copyToClipboard = async (
     const t = getT()
 
     try {
-        if (navigator.clipboard) {
-            await navigator.clipboard.writeText(text)
-            messageHandler?.success?.(t('utils.copySuccess'))
-            return true
-        }
-
-        const textarea = document.createElement('textarea')
-        textarea.value = text
-        textarea.style.position = 'fixed'
-        document.body.appendChild(textarea)
-        textarea.select()
-
-        const success = document.execCommand('copy')
-        document.body.removeChild(textarea)
+        const success = copy(text);
 
         if (success) {
             messageHandler?.success?.(t('utils.copySuccess'))
@@ -38,7 +26,7 @@ export const copyToClipboard = async (
         }
         return success
     } catch (err) {
-        console.error('复制失败:', err)
+        console.error('copy error:', err)
         messageHandler?.error?.(t('utils.copyFailed'))
         return false
     }

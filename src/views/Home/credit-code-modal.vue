@@ -23,11 +23,11 @@
 <script setup lang="ts">
 import CommonModal from '@/components/common-modal.vue'
 import { NForm, NFormItem, NInput, NIcon, NTooltip } from 'naive-ui'
-import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { CopyOutline } from '@vicons/ionicons5'
 import { useMessage } from 'naive-ui'
-import { copyToClipboard } from '@/utils/copy';
+import { copyToClipboard } from '@/utils/copy'
 
 const { t } = useI18n()
 const message = useMessage()

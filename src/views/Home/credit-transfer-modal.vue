@@ -73,12 +73,12 @@
 import CommonModal from '@/components/common-modal.vue'
 import { computed, h, watch, ref } from 'vue'
 import { NButton, NForm, NFormItem, NInput, NDataTable, NInputNumber, useMessage, NTag } from 'naive-ui'
-import type { QuotaList, QuotaTransferInQuotaList } from '@/api/bos/quota.bo';
-import dayjs from 'dayjs';
-import { postQuotaIn, postQuotaOut } from '@/api/mods/quota.mod';
-import { useI18n } from 'vue-i18n';
-import type { FormModel, RowData } from './interface';
-import { STATUS, TRANSFER_IN_STATUS, TRANSFER_TYPE } from './const';
+import type { QuotaList, QuotaTransferInQuotaList } from '@/api/bos/quota.bo'
+import dayjs from 'dayjs'
+import { postQuotaIn, postQuotaOut } from '@/api/mods/quota.mod'
+import { useI18n } from 'vue-i18n'
+import type { FormModel, RowData } from './interface'
+import { STATUS, TRANSFER_IN_STATUS, TRANSFER_TYPE } from './const'
 
 const message = useMessage()
 
@@ -160,7 +160,7 @@ watch(activeTab, () => {
 })
 
 watch(() => props.show, () => {
-    resetForm();
+    resetForm()
     activeTab.value = TRANSFER_TYPE.out
 })
 
@@ -361,11 +361,11 @@ const confirmTransferIn = async () => {
 
 const isCreditOut = computed(() => activeTab.value === TRANSFER_TYPE.out)
 
-const tranferStatus = ref<undefined | string>(STATUS.undefined);
+const tranferStatus = ref<undefined | string>(STATUS.undefined)
 
 const transferSuccess = computed(() => tranferStatus.value === STATUS.success)
 
-const toCredit = () => window.open('/credits')
+const toCredit = () => window.open('/credit/manager/credits')
 
 </script>
 

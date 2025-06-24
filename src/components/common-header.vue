@@ -72,7 +72,7 @@ const isPopoverOpen = ref(false)
 const isUserMenuOpen = ref(false)
 
 const toCredit = () => {
-    window.open('/credits')
+    window.open('/credit/manager/credits')
     isUserMenuOpen.value = false
 }
 
