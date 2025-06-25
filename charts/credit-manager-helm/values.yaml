@@ -10,7 +10,7 @@ service:
 
 image:
   pullPolicy: IfNotPresent
-  repository: zgsm-admin-system
+  repository: zgsm/zgsm-admin-system
   tag: ""
 
 containerPorts:
