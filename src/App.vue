@@ -29,10 +29,10 @@ onMounted(() => {
 		setToken(hashToken)
 
 		getUserToken().then(res => {
-			if (!res.access_token) {
+			if (!res.data?.access_token) {
 				return
 			}
-			setToken(res.access_token)
+			setToken(res.data.access_token)
 		}).then(() => {
 			fetchUserInfo()
 		})
@@ -55,6 +55,7 @@ const fetchUserInfo = async () => {
 		userId: data.uuid || '',
 		employeeNumber: data.employee_number || '',
 		githubName: data.githubName || '',
+		userName: data.username || ''
 	})
 }
 </script>

@@ -165,13 +165,13 @@ const restQuota = ref(0)
 const isLoading = ref(false)
 
 const fetchQuotaAuditRecords = async () => {
-	const data = await getQuotaAuditRecords(PAGE_PARAMS)
+	const { data } = await getQuotaAuditRecords(PAGE_PARAMS)
 
 	columnData.value = data.records || []
 }
 
 const fetchUserQuota = async () => {
-	const data = await getUserQuota()
+	const { data } = await getUserQuota()
 
 	if (!data) {
 		return

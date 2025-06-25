@@ -96,12 +96,7 @@ export interface UserInfoData {
     employee_number?: string
 }
 
-export interface GetUserInfoRes {
-    data: UserInfoData
-    message: string
-    state: string
-    success: boolean
-}
+export type GetUserInfoRes = UserInfoData
 
 export interface GetBindAccountReq {
     bindType: string
