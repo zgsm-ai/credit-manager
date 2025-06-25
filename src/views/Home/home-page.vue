@@ -110,8 +110,8 @@ import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
 import { BING_TYPE } from './const'
 import { formatDate } from '@/utils/date'
-import enTag from '@public/images/en/tag.svg'
-import zhTag from '@public/images/zh/tag.svg'
+import enTag from '/images/en/tag.svg'
+import zhTag from '/images/zh/tag.svg'
 
 const { t, locale } = useI18n()
 
@@ -120,7 +120,7 @@ const isZh = computed(() => locale.value === 'zh')
 const tag = computed(() => isZh.value ? zhTag : enTag)
 
 const bindAction = async (bindType: keyof typeof BING_TYPE) => {
-	const data = await getBindAccount({
+	const { data } = await getBindAccount({
 		bindType,
 		state: 'state'
 	})
@@ -193,12 +193,12 @@ const toGithub = () => window.open('https://github.com/zgsm-ai/zgsm')
 
 const isLoading = ref(false)
 
-const userStore  = useUserStore()
+const userStore = useUserStore()
 
 const { githubName, phoneNumber, userId } = storeToRefs(userStore)
 
 const fetchUserQuota = async () => {
-	const data = await getUserQuota()
+	const { data } = await getUserQuota()
 
 	if (!data) {
 		return

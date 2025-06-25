@@ -309,7 +309,7 @@ const handleSubmit = () => {
 
             isLoading.value = true
 
-            const data = await postQuotaOut(params)
+            const { data } = await postQuotaOut(params)
                 .finally(() => {
                     isLoading.value = false
                 })
@@ -331,7 +331,7 @@ const handleSubmit = () => {
 const confirmTransferIn = async () => {
     isLoading.value = true
 
-    const data = await postQuotaIn({
+    const { data } = await postQuotaIn({
         voucher_code: formModel.value.redeemCode
     }).finally(() => {
         isLoading.value = false

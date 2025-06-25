@@ -11,7 +11,7 @@
                     <template #trigger>
                         <img src="../assets/user.png" alt="">
                     </template>
-                    <div class="user-name">{{ displayName }}</div>
+                    <div class="user-name">{{ userName }}</div>
                     <div class="user-menu-options">
                         <div class="option-item" @click="toCredit">{{ t('common.header.accountAndUsage') }}</div>
                     </div>
@@ -78,7 +78,7 @@ const toCredit = () => {
 
 const userStore = useUserStore()
 
-const { displayName } = storeToRefs(userStore)
+const { userName } = storeToRefs(userStore)
 
 </script>
 

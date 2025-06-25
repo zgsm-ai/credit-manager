@@ -5,6 +5,7 @@ interface UserInfo {
     userId: string
     githubName: string
     employeeNumber: string
+    userName: string
 }
 
 export const useUserStore = defineStore('counter', {
@@ -13,18 +14,8 @@ export const useUserStore = defineStore('counter', {
         userId: '',
         githubName: '',
         employeeNumber: '',
+        userName: '',
     }),
-
-    getters: {
-        displayName: (state) => {
-            return (
-                state.githubName ||
-                state.phoneNumber ||
-                state.employeeNumber ||
-                '-'
-            )
-        },
-    },
 
     actions: {
         updateUserInfo({
@@ -32,12 +23,14 @@ export const useUserStore = defineStore('counter', {
             userId,
             githubName,
             employeeNumber,
+            userName,
         }: UserInfo) {
             this.$patch({
                 phoneNumber,
                 userId,
                 githubName,
                 employeeNumber,
+                userName,
             })
         },
     },
