@@ -92,8 +92,9 @@ export interface UserInfoData {
     githubName: string
     phone: string
     username: string
-    uuid: string,
+    uuid: string
     employee_number?: string
+    isPrivate?: boolean
 }
 
 export type GetUserInfoRes = UserInfoData
@@ -104,7 +105,7 @@ export interface GetBindAccountReq {
 }
 
 export interface GetBindAccountRes {
-    URL: string
+    url: string
     message: string
     success: boolean
 }

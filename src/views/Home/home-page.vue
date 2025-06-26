@@ -5,7 +5,7 @@
 				<common-card :title="t('homePage.basicInfo')">
 					<template #default>
 						<div class="info-item">
-							<div class="item-account">
+							<div class="item-account" v-if="!isPrivate">
 								<div class="label">{{ t('homePage.githubAccount') }}</div>
 								<span
 									:style="{ color: !githubName ? '#1876F2' : '#fff', cursor: !githubName ? 'pointer' : 'default' }"
@@ -125,11 +125,11 @@ const bindAction = async (bindType: keyof typeof BING_TYPE) => {
 		state: 'state'
 	})
 
-	if (!data.URL) {
+	if (!data.url) {
 		return
 	}
 
-	window.location.href = data.URL
+	window.location.href = data.url
 }
 
 const bindGithub = () => bindAction(BING_TYPE.github)
@@ -195,7 +195,7 @@ const isLoading = ref(false)
 
 const userStore = useUserStore()
 
-const { githubName, phoneNumber, userId } = storeToRefs(userStore)
+const { githubName, phoneNumber, userId, isPrivate } = storeToRefs(userStore)
 
 const fetchUserQuota = async () => {
 	const { data } = await getUserQuota()

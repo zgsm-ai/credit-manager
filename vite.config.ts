@@ -25,7 +25,7 @@ export default defineConfig({
                 target: 'http://10.48.19.1:9080',
                 changeOrigin: true,
             },
-            '/oidc_auth': {
+            '/oidc-auth': {
                 target: 'http://10.48.19.1:9080',
                 changeOrigin: true,
             },
