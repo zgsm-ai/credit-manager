@@ -4,7 +4,7 @@
 		<div class="content">
 			<n-config-provider :theme-overrides="themeOverrides">
 				<n-message-provider>
-					<common-content />
+					<common-content v-if="isTokenInitialized" />
 				</n-message-provider>
 			</n-config-provider>
 		</div>
@@ -20,31 +20,39 @@ import { getHashToken, setToken } from '@/utils/token'
 import { getUserToken } from './api/mods/quota.mod'
 import { useUserStore } from '@/store/user'
 import { getUserInfo } from '@/api/mods/quota.mod'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const hashToken = getHashToken()
+const isTokenInitialized = ref(false)
 
-onMounted(() => {
+onMounted(async () => {
 	if (hashToken) {
 		setToken(hashToken)
 
 		getUserToken().then(res => {
-			if (!res.data?.access_token) {
+			const { data: { data: { access_token } } } = res
+			if (!access_token) {
 				return
 			}
-			setToken(res.data.access_token)
-		}).then(() => {
-			fetchUserInfo()
+
+			return new Promise<void>((resolve) => {
+				setToken(access_token)
+				resolve()
+			})
+		}).then(async () => {
+			await fetchUserInfo()
+			isTokenInitialized.value = true
 		})
 	} else {
 		fetchUserInfo()
+		isTokenInitialized.value = true
 	}
 })
 
 const { updateUserInfo } = useUserStore()
 
 const fetchUserInfo = async () => {
-	const { data } = await getUserInfo()
+	const { data: { data } } = await getUserInfo()
 
 	if (!data) {
 		return
