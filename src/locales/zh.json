@@ -44,13 +44,13 @@
         "description": "描述",
         "expiryDate": "到期时间",
         "popoverTriggerText": "点击查看",
-        "githubActivityDesc": "用户参与github点亮star活动获取",
-        "transferOutDesc": "给用户{relatedUser} 转了{amount} Credit， 兑换码：",
-        "transferInBaseDesc": "由用户{relatedUser}给您转入总共{amount} Credit",
+        "githubActivityDesc": "用户参与 github 点亮 star 活动获取",
+        "transferOutDesc": "给用户 {relatedUser} 转了 {amount} Credit， 兑换码：",
+        "transferInBaseDesc": "由用户 {relatedUser} 给您转入总共 {amount} Credit",
         "validCreditDetails": "其中有效Credit：{validAmount}（{validDetails}）",
         "expiredCreditDetails": "失效Credit：{expiredAmount}（{expiredDetails}）",
-        "validDetailItem": "{amount} Credit将在{expiryDate}到期",
-        "expiredDetailItem": "{amount} Credit已在{expiryDate}过期",
+        "validDetailItem": "{amount} Credit将在 {expiryDate} 到期",
+        "expiredDetailItem": "{amount} Credit已在 {expiryDate} 过期",
         "voucherCodeSuffix": "， 兑换码："
     },
     "homePage": {
@@ -70,7 +70,7 @@
         "activityTitle": "活动",
         "creditPlan": "Credit 增长计划",
         "planDesc": "如果您Credit已经消耗完毕，一些高级模型则无法继续使用，您可以通过参与以下活动获取Credit额度",
-        "githubStar": "首次在GitHub上点击star收藏诸葛神码开源项目，可获赠30C（2小时内自动生效）",
+        "githubStar": "首次在GitHub上点击star收藏诸葛神码开源项目，可获赠30Credit（2小时内自动生效）",
         "useCredit": "{used}/{total}已使用",
         "restCredit": "剩余{rest}"
     },

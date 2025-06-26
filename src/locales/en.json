@@ -70,7 +70,7 @@
         "activityTitle": "activityTitle",
         "creditPlan": "Credit Acquisition Plan",
         "planDesc": "Once the usage limit is reached，you can continue use the Based model. To continue using Pro models (Claude/Gemini...), Participate in our activities！",
-        "githubStar": "Light up the star of Zhuge Shenma program on GitHub platform to obtain a credit limit of 30C",
+        "githubStar": "Light up the star of Zhuge Shenma program on GitHub platform to obtain a credit limit of 30Credit",
         "useCredit": "{used}/{total} Used ",
         "restCredit": "{rest} left"
     },
