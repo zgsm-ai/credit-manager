@@ -55,7 +55,8 @@ const fetchUserInfo = async () => {
 		userId: data.uuid || '',
 		employeeNumber: data.employee_number || '',
 		githubName: data.githubName || '',
-		userName: data.username || ''
+		userName: data.username || '',
+		isPrivate: data.isPrivate || false,
 	})
 }
 </script>

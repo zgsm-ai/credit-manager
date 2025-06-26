@@ -6,6 +6,7 @@ interface UserInfo {
     githubName: string
     employeeNumber: string
     userName: string
+    isPrivate: boolean
 }
 
 export const useUserStore = defineStore('counter', {
@@ -15,6 +16,7 @@ export const useUserStore = defineStore('counter', {
         githubName: '',
         employeeNumber: '',
         userName: '',
+        isPrivate: false,
     }),
 
     actions: {
@@ -24,6 +26,7 @@ export const useUserStore = defineStore('counter', {
             githubName,
             employeeNumber,
             userName,
+            isPrivate,
         }: UserInfo) {
             this.$patch({
                 phoneNumber,
@@ -31,6 +34,7 @@ export const useUserStore = defineStore('counter', {
                 githubName,
                 employeeNumber,
                 userName,
+                isPrivate,
             })
         },
     },
