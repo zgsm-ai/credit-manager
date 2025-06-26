@@ -74,7 +74,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          target: builder
+          target: runner
           platforms: linux/amd64
           push: true
           tags: ${{ secrets.DOCKERHUB_REPOSITORY }}/zgsm-admin-system:${{ steps.version.outputs.version }},${{ secrets.DOCKERHUB_REPOSITORY }}/zgsm-admin-system:latest
