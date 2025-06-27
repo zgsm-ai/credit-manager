@@ -80,9 +80,7 @@ export interface PostQuotaTransferInRes {
 }
 
 export interface GetUserTokenRes {
-    data: {
-        access_token: string
-    }
+    access_token: string
     message: string
     state: string
     success: boolean
@@ -99,9 +97,7 @@ export interface UserInfoData {
     isPrivate?: boolean
 }
 
-export interface GetUserInfoRes {
-    data: UserInfoData
-}
+export type GetUserInfoRes = UserInfoData
 
 export interface GetBindAccountReq {
     bindType: string

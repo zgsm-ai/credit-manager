@@ -70,9 +70,9 @@
         "activityTitle": "活动",
         "creditPlan": "Credit 增长计划",
         "planDesc": "如果您Credit已经消耗完毕，一些高级模型则无法继续使用，您可以通过参与以下活动获取Credit额度",
-        "githubStar": "首次在GitHub上点击star收藏诸葛神码开源项目，可获赠30Credit（2小时内自动生效）",
-        "useCredit": "{used}/{total}已使用",
-        "restCredit": "剩余{rest}"
+        "githubStar": "首次在GitHub上点击star收藏诸葛神码开源项目，可获赠 30Credit（2小时内自动生效）",
+        "useCredit": "{used} / {total} 已使用",
+        "restCredit": "剩余 {rest}"
     },
     "common": {
         "comma": "，",

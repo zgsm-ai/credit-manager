@@ -52,6 +52,7 @@ defineSlots<{
 	.card-header {
 		color: #fff;
 		font-size: 16px;
+		font-weight: 600;
 	}
 }
 </style>

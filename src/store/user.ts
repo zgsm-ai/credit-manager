@@ -17,6 +17,7 @@ export const useUserStore = defineStore('counter', {
         employeeNumber: '',
         userName: '',
         isPrivate: false,
+        isTokenInitialized: false,
     }),
 
     actions: {
@@ -35,6 +36,12 @@ export const useUserStore = defineStore('counter', {
                 employeeNumber,
                 userName,
                 isPrivate,
+            })
+        },
+
+        updateTokenInitialized(isTokenInitialized: boolean) {
+            this.$patch({
+                isTokenInitialized,
             })
         },
     },
