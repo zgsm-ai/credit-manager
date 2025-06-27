@@ -149,10 +149,17 @@ const { userName } = storeToRefs(userStore)
         cursor: pointer;
         color: #fff;
         background: #000;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.2);
+        border-width: 1px 1px 0 1px;
 
         &:hover {
             background-color: rgba(0, 0, 0, 0.3);
         }
+    }
+
+    .lang-option:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 }
 
@@ -160,7 +167,9 @@ const { userName } = storeToRefs(userStore)
     padding: 10px 12px;
     background: #000;
     color: #fff;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.2);
+    border-width: 1px 1px 0 1px;
 }
 
 .user-menu-options {
@@ -171,8 +180,7 @@ const { userName } = storeToRefs(userStore)
         cursor: pointer;
         background: #000;
         color: #fff;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
 
         &:hover {
             background-color: rgba(0, 0, 0, 0.3);
