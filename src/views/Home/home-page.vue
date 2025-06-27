@@ -98,7 +98,7 @@
 /**
  * @file home-page.vue
  */
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { NProgress, NCollapse, NCollapseItem, NDataTable, NSpin } from 'naive-ui'
 import CommonCard from '@/components/common-card.vue'
@@ -195,7 +195,7 @@ const isLoading = ref(false)
 
 const userStore = useUserStore()
 
-const { githubName, phoneNumber, userId, isPrivate } = storeToRefs(userStore)
+const { githubName, phoneNumber, userId, isPrivate, isTokenInitialized } = storeToRefs(userStore)
 
 const fetchUserQuota = async () => {
 	const { data } = await getUserQuota()
@@ -209,18 +209,20 @@ const fetchUserQuota = async () => {
 	totalQuota.value = data.total_quota || 0
 }
 
+watch(isTokenInitialized, (val) => {
+	if (val) {
+		isLoading.value = true
+		fetchUserQuota().finally(() => {
+			isLoading.value = false
+		})
+	}
+}, {
+	immediate: true
+})
+
 const transferInCallBack = () => {
 	fetchUserQuota()
 }
-
-onMounted(async () => {
-	isLoading.value = true
-
-	Promise.all([fetchUserQuota()])
-		.finally(() => {
-			isLoading.value = false
-		})
-})
 
 </script>
 
@@ -233,6 +235,11 @@ onMounted(async () => {
 	.usage,
 	.activity {
 		margin-top: 24px;
+
+		.activity-title {
+			font-size: 16px;
+			font-weight: 600;
+		}
 	}
 
 	.info {
@@ -311,7 +318,7 @@ onMounted(async () => {
 			flex-direction: column;
 
 			.content-title {
-				font-size: 16px;
+				font-size: 14px;
 			}
 
 			.content-desc {
@@ -364,7 +371,6 @@ onMounted(async () => {
 			padding: 7px 8px 7px 12px;
 			box-sizing: border-box;
 			border-radius: 20px;
-			width: 75%;
 			display: flex;
 			align-items: center;
 			background: url("../../assets/tips-bg.png") no-repeat;

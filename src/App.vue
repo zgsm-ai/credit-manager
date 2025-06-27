@@ -4,7 +4,7 @@
 		<div class="content">
 			<n-config-provider :theme-overrides="themeOverrides">
 				<n-message-provider>
-					<common-content v-if="isTokenInitialized" />
+					<common-content />
 				</n-message-provider>
 			</n-config-provider>
 		</div>
@@ -20,39 +20,14 @@ import { getHashToken, setToken } from '@/utils/token'
 import { getUserToken } from './api/mods/quota.mod'
 import { useUserStore } from '@/store/user'
 import { getUserInfo } from '@/api/mods/quota.mod'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 
 const hashToken = getHashToken()
-const isTokenInitialized = ref(false)
 
-onMounted(async () => {
-	if (hashToken) {
-		setToken(hashToken)
-
-		getUserToken().then(res => {
-			const { data: { data: { access_token } } } = res
-			if (!access_token) {
-				return
-			}
-
-			return new Promise<void>((resolve) => {
-				setToken(access_token)
-				resolve()
-			})
-		}).then(async () => {
-			await fetchUserInfo()
-			isTokenInitialized.value = true
-		})
-	} else {
-		fetchUserInfo()
-		isTokenInitialized.value = true
-	}
-})
-
-const { updateUserInfo } = useUserStore()
+const { updateUserInfo, updateTokenInitialized } = useUserStore()
 
 const fetchUserInfo = async () => {
-	const { data: { data } } = await getUserInfo()
+	const { data } = await getUserInfo()
 
 	if (!data) {
 		return
@@ -67,6 +42,31 @@ const fetchUserInfo = async () => {
 		isPrivate: data.isPrivate || false,
 	})
 }
+
+onMounted(async () => {
+	if (hashToken) {
+		setToken(hashToken)
+
+		getUserToken().then(res => {
+			const { data: { access_token } } = res
+			if (!access_token) {
+				return
+			}
+
+			return new Promise<void>((resolve) => {
+				setToken(access_token)
+				resolve()
+			})
+		}).then(async () => {
+			await fetchUserInfo()
+			updateTokenInitialized(true)
+		})
+	} else {
+		fetchUserInfo()
+		updateTokenInitialized(true)
+	}
+})
+
 </script>
 
 <style lang="less" scoped>

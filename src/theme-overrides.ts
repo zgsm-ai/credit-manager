@@ -31,7 +31,7 @@ export const themeOverrides: GlobalThemeOverrides = {
     Collapse: {
         titleTextColor: '#fff',
         arrowColor: 'rgba(255, 255, 255, 0.7)',
-        titleFontSize: '16px',
+        titleFontSize: '14px',
     },
     Form: {
         feedbackFontSizeMedium: '12px',
@@ -81,5 +81,5 @@ export const themeOverrides: GlobalThemeOverrides = {
     },
     Spin: {
         color: '#1876F2'
-    }
+    },
 }

@@ -44,7 +44,9 @@ service.interceptors.response.use(
 
         const res = response.data
         if (res.code !== 0 && response.status !== 200) {
-            messageInstance.error(res.message || t('common.request.requestFailed'))
+            messageInstance.error(res.message || t('common.request.requestFailed'), {
+                duration: 5000,
+            })
             return Promise.reject(new Error(res.message || 'Error'))
         }
         return res
@@ -69,7 +71,15 @@ service.interceptors.response.use(
         } else if (error.message === 'Network Error') {
             messageText = t('common.request.networkConnectionError')
         }
-        messageInstance.error(messageText || error.response?.data?.message || error.message ||t('common.request.networkError'))
+        messageInstance.error(
+            messageText ||
+                error.response?.data?.message ||
+                error.message ||
+                t('common.request.networkError'),
+            {
+                duration: 5000,
+            },
+        )
         return Promise.reject(new Error(messageText || error.message))
     },
 )
