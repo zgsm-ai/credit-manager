@@ -78,10 +78,15 @@
 							<div class="content-title">{{ t('homePage.creditPlan') }}</div>
 							<div class="content-desc">{{ t('homePage.planDesc') }}</div>
 						</div>
-						<div class="activity-tips" @click="toGithub">
-							<div class="tips-content">{{ t('homePage.githubStar') }}</div>
-							<img :src="tag" alt="">
-						</div>
+						<n-tooltip trigger="hover">
+							<template #trigger>
+								<div class="activity-tips" @click="toGithub">
+									<div class="tips-content">{{ t('homePage.githubStar') }}</div>
+									<img :src="tag" alt="">
+								</div>
+							</template>
+							{{ t('homePage.githubStar') }}
+						</n-tooltip>
 					</template>
 				</common-card>
 			</section>
@@ -100,7 +105,7 @@
  */
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { NProgress, NCollapse, NCollapseItem, NDataTable, NSpin } from 'naive-ui'
+import { NProgress, NCollapse, NCollapseItem, NDataTable, NSpin, NTooltip } from 'naive-ui'
 import CommonCard from '@/components/common-card.vue'
 import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue'
 import CreditCodeModal from './credit-code-modal.vue'
