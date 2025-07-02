@@ -74,4 +74,4 @@ jobs:
           target: runner
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_REPOSITORY }}/zgsm-admin-system:${{ steps.version.outputs.version }},${{ secrets.DOCKERHUB_REPOSITORY }}/zgsm-admin-system:latest
+          tags: ${{ secrets.DOCKERHUB_REPOSITORY }}/credit-manager:${{ steps.version.outputs.version }},${{ secrets.DOCKERHUB_REPOSITORY }}/credit-manager:latest
