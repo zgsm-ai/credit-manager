@@ -72,7 +72,7 @@
  */
 import CommonModal from '@/components/common-modal.vue'
 import { computed, h, watch, ref } from 'vue'
-import { NButton, NForm, NFormItem, NInput, NDataTable, NInputNumber, useMessage, NTag } from 'naive-ui'
+import { NButton, NForm, NFormItem, NInput, NDataTable, NInputNumber, useMessage, NTag, type FormItemRule } from 'naive-ui'
 import type { QuotaList, QuotaTransferInQuotaList } from '@/api/bos/quota.bo'
 import dayjs from 'dayjs'
 import { postQuotaIn, postQuotaOut } from '@/api/mods/quota.mod'
@@ -266,17 +266,28 @@ const rowKey = (row: RowData) => row.id
 const transferInQuota = ref<QuotaTransferInQuotaList[]>([])
 
 const rowClassName = (row: QuotaTransferInQuotaList) => {
-    if (row.is_expired) {
-        return 'is-expired'
+    return row.is_expired ? 'is-expired' : ''
+}
+
+const uuidValidatorWithMessage = (_: FormItemRule, value: string) => {
+    if (!value) {
+        return new Error(t('creditTransferModal.validationReceiverIdRequired'))
     }
+
+    const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+    if (!uuidRegex.test(value.trim())) {
+        return new Error(t('creditTransferModal.invalidUUID'))
+    }
+
+    return true
 }
 
 const rules = {
     receiverId: [
         {
-            required: true,
-            message: t('creditTransferModal.validationReceiverIdRequired'),
-            trigger: 'blur',
+            validator: uuidValidatorWithMessage,
+            trigger: ['input', 'blur'],
         },
     ],
     checkedRowKeys: [
@@ -303,7 +314,7 @@ const handleSubmit = () => {
             })
 
             const params = {
-                receiver_id: formModel.value.receiverId,
+                receiver_id: formModel.value.receiverId.trim(),
                 quota_list: quota_list
             }
 
@@ -332,7 +343,7 @@ const confirmTransferIn = async () => {
     isLoading.value = true
 
     const { data } = await postQuotaIn({
-        voucher_code: formModel.value.redeemCode
+        voucher_code: formModel.value.redeemCode.trim()
     }).finally(() => {
         isLoading.value = false
     })
