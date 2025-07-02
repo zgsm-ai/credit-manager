@@ -24,6 +24,10 @@
 							<div class="item-userId">
 								<div class="label">{{ t('homePage.userIdLabel') }}</div>
 								<span>{{ userId || '-' }}</span>
+								<n-icon v-if="userId" size="14" style="margin-left: 8px;cursor: pointer;"
+									color="#197DFF" @click="copyCode">
+									<copy-outline />
+								</n-icon>
 							</div>
 						</div>
 					</template>
@@ -105,7 +109,7 @@
  */
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { NProgress, NCollapse, NCollapseItem, NDataTable, NSpin, NTooltip } from 'naive-ui'
+import { NProgress, NCollapse, NCollapseItem, NDataTable, NSpin, NTooltip, NIcon, useMessage } from 'naive-ui'
 import CommonCard from '@/components/common-card.vue'
 import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue'
 import CreditCodeModal from './credit-code-modal.vue'
@@ -117,6 +121,8 @@ import { BING_TYPE } from './const'
 import { formatDate } from '@/utils/date'
 import enTag from '/images/en/tag.svg'
 import zhTag from '/images/zh/tag.svg'
+import { CopyOutline } from '@vicons/ionicons5'
+import { copyToClipboard } from '@/utils/copy'
 
 const { t, locale } = useI18n()
 
@@ -227,6 +233,15 @@ watch(isTokenInitialized, (val) => {
 
 const transferInCallBack = () => {
 	fetchUserQuota()
+}
+
+const message = useMessage()
+
+const copyCode = () => {
+	copyToClipboard(userId.value, {
+		success: message.success,
+		error: message.error
+	})
 }
 
 </script>

@@ -34,7 +34,8 @@
         "redeemCodeAlreadyRedeemed": "This redemption code has already been used and cannot be redeemed again.",
         "redeemCodeExpiredReminder": "Credit has expired. Please initiate a new transfer",
         "redeemCodeError": "Invalid redemption code. Please try again",
-        "expiredTag": "Expired"
+        "expiredTag": "Expired",
+        "invalidUUID": "Please enter a valid UUID format"
     },
     "creditsPage": {
         "title": "Credit History",

@@ -34,7 +34,8 @@
         "redeemCodeAlreadyRedeemed": "该兑换码已兑换，无法再次使用",
         "redeemCodeExpiredReminder": "Credit已过期，请重新转出",
         "redeemCodeError": "兑换码错误，请重新输入",
-        "expiredTag": "已过期"
+        "expiredTag": "已过期",
+        "invalidUUID": "请输入有效的UUID格式"
     },
     "creditsPage": {
         "title": "Credit 记录",
