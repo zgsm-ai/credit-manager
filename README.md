@@ -1,2 +1,2 @@
-# zgsm-admin-system
+# credit-manager
 The backend management system for zgsm
