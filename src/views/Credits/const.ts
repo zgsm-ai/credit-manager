@@ -19,3 +19,5 @@ export const OPERATION_TYPE = {
     transferOut: 'TRANSFER_OUT',
     transferIn: 'TRANSFER_IN',
 }
+
+export const GITHUB_START_ACTION = 'github-star'

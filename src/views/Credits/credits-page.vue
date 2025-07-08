@@ -22,7 +22,7 @@ import { getQuotaAuditRecords, getUserQuota } from '@/api/mods/quota.mod'
 import type { GetUserQuotaRes, QuotaAuditRecord } from '@/api/bos/quota.bo'
 import dayjs from 'dayjs'
 import type { GroupedItem } from './interface'
-import { OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE } from './const'
+import { GITHUB_START_ACTION, OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE } from './const'
 import { formatDate } from '@/utils/date'
 
 const { t, locale } = useI18n()
@@ -69,11 +69,14 @@ const columns = computed(() => [
 		title: t('creditsPage.description'),
 		key: 'description',
 		render: (row: QuotaAuditRecord) => {
-			const { operation, related_user, voucher_code, amount, details } = row;
+			const { operation, related_user, voucher_code, amount, details, strategy_name } = row;
 
 			switch (operation) {
 				case OPERATION_TYPE.reCharge:
-					return t('creditsPage.githubActivityDesc')
+					return strategy_name === GITHUB_START_ACTION
+						? t('creditsPage.githubActivityDesc')
+						: t('creditsPage.userRegisterZhuge')
+
 				case OPERATION_TYPE.transferOut:
 					const transferOutBaseDescription = t('creditsPage.transferOutDesc', {
 						relatedUser: related_user,

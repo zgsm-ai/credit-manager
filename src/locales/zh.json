@@ -52,7 +52,8 @@
         "expiredCreditDetails": "失效Credit：{expiredAmount}（{expiredDetails}）",
         "validDetailItem": "{amount} Credit将在 {expiryDate} 到期",
         "expiredDetailItem": "{amount} Credit已在 {expiryDate} 过期",
-        "voucherCodeSuffix": "， 兑换码："
+        "voucherCodeSuffix": "， 兑换码：",
+        "userRegisterZhuge": "用户注册诸葛神码"
     },
     "homePage": {
         "basicInfo": "基本信息",
