@@ -52,7 +52,8 @@
         "expiredCreditDetails": "Expired Credits: {expiredAmount} ({expiredDetails})",
         "validDetailItem": "{amount} Credits will expire on {expiryDate}",
         "expiredDetailItem": "{amount} Credits expired on {expiryDate}",
-        "voucherCodeSuffix": ", redemption code:"
+        "voucherCodeSuffix": ", redemption code:",
+        "userRegisterZhuge": "User registered Zhuge Shenma"
     },
     "homePage": {
         "basicInfo": "Basic Information",
