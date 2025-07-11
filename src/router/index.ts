@@ -13,6 +13,11 @@ const router = createRouter({
 			name: 'credits',
 			component: () => import('@/views/Credits/credits-page.vue'),
 		},
+        {
+            path: '/md-preview',
+            name: 'md-preview',
+            component: () => import('@/views/Preview/MarkdownPreview.vue'),
+        },
     ],
 })
 
