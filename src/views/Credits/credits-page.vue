@@ -16,7 +16,7 @@
  * @file credits-page.vue
  */
 import { NDataTable, NPopover, NSpin } from 'naive-ui'
-import { h, ref, computed, onMounted } from 'vue'
+import { h, ref, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { getQuotaAuditRecords, getUserQuota } from '@/api/mods/quota.mod'
 import type { GetUserQuotaRes, QuotaAuditRecord } from '@/api/bos/quota.bo'
@@ -24,6 +24,8 @@ import dayjs from 'dayjs'
 import type { GroupedItem } from './interface'
 import { GITHUB_START_ACTION, OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE } from './const'
 import { formatDate } from '@/utils/date'
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/store/user'
 
 const { t, locale } = useI18n()
 
@@ -183,13 +185,20 @@ const fetchUserQuota = async () => {
 	restQuota.value = Number((data.total_quota - data.used_quota).toFixed(2)) || 0
 }
 
-onMounted(() => {
-	isLoading.value = true
+const userStore = useUserStore()
 
-	Promise.all([fetchQuotaAuditRecords(), fetchUserQuota()])
+const { isTokenInitialized } = storeToRefs(userStore)
+
+watch(isTokenInitialized, (val) => {
+	if (val) {
+		isLoading.value = true
+		Promise.all([fetchQuotaAuditRecords(), fetchUserQuota()])
 		.finally(() => {
 			isLoading.value = false
 		})
+	}
+}, {
+	immediate: true
 })
 
 </script>

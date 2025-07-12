@@ -22,11 +22,13 @@ export default defineConfig({
         host: true,
         proxy: {
             '/quota-manager': {
-                target: 'http://10.48.19.1:9080',
+                target: 'https://zgsm.sangfor.com',
+                // target: 'http://10.48.19.1:9080',
                 changeOrigin: true,
             },
             '/oidc-auth': {
-                target: 'http://10.48.19.1:9080',
+                target: 'https://zgsm.sangfor.com',
+                // target: 'http://10.48.19.11:8080',
                 changeOrigin: true,
             },
         }
