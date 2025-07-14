@@ -53,7 +53,7 @@
         "validDetailItem": "{amount} Credit将在 {expiryDate} 到期",
         "expiredDetailItem": "{amount} Credit已在 {expiryDate} 过期",
         "voucherCodeSuffix": "， 兑换码：",
-        "userRegisterZhuge": "用户注册诸葛神码"
+        "userRegisterZhuge": "用户注册Costrict"
     },
     "homePage": {
         "basicInfo": "基本信息",
@@ -72,7 +72,7 @@
         "activityTitle": "活动",
         "creditPlan": "Credit 增长计划",
         "planDesc": "如果您Credit已经消耗完毕，一些高级模型则无法继续使用，您可以通过参与以下活动获取Credit额度",
-        "githubStar": "首次在GitHub上点击star收藏诸葛神码开源项目，可获赠 50Credit（10分钟内自动生效）",
+        "githubStar": "首次在GitHub上点击star收藏Costrict开源项目，可获赠 50Credit（10分钟内自动生效）",
         "useCredit": "{used} / {total} 已使用",
         "restCredit": "剩余 {rest}"
     },
@@ -84,7 +84,7 @@
             "copyright": "©2025 深信服科技股份有限公司版权所有"
         },
         "header": {
-            "appName": "诸葛神码",
+            "appName": "Costrict",
             "accountAndUsage": "账户&用量",
             "logout": "登出"
         },

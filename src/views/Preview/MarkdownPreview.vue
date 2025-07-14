@@ -40,7 +40,7 @@ const { isPrivate, userName } = storeToRefs(userStore)
 
 watch(userName, async (val) => {
   if (val) {
-    const fileUrl = `public/md/${isPrivate.value ? 'private' : 'public'}.md`
+    const fileUrl = `md/${isPrivate.value ? 'private' : 'public'}.md`
 
     const content = await fetchMarkdownFile(fileUrl)
 

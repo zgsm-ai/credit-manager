@@ -200,7 +200,7 @@ const columnsData = ref<QuotaList[]>([])
 
 const toCredits = () => window.open('/credit/manager/credits')
 
-const toGithub = () => window.open('https://github.com/zgsm-ai/zgsm')
+const toGithub = () => window.open('https://github.com/zgsm-ai/costrict')
 
 const isLoading = ref(false)
 
