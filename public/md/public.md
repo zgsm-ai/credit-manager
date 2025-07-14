@@ -6,11 +6,11 @@
 ![alt text](md/images/public/image1.png)
 ![alt text](md/images/public/image2.png)
 
-在GitHub上点亮star收藏诸葛神码开源项目即可获得额外 50 Credit
+在GitHub上点亮star收藏Costrict开源项目即可获得额外 50 Credit
 
 场景1：Github账号登录的用户
 
-如果您是Github账号登录的用户，请点击链接地址：https://github.com/zgsm-ai/zgsm  点亮star 收藏诸葛神码项目即可获得额外 50 Credit。到账大约需要2-3分钟。
+如果您是Github账号登录的用户，请点击链接地址：https://github.com/zgsm-ai/costrict  点亮star 收藏Costrict项目即可获得额外 50 Credit。到账大约需要2-3分钟。
 
 ![alt text](md/images/public/image3.png)
 
@@ -23,7 +23,7 @@
 
 ![alt text](md/images/public/image4.png)
 
-绑定后点击链接地址：https://github.com/zgsm-ai/zgsm  点亮star 收藏诸葛神码项目即可获得额外 50 Credit。到账大约需要2-3分钟。
+绑定后点击链接地址：https://github.com/zgsm-ai/costrict  点亮star 收藏Costrict项目即可获得额外 50 Credit。到账大约需要2-3分钟。
 
 ![alt text](md/images/public/image5.png)
 

@@ -53,7 +53,7 @@
         "validDetailItem": "{amount} Credits will expire on {expiryDate}",
         "expiredDetailItem": "{amount} Credits expired on {expiryDate}",
         "voucherCodeSuffix": ", redemption code:",
-        "userRegisterZhuge": "User registered Zhuge Shenma"
+        "userRegisterZhuge": "User registered Costrict"
     },
     "homePage": {
         "basicInfo": "Basic Information",
@@ -72,7 +72,7 @@
         "activityTitle": "ActivityTitle",
         "creditPlan": "Credit Acquisition Plan",
         "planDesc": "Once the usage limit is reached，you can continue use the Based model. To continue using Pro models (Claude/Gemini...), Participate in our activities！",
-        "githubStar": "Get 50 Credits (automatically effective within 10 minutes) for your first star on the Zhuge Shenma open-source project on GitHub.",
+        "githubStar": "Get 50 Credits (automatically effective within 10 minutes) for your first star on the Costrict open-source project on GitHub.",
         "useCredit": "{used} / {total} Used ",
         "restCredit": "{rest} left"
     },
@@ -84,7 +84,7 @@
             "copyright": "©2025 SANGFOR TECHNOLOGIES. ALL RIGHTS RESERVED."
         },
         "header": {
-            "appName": "ZHUGE SHENMA",
+            "appName": "Costrict",
             "accountAndUsage": "ACCOUNT & USAGE",
             "logout": "LOG OUT"
         },
