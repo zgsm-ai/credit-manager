@@ -20,8 +20,17 @@
                 <n-input v-model:value="formModel.receiverId" clearable
                     :placeholder="t('creditTransferModal.receiverIdPlaceholder')" />
             </n-form-item>
-            <n-form-item :label="t('creditTransferModal.transferCreditLabel')" show-require-mark
-                require-mark-placement="left" path="checkedRowKeys">
+            <n-form-item show-require-mark require-mark-placement="left" path="checkedRowKeys">
+                <template #label>
+                    <div class="transfer-label">
+                        <span>{{ t('creditTransferModal.transferCreditLabel') }}</span>
+                        <p v-if="!starred" class="transfer-label__text">{{
+                            t('creditTransferModal.onlySupportCreditTransfer') }}
+                            <a href="https://github.com/zgsm-ai/costrict" target="_blank">git star一下</a>，
+                            {{ t('creditTransferModal.effectiveIn') }}
+                        </p>
+                    </div>
+                </template>
                 <n-data-table :row-key="rowKey" v-model:checked-row-keys="formModel.checkedRowKeys" :columns="columns"
                     :data="quotaData" :bordered="false" size="small" />
             </n-form-item>
@@ -86,10 +95,12 @@ const { t } = useI18n()
 
 const props = withDefaults(defineProps<{
     show: boolean,
-    userQuotaData: QuotaList[]
+    userQuotaData: QuotaList[],
+    isStar?: string
 }>(), {
     show: false,
-    userQuotaData: () => []
+    userQuotaData: () => [],
+    isStar: 'false'
 })
 
 const emit = defineEmits<{
@@ -103,6 +114,8 @@ const quotaData = ref<RowData[]>([])
 const inputValidationStatus = computed(() => tranferStatus.value === STATUS.error ? STATUS.error : STATUS.undefined)
 
 const inputFeedback = ref('')
+
+const starred = computed(() => props.isStar === 'true')
 
 watch(() => props.userQuotaData, (val) => {
     if (!val.length) {
@@ -424,6 +437,20 @@ const toCredit = () => window.open('/credit/manager/credits')
 
     p {
         color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+.transfer-label {
+    &__text {
+        margin-top: 4px;
+        line-height: 18px;
+        color: #FED400;
+
+        a {
+            text-decoration: none;
+            color: #1876F2;
+            font-weight: bold;
+        }
     }
 }
 
