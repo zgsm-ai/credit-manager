@@ -94,7 +94,7 @@
 					</template>
 				</common-card>
 			</section>
-			<credit-transfer-modal :user-quota-data="columnsData" :show="showCreditTransferModal" :is-star="isStar"
+			<credit-transfer-modal :user-quota-data="transferData" :show="showCreditTransferModal" :is-star="isStar"
 				@update:show="updateCreditModalShow" @update:submit="openCreditCodeModal"
 				@update:transferIn="transferInCallBack" />
 			<credit-code-modal :show="showCreditCodeModal" @update:show="updateCreditCodeModalShow"
@@ -197,6 +197,8 @@ const columns = computed(() => [
 ])
 
 const columnsData = ref<QuotaList[]>([])
+
+const transferData = computed(() => isStar.value === 'true' ? columnsData.value : [])
 
 const toCredits = () => window.open('/credit/manager/credits')
 
