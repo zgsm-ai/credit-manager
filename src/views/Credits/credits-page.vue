@@ -22,7 +22,7 @@ import { getQuotaAuditRecords, getUserQuota } from '@/api/mods/quota.mod'
 import type { GetUserQuotaRes, QuotaAuditRecord } from '@/api/bos/quota.bo'
 import dayjs from 'dayjs'
 import type { GroupedItem } from './interface'
-import { GITHUB_START_ACTION, OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE } from './const'
+import { OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE } from './const'
 import { formatDate } from '@/utils/date'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/store/user'
@@ -75,9 +75,7 @@ const columns = computed(() => [
 
 			switch (operation) {
 				case OPERATION_TYPE.reCharge:
-					return strategy_name === GITHUB_START_ACTION
-						? t('creditsPage.githubActivityDesc')
-						: t('creditsPage.userRegisterZhuge')
+					return strategy_name
 
 				case OPERATION_TYPE.transferOut:
 					const transferOutBaseDescription = t('creditsPage.transferOutDesc', {

@@ -35,7 +35,9 @@
         "redeemCodeExpiredReminder": "Credit已过期，请重新转出",
         "redeemCodeError": "兑换码错误，请重新输入",
         "expiredTag": "已过期",
-        "invalidUUID": "请输入有效的UUID格式"
+        "invalidUUID": "请输入有效的UUID格式",
+        "onlySupportCreditTransfer": "当前仅支持转出在 GitHub 上点击 star 收藏获赠的 Credit，",
+        "effectiveIn": "5分钟内生效"
     },
     "creditsPage": {
         "title": "Credit 记录",
@@ -72,7 +74,7 @@
         "activityTitle": "活动",
         "creditPlan": "Credit 增长计划",
         "planDesc": "如果您Credit已经消耗完毕，一些高级模型则无法继续使用，您可以通过参与以下活动获取Credit额度",
-        "githubStar": "首次在GitHub上点击star收藏Costrict开源项目，可获赠 50Credit（10分钟内自动生效）",
+        "githubStar": "首次在GitHub上点击star收藏Costrict开源项目，可获赠 50Credit（5分钟内自动生效）",
         "useCredit": "{used} / {total} 已使用",
         "restCredit": "剩余 {rest}"
     },

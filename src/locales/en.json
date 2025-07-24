@@ -35,7 +35,9 @@
         "redeemCodeExpiredReminder": "Credit has expired. Please initiate a new transfer",
         "redeemCodeError": "Invalid redemption code. Please try again",
         "expiredTag": "Expired",
-        "invalidUUID": "Please enter a valid UUID format"
+        "invalidUUID": "Please enter a valid UUID format",
+        "onlySupportCreditTransfer": "Currently, only Credits received by starring the project on GitHub can be transferred,",
+        "effectiveIn": "Takes effect within 5 minutes"
     },
     "creditsPage": {
         "title": "Credit History",
@@ -72,7 +74,7 @@
         "activityTitle": "ActivityTitle",
         "creditPlan": "Credit Acquisition Plan",
         "planDesc": "Once the usage limit is reached，you can continue use the Based model. To continue using Pro models (Claude/Gemini...), Participate in our activities！",
-        "githubStar": "Get 50 Credits (automatically effective within 10 minutes) for your first star on the Costrict open-source project on GitHub.",
+        "githubStar": "Get 50 Credits (automatically effective within 5 minutes) for your first star on the Costrict open-source project on GitHub.",
         "useCredit": "{used} / {total} Used ",
         "restCredit": "{rest} left"
     },

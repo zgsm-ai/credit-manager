@@ -94,7 +94,7 @@
 					</template>
 				</common-card>
 			</section>
-			<credit-transfer-modal :user-quota-data="columnsData" :show="showCreditTransferModal"
+			<credit-transfer-modal :user-quota-data="columnsData" :show="showCreditTransferModal" :is-star="isStar"
 				@update:show="updateCreditModalShow" @update:submit="openCreditCodeModal"
 				@update:transferIn="transferInCallBack" />
 			<credit-code-modal :show="showCreditCodeModal" @update:show="updateCreditCodeModalShow"
@@ -206,6 +206,8 @@ const isLoading = ref(false)
 
 const userStore = useUserStore()
 
+const isStar = ref('false')
+
 const { githubName, phoneNumber, userId, isPrivate, isTokenInitialized } = storeToRefs(userStore)
 
 const fetchUserQuota = async () => {
@@ -218,6 +220,7 @@ const fetchUserQuota = async () => {
 	columnsData.value = data.quota_list || []
 	usedQuota.value = data.used_quota || 0
 	totalQuota.value = data.total_quota || 0
+	isStar.value = data.is_star || 'false'
 }
 
 watch(isTokenInitialized, (val) => {

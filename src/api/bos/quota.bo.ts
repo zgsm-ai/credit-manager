@@ -11,6 +11,7 @@ export interface GetUserQuotaRes {
     total_quota: number
     used_quota: number
     quota_list: Array<QuotaList>
+    is_star: string
 }
 
 export interface GetQuotaAuditRecordsReq {
