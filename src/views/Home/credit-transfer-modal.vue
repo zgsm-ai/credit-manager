@@ -100,7 +100,6 @@ const props = withDefaults(defineProps<{
 }>(), {
     show: false,
     userQuotaData: () => [],
-    isStar: 'false'
 })
 
 const emit = defineEmits<{
@@ -115,7 +114,7 @@ const inputValidationStatus = computed(() => tranferStatus.value === STATUS.erro
 
 const inputFeedback = ref('')
 
-const starred = computed(() => props.isStar === 'true')
+const starred = computed(() => props.isStar === 'true' || (props.isStar === undefined))
 
 watch(() => props.userQuotaData, (val) => {
     if (!val.length) {

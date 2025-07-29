@@ -198,7 +198,7 @@ const columns = computed(() => [
 
 const columnsData = ref<QuotaList[]>([])
 
-const transferData = computed(() => isStar.value === 'true' ? columnsData.value : [])
+const transferData = computed(() => (isStar.value === 'true' || isStar.value === undefined) ? columnsData.value : [])
 
 const toCredits = () => window.open('/credit/manager/credits')
 
@@ -208,7 +208,7 @@ const isLoading = ref(false)
 
 const userStore = useUserStore()
 
-const isStar = ref('false')
+const isStar = ref<string | undefined>()
 
 const { githubName, phoneNumber, userId, isPrivate, isTokenInitialized } = storeToRefs(userStore)
 
@@ -222,7 +222,7 @@ const fetchUserQuota = async () => {
 	columnsData.value = data.quota_list || []
 	usedQuota.value = data.used_quota || 0
 	totalQuota.value = data.total_quota || 0
-	isStar.value = data.is_star || 'false'
+	isStar.value = data.is_star
 }
 
 watch(isTokenInitialized, (val) => {
