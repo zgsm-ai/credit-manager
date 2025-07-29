@@ -18,7 +18,14 @@ const router = createRouter({
             name: 'md-preview',
             component: () => import('@/views/Preview/MarkdownPreview.vue'),
         },
+        {
+            path: '/credit-md-preview',
+            name: 'credit-md-preview',
+            component: () => import('@/views/Credits/get-credit-md.vue'),
+        },
     ],
 })
+
+export const PUBLIC_ROUTES = ['/credit/manager/credit-md-preview']
 
 export default router

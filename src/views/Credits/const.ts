@@ -21,3 +21,7 @@ export const OPERATION_TYPE = {
 }
 
 export const GITHUB_START_ACTION = 'github-star'
+
+export const PRIVATE = 'private'
+
+export const PUBLIC = 'public'

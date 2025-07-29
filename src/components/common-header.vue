@@ -5,7 +5,7 @@
             <span>{{ t('common.header.appName') }}</span>
         </div>
         <div class="menu">
-            <div class="user-menu" v-if="!isLoginPage">
+            <div class="user-menu" v-if="!isLoginPage && !isCreditMdPage">
                 <n-popover trigger="click" :show="isUserMenuOpen" @update:show="isUserMenuOpen = $event"
                     :show-arrow="false" style="padding: 0" placement="bottom-end">
                     <template #trigger>
@@ -50,6 +50,8 @@ const router = useRouter()
 const { t, locale } = useI18n()
 
 const isLoginPage = computed(() => router.currentRoute.value.path === '/login')
+
+const isCreditMdPage = computed(() => router.currentRoute.value.path === '/credit-md-preview')
 
 const languageOptions = ref([
     { label: t('common.langZh'), key: 'zh' },
