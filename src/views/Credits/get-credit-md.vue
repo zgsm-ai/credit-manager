@@ -9,11 +9,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import MarkdownPreviewer from './components/MarkdownPreviewer.vue'
+import { onMounted, ref } from 'vue'
+import MarkdownPreviewer from '../Preview/components/MarkdownPreviewer.vue'
 import { NSpin } from 'naive-ui'
-import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/store/user'
+import { useRoute } from 'vue-router'
+import { PRIVATE, PUBLIC } from './const'
 
 const markdownContent = ref('')
 
@@ -34,21 +34,17 @@ const fetchMarkdownFile = async (filename: string) => {
   }
 }
 
-const userStore = useUserStore()
+const route = useRoute()
 
-const { isPrivate, userName } = storeToRefs(userStore)
+const getMarkDownFile = async () => {
+  const fileUrl = `md/${route.query.type === PRIVATE ? PRIVATE : PUBLIC}.md`
 
-watch(userName, async (val) => {
-  if (val) {
-    const fileUrl = `md/${isPrivate.value ? 'private' : 'public'}.md`
+  const content = await fetchMarkdownFile(fileUrl)
 
-    const content = await fetchMarkdownFile(fileUrl)
+  markdownContent.value = content
+}
 
-    markdownContent.value = content
-  }
-}, {
-  immediate: true
-})
+onMounted(getMarkDownFile)
 </script>
 
 <style scoped lang="less">

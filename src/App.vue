@@ -21,6 +21,7 @@ import { getUserToken } from './api/mods/quota.mod'
 import { useUserStore } from '@/store/user'
 import { getUserInfo } from '@/api/mods/quota.mod'
 import { onMounted } from 'vue'
+import { PUBLIC_ROUTES } from './router'
 
 const hashToken = getHashToken()
 
@@ -44,6 +45,15 @@ const fetchUserInfo = async () => {
 }
 
 onMounted(async () => {
+	const currentPath = window.location.pathname
+	const isPublicRoute = PUBLIC_ROUTES.includes(currentPath)
+	
+	if (isPublicRoute) {
+		// 对于白名单中的页面，直接设置 token 初始化完成，不获取用户信息
+		updateTokenInitialized(true)
+		return
+	}
+	
 	if (hashToken) {
 		setToken(hashToken)
 
