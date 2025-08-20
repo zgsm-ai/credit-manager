@@ -67,6 +67,12 @@ const currentLangLabel = computed(() => {
 
 const handleSelectLang = (key: string) => {
     locale.value = key
+    // 保存语言设置到 localStorage
+    try {
+        localStorage.setItem('app-language', key)
+    } catch (error) {
+        console.warn('Failed to save language to localStorage:', error)
+    }
     isPopoverOpen.value = false
 }
 
