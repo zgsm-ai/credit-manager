@@ -74,9 +74,6 @@ const columns = computed(() => [
 			const { operation, related_user, voucher_code, amount, details, strategy_name } = row;
 
 			switch (operation) {
-				case OPERATION_TYPE.reCharge:
-					return strategy_name
-
 				case OPERATION_TYPE.transferOut:
 					const transferOutBaseDescription = t('creditsPage.transferOutDesc', {
 						relatedUser: related_user,
@@ -150,6 +147,9 @@ const columns = computed(() => [
 								: null,
 						]
 					)
+
+				default:
+					return strategy_name
 			}
 		}
 	},
@@ -191,9 +191,9 @@ watch(isTokenInitialized, (val) => {
 	if (val) {
 		isLoading.value = true
 		Promise.all([fetchQuotaAuditRecords(), fetchUserQuota()])
-		.finally(() => {
-			isLoading.value = false
-		})
+			.finally(() => {
+				isLoading.value = false
+			})
 	}
 }, {
 	immediate: true

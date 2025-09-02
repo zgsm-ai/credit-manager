@@ -18,7 +18,7 @@
 
 ![alt text](md/images/private/image2.png)
 
-2. 返回VSCode插件端，打开Costrict的“设置> Credit配额管理”页面，点击“查看Credit用量”按钮，打开网页的“用户信息&配额用量” 页面
+2. 返回VSCode插件端，点击“查看账户详情” 跳转至网页的 用户信息&配额用量页面，在 “用量”模块可查看Credit的总量和消耗情况。
 
 ![alt text](md/images/private/image3.png)
 
@@ -44,9 +44,9 @@
 
 ![alt text](md/images/private/image8.png)
 
-6. 点击用量模块的”Credit转出&转入“按钮，在弹窗的”Credit转出“页面将刚复制的内网的"用户ID”粘贴到此处。点击“确认”按钮，复制兑换码。
+6. 点击“查看账户详情” 跳转至网页的 用户信息&配额用量页面，在弹窗的”Credit转出“页面将刚复制的内网的"用户ID”粘贴到此处。点击“确认”按钮，复制兑换码。
 
-![alt text](md/images/private/image9.png)
+![alt text](md/images/private/image3.png)
 ![alt text](md/images/private/image10.png)
 ![alt text](md/images/private/image11.png)
 
