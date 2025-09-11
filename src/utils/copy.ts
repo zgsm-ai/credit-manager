@@ -1,5 +1,5 @@
-import { getT } from './i18n'
-import copy from 'copy-to-clipboard'
+import { getT } from './i18n';
+import copy from 'copy-to-clipboard';
 
 /**
  * copy util
@@ -10,24 +10,24 @@ import copy from 'copy-to-clipboard'
 export const copyToClipboard = async (
     text: string,
     messageHandler?: {
-        success?: (content: string) => void
-        error?: (content: string) => void
+        success?: (content: string) => void;
+        error?: (content: string) => void;
     },
 ): Promise<boolean> => {
-    const t = getT()
+    const t = getT();
 
     try {
         const success = copy(text);
 
         if (success) {
-            messageHandler?.success?.(t('utils.copySuccess'))
+            messageHandler?.success?.(t('utils.copySuccess'));
         } else {
-            messageHandler?.error?.(t('utils.copyFailed'))
+            messageHandler?.error?.(t('utils.copyFailed'));
         }
-        return success
+        return success;
     } catch (err) {
-        console.error('copy error:', err)
-        messageHandler?.error?.(t('utils.copyFailed'))
-        return false
+        console.error('copy error:', err);
+        messageHandler?.error?.(t('utils.copyFailed'));
+        return false;
     }
-}
+};

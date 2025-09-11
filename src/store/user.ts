@@ -1,12 +1,12 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 interface UserInfo {
-    phoneNumber: string
-    userId: string
-    githubName: string
-    employeeNumber: string
-    userName: string
-    isPrivate: boolean
+    phoneNumber: string;
+    userId: string;
+    githubName: string;
+    employeeNumber: string;
+    userName: string;
+    isPrivate: boolean;
 }
 
 export const useUserStore = defineStore('counter', {
@@ -36,13 +36,13 @@ export const useUserStore = defineStore('counter', {
                 employeeNumber,
                 userName,
                 isPrivate,
-            })
+            });
         },
 
         updateTokenInitialized(isTokenInitialized: boolean) {
             this.$patch({
                 isTokenInitialized,
-            })
+            });
         },
     },
-})
+});

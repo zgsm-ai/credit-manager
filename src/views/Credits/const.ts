@@ -7,21 +7,21 @@ export const POPOVER_SPAN_STYLE = {
     cursor: 'pointer',
     marginLeft: '5px',
     fontWeight: 'bold',
-}
+};
 
 export const PAGE_PARAMS = {
     page: 1,
     page_size: 10000,
-}
+};
 
 export const OPERATION_TYPE = {
     reCharge: 'RECHARGE',
     transferOut: 'TRANSFER_OUT',
     transferIn: 'TRANSFER_IN',
-}
+};
 
-export const GITHUB_START_ACTION = 'github-star'
+export const GITHUB_START_ACTION = 'github-star';
 
-export const PRIVATE = 'private'
+export const PRIVATE = 'private';
 
-export const PUBLIC = 'public'
+export const PUBLIC = 'public';

@@ -3,7 +3,7 @@
  */
 
 export interface GroupedItem {
-	amount: number
-	expiry_date: string
-	isExpired: boolean
+    amount: number;
+    expiry_date: string;
+    isExpired: boolean;
 }
