@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,11 +8,11 @@ const router = createRouter({
             name: 'home',
             component: () => import('@/views/Home/home-page.vue'),
         },
-		{
-			path: '/credits',
-			name: 'credits',
-			component: () => import('@/views/Credits/credits-page.vue'),
-		},
+        {
+            path: '/credits',
+            name: 'credits',
+            component: () => import('@/views/Credits/credits-page.vue'),
+        },
         {
             path: '/md-preview',
             name: 'md-preview',
@@ -23,9 +23,14 @@ const router = createRouter({
             name: 'credit-md-preview',
             component: () => import('@/views/Credits/get-credit-md.vue'),
         },
+        {
+            path: '/credit-reward-plan',
+            name: 'credit-reward-plan',
+            component: () => import('@/views/Reward/credit-reward-plan.vue'),
+        },
     ],
-})
+});
 
-export const PUBLIC_ROUTES = ['/credit/manager/credit-md-preview']
+export const PUBLIC_ROUTES = ['/credit/manager/credit-md-preview'];
 
-export default router
+export default router;
