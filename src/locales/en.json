@@ -72,8 +72,8 @@
         "expiryDate": "Expiration Time",
         "creditNum": "Credit Number",
         "activityTitle": "ActivityTitle",
-        "creditPlan": "Credit 奖励计划",
-        "planDesc": "如果您的 Credits 告急，无法继续使用高级模型，快来完成以下任务获取更多额度吧!",
+        "creditPlan": "Credit Reward Plan",
+        "planDesc": "If your credits are running low and you can't continue using the premium model, complete the following tasks to get more credits!",
         "githubStar": "Get 50 Credits (automatically effective within 5 minutes) for your first star on the Costrict open-source project on GitHub.",
         "useCredit": "{used} / {total} Used ",
         "restCredit": "{rest} left"
@@ -98,8 +98,78 @@
             "networkError": "Network error"
         }
     },
+    "rewardPlan": {
+        "title": "Credit Reward Plan",
+        "invitationCode": "Invitation Code",
+        "invitationCodeText": "Please fill in the invitation code on the login/registration page. If missed, Credits cannot be distributed.",
+        "invitationCodeLabel": "Invitation Code:",
+        "rulesTitle": "Rules Description",
+        "operationGuideTitle": "Operation Guide",
+        "operationGuideSubtitle": "(New users can follow the guide to complete tasks)",
+        "aboutCreditsTitle": "About Credits",
+        "contactUsTitle": "Contact Us",
+        "contactUsDescription": "If you have any questions, please contact us. Scan the QR code below to join the official communication group.",
+        "officialAccount": "Scan to follow official account",
+        "joinGroup": "Scan to join communication group",
+        "qaCard": {
+            "question": "Q",
+            "answer": "A"
+        },
+        "operationGuide": {
+            "task1Title": "Task 1: Register and Login Costrict",
+            "task2Title": "Task 2: Star Costrict Project on GitHub",
+            "task3Title": "Task 3: Install Costrict Product and Experience",
+            "step1Content": "Please confirm the invitation code has been automatically filled (if not, please fill it manually). Supports both phone number and GitHub login methods. GitHub login is recommended for convenience in completing Task 2.",
+            "step1Tips": "If you don't have a GitHub account, you can register one following the process guidance.",
+            "step2Header": "After login, the page will automatically redirect to the User Info & Quota Usage page",
+            "step2Tips": "If you don't have a GitHub account, you can register one following the process guidance.",
+            "step3Content": "Please follow the official documentation to complete Costrict plugin installation and login, and successfully send a conversation",
+            "loginNow": "Login Now >>",
+            "goNow": "Go Now >>",
+            "viewDocs": "View Official Docs >>",
+            "linkAddress": "Link Address:",
+            "visitGithub": "Visit Github's Costrict project page, click star to favorite Costrict project,",
+            "pleaseLoginFirst": "Please login Costrict first,",
+            "completePluginInstall": "Please complete Costrict plugin installation and login according to official documentation, and successfully send a conversation,"
+        },
+        "rules": {
+            "inviterLabel": "Inviter:",
+            "newUserLabel": "New User:",
+            "inviterText1": "New user completes installation and registration of Costrict: Inviter gets 25 Credits,",
+            "inviterText2": "New user clicks Star on GitHub to favorite Costrict project and completes a simple conversation in Costrict plugin: Inviter gets 75 Credits",
+            "inviterDescription": "For each new user invited to complete the following tasks, the inviter can get 100 Credits reward. There is no upper limit on the number of people invited, rewards can be stacked. The more new users invited, the more Credits.",
+            "newUserText1": "Install and register Costrict: Get 50 Credits",
+            "newUserText2": "Click Star on GitHub to favorite Costrict project and complete a simple conversation in Costrict plugin: Get 75 Credits",
+            "newUserDescription": "New users need to complete three tasks according to the operation guide below to get 125 Credits reward,"
+        },
+        "qa": {
+            "question1": "How to check if Credits have arrived?",
+            "answer1": "Check the specific credit arrival status in the 'History' page of the 'Usage' module on the User Info & Quota Usage page.",
+            "question2": "Why are the Credits received not matching after completing all tasks?",
+            "answer2": "If the user logs in with a phone number but uses GitHub account to star Costrict on GitHub, and the two accounts are not associated, Credits will be distributed to both accounts separately. Just bind the accounts to see all Credits.",
+            "accountBinding": "Bind GitHub account in the basic information module of the User Info & Quota Usage page.",
+            "goNow": "Go Now >>",
+            "linkAddress": "Link Address:",
+            "basicInfoModule": ") basic information module to bind GitHub account."
+        }
+    },
     "utils": {
         "copySuccess": "Copy successful",
         "copyFailed": "Copy failed, please copy manually"
+    },
+    "activityCard": {
+        "githubStar": "GitHub Star",
+        "githubStarDesc": "First time clicking star on Costrict open source project on GitHub, get 50 Credits (automatically effective within 10 minutes)",
+        "gitStarNow": "git star now >",
+        "inviteNewUser": "Invite New User",
+        "inviteNewUserDesc": "Invite new users to register, inviter gets 100 Credits, new user gets 125 Credits.",
+        "goInvite": "Go Invite >",
+        "inviteRules": {
+            "rule1": "For each new user invited to register Costrict account, new user immediately gets 50 Credits, inviter gets 25 Credits;",
+            "rule2": "New user downloads Costrict plugin and stars on GitHub:",
+            "rule2a": "a. New user gets additional 75 Credits (total 125 Credits).",
+            "rule2b": "b. Inviter gets additional 75 Credits (total 100 Credits).",
+            "rule3": "Rewards can be stacked, the more new users invited, the more Credits."
+        }
     }
 }

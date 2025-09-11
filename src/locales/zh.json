@@ -98,8 +98,78 @@
             "networkError": "网络错误"
         }
     },
+    "rewardPlan": {
+        "title": "Credit 奖励计划",
+        "invitationCode": "邀请码",
+        "invitationCodeText": "请在登录注册页面填写邀请码，如果遗漏将导致 Credit 无法发放",
+        "invitationCodeLabel": "邀请码：",
+        "rulesTitle": "规则说明",
+        "operationGuideTitle": "操作指引",
+        "operationGuideSubtitle": "（新用户可参照指引完成任务）",
+        "aboutCreditsTitle": "关于Credits",
+        "contactUsTitle": "联系我们",
+        "contactUsDescription": "您有任何问题欢迎联系我们，扫描下方二维码进入官方交流群。",
+        "officialAccount": "扫码关注公众号",
+        "joinGroup": "扫码加入交流群",
+        "qaCard": {
+            "question": "问",
+            "answer": "答"
+        },
+        "operationGuide": {
+            "task1Title": "任务1：注册登录 Costrict",
+            "task2Title": "任务2：GitHub 上点击 Star 收藏 Costrict 项目",
+            "task3Title": "任务3：安装Costrict产品体验产品",
+            "step1Content": "请确认邀请码已经自动填写（如未填写请自行填写邀请码），支持手机号和 Github 两种登录方式，推荐使用 Github 方式登录，方便后续任务二进行。",
+            "step1Tips": "若没有 Github 账号，可按照流程引导先注册。",
+            "step2Header": "登录完成后页面会自动跳转至用户信息&配额用量页面",
+            "step2Tips": "若没有 Github 账号，可按照流程引导先注册。",
+            "step3Content": "请根据官方文档，完成 Costrict 插件的安装登录，并成功发送一次对话",
+            "loginNow": "立即登录 >>",
+            "goNow": "立即前往 >>",
+            "viewDocs": "查看官方文档 >>",
+            "linkAddress": "链接地址：",
+            "visitGithub": "访问 Github 的 Costrict 项目页面，点击 star 收藏 Costrict 项目，",
+            "pleaseLoginFirst": "请先登录 Costrict，",
+            "completePluginInstall": "请根据官方文档，完成 Costrict 插件的安装登录，并成功发送一次对话，"
+        },
+        "rules": {
+            "inviterLabel": "邀请人：",
+            "newUserLabel": "新人用户：",
+            "inviterText1": "新用户完成安装注册 Costrict：邀请人获得 25 Credits，",
+            "inviterText2": "新用户在 GitHub上点击 Star 收藏 Costrict 项目 且 在 Costrict 插件端完成一次简单的对话：邀请人获得 75 Credits",
+            "inviterDescription": "邀请人每邀请1个新用户完成以下任务即可获得100 Credits 的奖励，邀请的人数不做上限，奖励可叠加，邀请新用户越多，Credits 越多。",
+            "newUserText1": "安装注册 Costrict：获得 50 Credits ",
+            "newUserText2": "在 GitHub 上点击 Star 收藏 Costrict 项目 且 在 Costrict 插件端完成一次简单的对话：获得 75 Credits",
+            "newUserDescription": "新人用户需根据下方的操作指引完成三个任务即可获得125 Credits 的奖励，"
+        },
+        "qa": {
+            "question1": "如何查看Credit是否到账？",
+            "answer1": "在用户信息&配额用量页面的\"用量\"模块的\"历史记录\"页面查看具体的额度到账情况。",
+            "question2": "为什么任务都做了，Credit 获得的额度对不上？",
+            "answer2": "如果用户在登录的时候使用的是手机号，在 Github 点赞收藏 Costrict 使用的是 Github 账号，两个账号没有做关联，因此 Credits 被分别发放到两个账号中， 此时只需要做一个账号绑定，即可看到全部额度。",
+            "accountBinding": "在用户信息&配额用量页面的基本信息模块绑定 Github 账号即可。",
+            "goNow": "立即前往 >>",
+            "linkAddress": "链接地址：",
+            "basicInfoModule": "）的基本信息模块绑定 Github 账号即可。"
+        }
+    },
     "utils": {
         "copySuccess": "复制成功",
         "copyFailed": "复制失败，请手动复制"
+    },
+    "activityCard": {
+        "githubStar": "GitHub Star 一下",
+        "githubStarDesc": "首次在 GitHub 上点击 star Costrict 开源项目，可获赠 50 Credits（10分钟内自动生效）",
+        "gitStarNow": "git star 一下 >",
+        "inviteNewUser": "邀请新用户",
+        "inviteNewUserDesc": "邀请新用户注册，邀请者获100 Credits，新用户获125 Credits。",
+        "goInvite": "去邀请 >",
+        "inviteRules": {
+            "rule1": "每邀请1位新用户注册 Costrict 账号，新用户立得50 Credits，邀请者可获25 Credits；",
+            "rule2": "新用户下载Costrict插件，并通过GitHub Star一下：",
+            "rule2a": "a. 新用户再获75 Credits（累计125 Credits）。",
+            "rule2b": "b. 邀请人再获75 Credits（累计100 Credits）。",
+            "rule3": "奖励可叠加，邀请新用户越多，Credits越多。"
+        }
     }
 }
