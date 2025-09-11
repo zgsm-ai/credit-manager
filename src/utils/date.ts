@@ -1,7 +1,7 @@
 /**
  * @file util date
  */
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
 
 export const formatDate = (
     dateInput: string,
@@ -10,11 +10,11 @@ export const formatDate = (
 ) => {
     // If the input is null, undefined, or an empty string, return the fallback value directly
     if (dateInput === null || dateInput === undefined || dateInput === '') {
-        return invalidDateFallback
+        return invalidDateFallback;
     }
 
     // Create a Day.js object
-    const date = dayjs(dateInput)
+    const date = dayjs(dateInput);
 
     // Check if the Day.js object is valid
     // If dateInput is an unparsable string, dayjs(dateInput) will still return a Day.js object,
@@ -22,10 +22,10 @@ export const formatDate = (
     if (!date.isValid()) {
         console.warn(
             `Invalid date input: ${dateInput}, returning fallback value: ${invalidDateFallback}`,
-        )
-        return invalidDateFallback
+        );
+        return invalidDateFallback;
     }
 
     // Format and return the date
-    return date.format(formatStr)
-}
+    return date.format(formatStr);
+};

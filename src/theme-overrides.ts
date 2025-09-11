@@ -1,4 +1,4 @@
-import { type GlobalThemeOverrides } from 'naive-ui'
+import { type GlobalThemeOverrides } from 'naive-ui';
 
 export const themeOverrides: GlobalThemeOverrides = {
     Checkbox: {
@@ -80,6 +80,12 @@ export const themeOverrides: GlobalThemeOverrides = {
         color: '#000',
     },
     Spin: {
-        color: '#1876F2'
+        color: '#1876F2',
     },
-}
+    Timeline: {
+        iconSizeLarge: '24px',
+        titleTextColor: '#fff',
+        titleFontSizeLarge: '14px',
+        lineColor: '#00CA90',
+    },
+};

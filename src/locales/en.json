@@ -72,8 +72,8 @@
         "expiryDate": "Expiration Time",
         "creditNum": "Credit Number",
         "activityTitle": "ActivityTitle",
-        "creditPlan": "Credit Acquisition Plan",
-        "planDesc": "Once the usage limit is reached，you can continue use the Based model. To continue using Pro models (Claude/Gemini...), Participate in our activities！",
+        "creditPlan": "Credit 奖励计划",
+        "planDesc": "如果您的 Credits 告急，无法继续使用高级模型，快来完成以下任务获取更多额度吧!",
         "githubStar": "Get 50 Credits (automatically effective within 5 minutes) for your first star on the Costrict open-source project on GitHub.",
         "useCredit": "{used} / {total} Used ",
         "restCredit": "{rest} left"

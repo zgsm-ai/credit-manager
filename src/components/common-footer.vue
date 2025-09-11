@@ -27,10 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { computed } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 
-const { locale, t } = useI18n()
+const { locale, t } = useI18n();
 
 const isZh = computed(() => locale.value === 'zh');
 </script>
@@ -48,19 +48,21 @@ const isZh = computed(() => locale.value === 'zh');
             .item-desc {
                 display: flex;
                 align-items: center;
+
                 .label {
-                    color: #A1A7B3;
+                    color: #a1a7b3;
                 }
+
                 .divider {
                     margin: 0 12px;
                 }
+
                 .conteact {
                     font-weight: 500;
                 }
             }
         }
     }
-
 
     .copyright {
         display: flex;

@@ -1,23 +1,23 @@
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
-const TOKEN_KEY = 'zgsmAdminToken'
+const TOKEN_KEY = 'zgsmAdminToken';
 
 export const getHashToken = () => {
-    const url = new URL(window.location.href)
-    const params = new URLSearchParams(url.search)
-    const hasToken = params.get('state')
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const hasToken = params.get('state');
 
-    return hasToken
-}
+    return hasToken;
+};
 
 export const getToken = () => {
-    return Cookies.get(TOKEN_KEY)
-}
+    return Cookies.get(TOKEN_KEY);
+};
 
 export const setToken = (token: string) => {
-    return Cookies.set(TOKEN_KEY, token)
-}
+    return Cookies.set(TOKEN_KEY, token);
+};
 
 export const clearToken = () => {
-    return Cookies.remove(TOKEN_KEY)
-}
+    return Cookies.remove(TOKEN_KEY);
+};
