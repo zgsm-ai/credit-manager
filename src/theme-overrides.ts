@@ -87,5 +87,6 @@ export const themeOverrides: GlobalThemeOverrides = {
         titleTextColor: '#fff',
         titleFontSizeLarge: '14px',
         lineColor: '#00CA90',
+        titleMarginLarge: '0 0 12px 0',
     },
 };

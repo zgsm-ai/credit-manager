@@ -1,6 +1,25 @@
 <template>
     <div class="common-footer">
-        <div class="community">
+        <div class="contract flex items-center">
+            <div class="flex flex-col items-center">
+                <img
+                    class="w-25 h-25"
+                    src="../assets/qrcode/official_account.png"
+                    alt=""
+                />
+                <span class="mt-3">{{ t('rewardPlan.officialAccount') }}</span>
+            </div>
+
+            <div class="flex flex-col ml-20 items-center">
+                <img
+                    class="w-25 h-25"
+                    src="../assets/qrcode/communication_group.png"
+                    alt=""
+                />
+                <span class="mt-3">{{ t('rewardPlan.joinGroup') }}</span>
+            </div>
+        </div>
+        <div class="community mt-5">
             <div class="community-item">
                 <p class="item-desc">
                     <span class="label">{{ t('common.footer.emailContactLabel') }}</span>

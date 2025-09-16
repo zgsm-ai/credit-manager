@@ -15,7 +15,9 @@ const renderCreditsText = (part: string) => {
     if (/^\d+\s+Credits$/.test(part)) {
         const number = part.match(/(\d+)/)?.[0] || '';
         const creditsText = ' Credits';
-        return [h('span', { style: { color: 'rgba(18, 255, 187, 1)' } }, number), creditsText];
+        return [
+            h('span', { style: { color: 'rgba(18, 255, 187, 1)' } }, `${number}${creditsText}`),
+        ];
     }
     return part;
 };
@@ -36,6 +38,7 @@ export const createOperationGuide = (t: (key: string) => string): OperationGuide
                             t('rewardPlan.operationGuide.loginNow'),
                         ),
                         t('rewardPlan.operationGuide.linkAddress'),
+                        '（',
                         h('span', { class: 'text-[#4394FF] cursor-pointer' }, 'xxxxxxxxxxxxxxxxxx'),
                         '）',
                     ]),
@@ -64,6 +67,7 @@ export const createOperationGuide = (t: (key: string) => string): OperationGuide
                             t('rewardPlan.operationGuide.goNow'),
                         ),
                         t('rewardPlan.operationGuide.linkAddress'),
+                        '（',
                         h(
                             'span',
                             { class: 'text-[#4394FF] cursor-pointer' },
@@ -90,6 +94,7 @@ export const createOperationGuide = (t: (key: string) => string): OperationGuide
                             t('rewardPlan.operationGuide.viewDocs'),
                         ),
                         t('rewardPlan.operationGuide.linkAddress'),
+                        '（',
                         h(
                             'span',
                             { class: 'text-[#4394FF] cursor-pointer' },
@@ -138,6 +143,7 @@ export const createQaContent = (t: (key: string) => string): QaContent[] => [
                     t('rewardPlan.qa.answer1'),
                     h('span', { class: 'text-[#4394FF] cursor-pointer' }, t('rewardPlan.qa.goNow')),
                     t('rewardPlan.qa.linkAddress'),
+                    '（',
                     h(
                         'span',
                         { class: 'text-[#4394FF] cursor-pointer' },
@@ -157,6 +163,7 @@ export const createQaContent = (t: (key: string) => string): QaContent[] => [
                 h('p', { class: 'mt-2' }, [
                     t('rewardPlan.qa.accountBinding'),
                     t('rewardPlan.qa.linkAddress'),
+                    '（',
                     h('span', { class: 'text-[#4394FF] cursor-pointer' }, 'xxxxxxxxxxxx'),
                     t('rewardPlan.qa.basicInfoModule'),
                 ]),

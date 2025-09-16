@@ -24,7 +24,7 @@ setI18nComposer(useI18n());
 
 <style lang="less" scoped>
 .common-content {
-    min-height: calc(100vh - 68px);
+    height: calc(100vh - 68px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

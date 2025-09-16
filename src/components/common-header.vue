@@ -10,7 +10,7 @@
         <div class="menu">
             <div
                 class="user-menu"
-                v-if="!isLoginPage && !isCreditMdPage"
+                v-if="!isCreditMdPage"
             >
                 <n-popover
                     trigger="click"
@@ -83,8 +83,6 @@ import { storeToRefs } from 'pinia';
 
 const router = useRouter();
 const { t, locale } = useI18n();
-
-const isLoginPage = computed(() => router.currentRoute.value.path === '/login');
 
 const isCreditMdPage = computed(() => router.currentRoute.value.path === '/credit-md-preview');
 

@@ -94,6 +94,7 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CommonCard from '@/components/common-card.vue';
+import { useRouter } from 'vue-router';
 
 const { t } = useI18n();
 
@@ -117,9 +118,10 @@ const toGithub = () => {
     window.open('https://github.com/zgsm-ai/costrict');
 };
 
+const router = useRouter();
+
 const toInvite = () => {
-    // 邀请新用户的逻辑
-    console.log('邀请新用户');
+    router.push('/credit-reward-plan');
 };
 </script>
 

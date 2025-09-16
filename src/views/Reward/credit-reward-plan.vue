@@ -67,7 +67,7 @@
                                 <div class="custom-timeline-icon">{{ step.index }}</div>
                             </template>
                             <template #default>
-                                <div class="text-white leading-5 font-medium mt-3">
+                                <div class="text-white leading-5 font-medium">
                                     <p>{{ step.content }}</p>
                                     <p
                                         v-if="step.tips"
@@ -104,35 +104,6 @@
                         :class="{ 'mt-12': !!index }"
                     />
                 </template>
-            </template>
-        </reward-card>
-
-        <reward-card
-            :title="t('rewardPlan.contactUsTitle')"
-            class="mt-12.5"
-            content-class="mt-5"
-            :description="t('rewardPlan.contactUsDescription')"
-        >
-            <template #content>
-                <div class="contract flex items-center mt-4">
-                    <div class="flex flex-col">
-                        <img
-                            class="w-25 h-25"
-                            src="../../assets/qrcode/official_account.png"
-                            alt=""
-                        />
-                        <span class="mt-3">{{ t('rewardPlan.officialAccount') }}</span>
-                    </div>
-
-                    <div class="flex flex-col ml-20">
-                        <img
-                            class="w-25 h-25"
-                            src="../../assets/qrcode/communication_group.png"
-                            alt=""
-                        />
-                        <span class="mt-3">{{ t('rewardPlan.joinGroup') }}</span>
-                    </div>
-                </div>
             </template>
         </reward-card>
     </div>
