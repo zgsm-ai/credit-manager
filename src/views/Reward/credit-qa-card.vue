@@ -1,8 +1,8 @@
 <template>
     <div class="credit-qa-content">
-        <div class="question flex text-[#006EFF]">
+        <div class="question flex text-[#4394FF]">
             <div
-                class="question-icon w-6 h-6 text-white bg-[#006EFF] rounded-full flex items-center justify-center shrink-0 grow-0"
+                class="question-icon w-6 h-6 text-white bg-[#4394FF] rounded-full flex items-center justify-center shrink-0 grow-0"
             >
                 {{ t('rewardPlan.qaCard.question') }}
             </div>

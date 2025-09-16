@@ -9,6 +9,11 @@ const router = createRouter({
             component: () => import('@/views/Home/home-page.vue'),
         },
         {
+            path: '/login',
+            name: 'login',
+            component: () => import('@/views/Login/login-page.vue'),
+        },
+        {
             path: '/credits',
             name: 'credits',
             component: () => import('@/views/Credits/credits-page.vue'),
@@ -31,6 +36,6 @@ const router = createRouter({
     ],
 });
 
-export const PUBLIC_ROUTES = ['/credit/manager/credit-md-preview'];
+export const PUBLIC_ROUTES = ['/credit/manager/credit-md-preview', '/login'];
 
 export default router;

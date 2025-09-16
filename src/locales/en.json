@@ -124,9 +124,9 @@
             "step2Header": "After login, the page will automatically redirect to the User Info & Quota Usage page",
             "step2Tips": "If you don't have a GitHub account, you can register one following the process guidance.",
             "step3Content": "Please follow the official documentation to complete Costrict plugin installation and login, and successfully send a conversation",
-            "loginNow": "Login Now >>",
-            "goNow": "Go Now >>",
-            "viewDocs": "View Official Docs >>",
+            "loginNow": "Login Now >> ",
+            "goNow": "Go Now >> ",
+            "viewDocs": "View Official Docs >> ",
             "linkAddress": "Link Address:",
             "visitGithub": "Visit Github's Costrict project page, click star to favorite Costrict project,",
             "pleaseLoginFirst": "Please login Costrict first,",
@@ -148,7 +148,7 @@
             "question2": "Why are the Credits received not matching after completing all tasks?",
             "answer2": "If the user logs in with a phone number but uses GitHub account to star Costrict on GitHub, and the two accounts are not associated, Credits will be distributed to both accounts separately. Just bind the accounts to see all Credits.",
             "accountBinding": "Bind GitHub account in the basic information module of the User Info & Quota Usage page.",
-            "goNow": "Go Now >>",
+            "goNow": "Go Now >> ",
             "linkAddress": "Link Address:",
             "basicInfoModule": ") basic information module to bind GitHub account."
         }
@@ -171,5 +171,10 @@
             "rule2b": "b. Inviter gets additional 75 Credits (total 100 Credits).",
             "rule3": "Rewards can be stacked, the more new users invited, the more Credits."
         }
+    },
+    "login": {
+        "notLogged": "Not logged in yet",
+        "getUserInfoBeforeLogin": "Log in to view user information and credit usage",
+        "loginImmediatly": "Log in now"
     }
 }

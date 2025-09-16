@@ -124,9 +124,9 @@
             "step2Header": "登录完成后页面会自动跳转至用户信息&配额用量页面",
             "step2Tips": "若没有 Github 账号，可按照流程引导先注册。",
             "step3Content": "请根据官方文档，完成 Costrict 插件的安装登录，并成功发送一次对话",
-            "loginNow": "立即登录 >>",
-            "goNow": "立即前往 >>",
-            "viewDocs": "查看官方文档 >>",
+            "loginNow": "立即登录 >> ",
+            "goNow": "立即前往 >> ",
+            "viewDocs": "查看官方文档 >> ",
             "linkAddress": "链接地址：",
             "visitGithub": "访问 Github 的 Costrict 项目页面，点击 star 收藏 Costrict 项目，",
             "pleaseLoginFirst": "请先登录 Costrict，",
@@ -148,7 +148,7 @@
             "question2": "为什么任务都做了，Credit 获得的额度对不上？",
             "answer2": "如果用户在登录的时候使用的是手机号，在 Github 点赞收藏 Costrict 使用的是 Github 账号，两个账号没有做关联，因此 Credits 被分别发放到两个账号中， 此时只需要做一个账号绑定，即可看到全部额度。",
             "accountBinding": "在用户信息&配额用量页面的基本信息模块绑定 Github 账号即可。",
-            "goNow": "立即前往 >>",
+            "goNow": "立即前往 >> ",
             "linkAddress": "链接地址：",
             "basicInfoModule": "）的基本信息模块绑定 Github 账号即可。"
         }
@@ -171,5 +171,10 @@
             "rule2b": "b. 邀请人再获75 Credits（累计100 Credits）。",
             "rule3": "奖励可叠加，邀请新用户越多，Credits越多。"
         }
+    },
+    "login": {
+        "notLogged": "尚未登录",
+        "getUserInfoBeforeLogin": "登录后查看用户信息 & Credits用量",
+        "loginImmediatly": "立即登录"
     }
 }
