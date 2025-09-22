@@ -36,6 +36,6 @@ const router = createRouter({
     ],
 });
 
-export const PUBLIC_ROUTES = ['/credit/manager/credit-md-preview', '/login'];
+export const PUBLIC_ROUTES = ['/credit-reward-plan', '/credit-md-preview'];
 
 export default router;

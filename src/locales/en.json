@@ -111,6 +111,7 @@
         "contactUsDescription": "If you have any questions, please contact us. Scan the QR code below to join the official communication group.",
         "officialAccount": "Scan to follow official account",
         "joinGroup": "Scan to join communication group",
+        "copyLink": "Copy Link",
         "qaCard": {
             "question": "Q",
             "answer": "A"

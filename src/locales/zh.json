@@ -88,7 +88,7 @@
         "header": {
             "appName": "Costrict",
             "accountAndUsage": "账户&用量",
-            "logout": "登出"
+            "logout": "退出登录"
         },
         "request": {
             "requestFailed": "请求失败",
@@ -111,6 +111,7 @@
         "contactUsDescription": "您有任何问题欢迎联系我们，扫描下方二维码进入官方交流群。",
         "officialAccount": "扫码关注公众号",
         "joinGroup": "扫码加入交流群",
+        "copyLink": "复制链接",
         "qaCard": {
             "question": "问",
             "answer": "答"

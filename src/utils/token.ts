@@ -21,3 +21,13 @@ export const setToken = (token: string) => {
 export const clearToken = () => {
     return Cookies.remove(TOKEN_KEY);
 };
+
+export const tokenManager = {
+    getHashToken,
+    getToken,
+    setToken,
+    clearToken,
+    validateToken: (token: string) => {
+        return !!token && token.length > 0;
+    },
+};

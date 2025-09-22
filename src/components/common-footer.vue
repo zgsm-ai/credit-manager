@@ -1,5 +1,8 @@
 <template>
-    <div class="common-footer">
+    <div
+        class="common-footer"
+        v-if="!isRewardPlanPage"
+    >
         <div class="contract flex items-center">
             <div class="flex flex-col items-center">
                 <img
@@ -48,10 +51,15 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 const { locale, t } = useI18n();
 
 const isZh = computed(() => locale.value === 'zh');
+
+const router = useRouter();
+
+const isRewardPlanPage = computed(() => router.currentRoute.value.path === '/credit-reward-plan');
 </script>
 
 <style scoped lang="less">

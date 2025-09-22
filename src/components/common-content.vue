@@ -31,6 +31,7 @@ setI18nComposer(useI18n());
 
     &-view {
         flex: 1;
+        position: relative;
     }
 }
 </style>
