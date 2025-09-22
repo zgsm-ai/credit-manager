@@ -18,6 +18,8 @@ export const useUserStore = defineStore('counter', {
         userName: '',
         isPrivate: false,
         isTokenInitialized: false,
+        isAuthenticating: false,
+        authError: null as string | null,
     }),
 
     actions: {
@@ -42,6 +44,26 @@ export const useUserStore = defineStore('counter', {
         updateTokenInitialized(isTokenInitialized: boolean) {
             this.$patch({
                 isTokenInitialized,
+            });
+        },
+
+        setAuthenticating(isAuthenticating: boolean) {
+            this.$patch({
+                isAuthenticating,
+            });
+        },
+
+        setAuthError(error: string | null) {
+            this.$patch({
+                authError: error,
+            });
+        },
+
+        resetAuth() {
+            this.$patch({
+                isTokenInitialized: false,
+                isAuthenticating: false,
+                authError: null,
             });
         },
     },

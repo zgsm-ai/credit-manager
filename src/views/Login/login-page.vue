@@ -15,6 +15,7 @@
                 <n-button
                     type="info"
                     size="medium"
+                    @click="toLogin"
                 >
                     {{ t('login.loginImmediatly') }}
                 </n-button>
@@ -31,4 +32,8 @@ import { NEmpty, NButton } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+
+const toLogin = () => {
+    // window.location.href = '';
+};
 </script>

@@ -26,14 +26,36 @@
                             alt=""
                         />
                     </template>
-                    <div class="user-name">{{ userName }}</div>
+                    <div
+                        class="user-name"
+                        v-if="userName"
+                    >
+                        {{ userName }}
+                    </div>
                     <div class="user-menu-options">
+                        <!-- 未登录状态 -->
                         <div
+                            v-if="!userName"
                             class="option-item"
-                            @click="toCredit"
+                            @click="toLogin"
                         >
-                            {{ t('common.header.accountAndUsage') }}
+                            {{ t('login.loginImmediatly') }}
                         </div>
+                        <!-- 登录状态 -->
+                        <template v-else>
+                            <div
+                                class="option-item"
+                                @click="toCredit"
+                            >
+                                {{ t('common.header.accountAndUsage') }}
+                            </div>
+                            <div
+                                class="option-item"
+                                @click="handleLogout"
+                            >
+                                {{ t('common.header.logout') }}
+                            </div>
+                        </template>
                     </div>
                 </n-popover>
             </div>
@@ -80,6 +102,7 @@ import { NPopover } from 'naive-ui';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/user';
 import { storeToRefs } from 'pinia';
+import { authService } from '@/services/auth.service';
 
 const router = useRouter();
 const { t, locale } = useI18n();
@@ -115,6 +138,25 @@ const isUserMenuOpen = ref(false);
 const toCredit = () => {
     window.open('/credit/manager/credits');
     isUserMenuOpen.value = false;
+};
+
+const toLogin = () => {
+    router.push('/login');
+    isUserMenuOpen.value = false;
+};
+
+const handleLogout = async () => {
+    try {
+        // 调用退出登录服务
+        await authService.logout();
+        // 重置用户store状态
+        userStore.resetAuth();
+        // 跳转到登录页
+        router.push('/login');
+        isUserMenuOpen.value = false;
+    } catch (error) {
+        console.error('Logout failed:', error);
+    }
 };
 
 const userStore = useUserStore();

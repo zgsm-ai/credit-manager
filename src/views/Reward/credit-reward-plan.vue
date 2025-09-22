@@ -106,6 +106,49 @@
                 </template>
             </template>
         </reward-card>
+
+        <reward-card
+            :title="t('rewardPlan.contactUsTitle')"
+            :description="t('rewardPlan.contactUsDescription')"
+            class="mt-12.5 mb-35"
+            contentClass="mt-5"
+        >
+            <template #content>
+                <div class="flex items-center mt-4">
+                    <div class="flex flex-col items-center">
+                        <img
+                            class="w-25 h-25"
+                            src="../../assets/qrcode/official_account.png"
+                            alt=""
+                        />
+                        <span class="mt-3">{{ t('rewardPlan.officialAccount') }}</span>
+                    </div>
+
+                    <div class="flex flex-col ml-20 items-center">
+                        <img
+                            class="w-25 h-25"
+                            src="../../assets/qrcode/communication_group.png"
+                            alt=""
+                        />
+                        <span class="mt-3">{{ t('rewardPlan.joinGroup') }}</span>
+                    </div>
+                </div>
+            </template>
+        </reward-card>
+
+        <!-- 复制链接按钮 -->
+        <div
+            v-if="isInvite"
+            class="fixed bottom-4 right-10 z-50"
+        >
+            <n-button
+                type="info"
+                @click="copyInviteLink"
+                size="large"
+            >
+                {{ t('rewardPlan.copyLink') }}
+            </n-button>
+        </div>
     </div>
 </template>
 
@@ -118,22 +161,44 @@ import { copyToClipboard } from '@/utils/copy';
 import RewardCard from './reward-card.vue';
 import CreditQaCard from './credit-qa-card.vue';
 import { CopyOutline } from '@vicons/ionicons5';
-import { NIcon, useMessage, NTimeline, NTimelineItem } from 'naive-ui';
-import { ref, computed } from 'vue';
+import { NIcon, useMessage, NTimeline, NTimelineItem, NButton } from 'naive-ui';
+import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
 import OperationCard from './operation-card.vue';
 import { createOperationGuide, createRulesContent, createQaContent } from './const';
 
 const { t } = useI18n();
 const message = useMessage();
+const route = useRoute();
 
 const invateCode = ref('6ER2');
+const isInvite = ref(false);
+
+// 从 URL 获取参数
+onMounted(() => {
+    const invite = route.query.invite as string;
+    const code = route.query.code as string;
+
+    isInvite.value = !!invite;
+    invateCode.value = code;
+});
 
 const copyCode = () => {
     copyToClipboard(invateCode.value, {
         success: message.success,
         error: message.error,
     });
+};
+
+const copyInviteLink = () => {
+    const currentUrl = window.location.origin + window.location.pathname;
+    const inviteUrl = `${currentUrl}?invite=true&code=${invateCode.value}`;
+    // copyToClipboard(inviteUrl, {
+    //     success: () => message.success('邀请链接已复制'),
+    //     error: message.error,
+    // });
+    console.log(inviteUrl);
 };
 
 // 创建翻译后的数据
