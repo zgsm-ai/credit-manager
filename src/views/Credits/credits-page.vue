@@ -28,7 +28,7 @@ import { getQuotaAuditRecords, getUserQuota } from '@/api/mods/quota.mod';
 import type { GetUserQuotaRes, QuotaAuditRecord } from '@/api/bos/quota.bo';
 import dayjs from 'dayjs';
 import type { GroupedItem } from './interface';
-import { OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE } from './const';
+import { OPERATION_TYPE, PAGE_PARAMS, POPOVER_SPAN_STYLE, RECHARGE_STRATEGY_NAME } from './const';
 import { formatDate } from '@/utils/date';
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '@/store/user';
@@ -167,7 +167,28 @@ const columns = computed(() => [
                         h('span', null, baseDescription),
                         voucher_code ? popoverRender(voucher_code) : null,
                     ]);
-
+                case OPERATION_TYPE.reCharge:
+                    if (Object.values(RECHARGE_STRATEGY_NAME).includes(strategy_name)) {
+                        switch (strategy_name) {
+                            case RECHARGE_STRATEGY_NAME.inviteeStarReward:
+                                return t('creditsPage.inviteeStarReward');
+                            case RECHARGE_STRATEGY_NAME.inviterRegisterReward:
+                                return t('creditsPage.inviterRegisterReward', {
+                                    relatedUser: related_user,
+                                });
+                            case RECHARGE_STRATEGY_NAME.inviterStarReward:
+                                return t('creditsPage.inviterStarReward', {
+                                    relatedUser: related_user,
+                                });
+                            default:
+                                return strategy_name;
+                        }
+                    }
+                    return strategy_name;
+                case OPERATION_TYPE.mergeIn:
+                    return t('creditsPage.mergeInDesc', {
+                        relatedUser: related_user,
+                    });
                 default:
                     return strategy_name;
             }

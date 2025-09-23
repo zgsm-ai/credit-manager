@@ -1,6 +1,9 @@
 <template>
     <div class="common-header">
-        <div class="logo">
+        <div
+            class="logo cursor-pointer"
+            @click="() => router.push('/')"
+        >
             <img
                 src="../assets/logo.png"
                 alt=""

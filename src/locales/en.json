@@ -55,7 +55,11 @@
         "validDetailItem": "{amount} Credits will expire on {expiryDate}",
         "expiredDetailItem": "{amount} Credits expired on {expiryDate}",
         "voucherCodeSuffix": ", redemption code:",
-        "userRegisterZhuge": "User registered Costrict"
+        "userRegisterZhuge": "User registered Costrict",
+        "inviteeStarReward": "You participated in the \"Invite New User\" campaign reward",
+        "inviterRegisterReward": "The new user {relatedUser} you invited completed the Costrict registration task",
+        "inviterStarReward": "The new user {relatedUser} you invited completed the GitHub star task",
+        "mergeInDesc": "You have bound the account with user ID {relatedUser} to the current account, and all credits from the original account have been transferred to the current account"
     },
     "homePage": {
         "basicInfo": "Basic Information",
@@ -102,10 +106,10 @@
         "title": "Credit Reward Plan",
         "invitationCode": "Invitation Code",
         "invitationCodeText": "Please fill in the invitation code on the login/registration page. If missed, Credits cannot be distributed.",
-        "invitationCodeLabel": "Invitation Code:",
+        "invitationCodeLabel": "Invitation Code: ",
         "rulesTitle": "Rules Description",
-        "operationGuideTitle": "Operation Guide",
-        "operationGuideSubtitle": "(New users can follow the guide to complete tasks)",
+        "operationGuideTitle": "Operation Instructions",
+        "operationGuideSubtitle": "(New users can follow the instructions to complete tasks)",
         "aboutCreditsTitle": "About Credits",
         "contactUsTitle": "Contact Us",
         "contactUsDescription": "If you have any questions, please contact us. Scan the QR code below to join the official communication group.",
@@ -117,21 +121,21 @@
             "answer": "A"
         },
         "operationGuide": {
-            "task1Title": "Task 1: Register and Login Costrict",
-            "task2Title": "Task 2: Star Costrict Project on GitHub",
-            "task3Title": "Task 3: Install Costrict Product and Experience",
-            "step1Content": "Please confirm the invitation code has been automatically filled (if not, please fill it manually). Supports both phone number and GitHub login methods. GitHub login is recommended for convenience in completing Task 2.",
-            "step1Tips": "If you don't have a GitHub account, you can register one following the process guidance.",
-            "step2Header": "After login, the page will automatically redirect to the User Info & Quota Usage page",
-            "step2Tips": "If you don't have a GitHub account, you can register one following the process guidance.",
+            "task1Title": "Task 1: Registration and Login Costrict",
+            "task2Title": "Task 2: Click Star on GitHub to bookmark the Costrict project",
+            "task3Title": "Task 3: Install the Costrict product and experience its features",
+            "step1Content": "Please confirm that the invitation code has been automatically filled in (if not, please enter it manually). Use GitHub to log in.",
+            "step1Tips": "If you do not have a GitHub account, follow the guided process to register first.",
+            "step2Header": "After login, the page will automatically redirect to the User Info & Quota Usage page.",
+            "step2Tips": "If you do not have a GitHub account, follow the guided process to register first.",
             "step3Content": "Please follow the official documentation to complete Costrict plugin installation and login, and successfully send a conversation",
-            "loginNow": "Login Now >> ",
-            "goNow": "Go Now >> ",
-            "viewDocs": "View Official Docs >> ",
-            "linkAddress": "Link Address:",
-            "visitGithub": "Visit Github's Costrict project page, click star to favorite Costrict project,",
-            "pleaseLoginFirst": "Please login Costrict first,",
-            "completePluginInstall": "Please complete Costrict plugin installation and login according to official documentation, and successfully send a conversation,"
+            "loginNow": " Log in Now >> ",
+            "goNow": " Go Now >> ",
+            "viewDocs": " View official documentation >> ",
+            "linkAddress": "Link: ",
+            "visitGithub": "Visit the Costrict project page on GitHub, click the Star button to bookmark the project.",
+            "pleaseLoginFirst": "Please log in to Costrict,",
+            "completePluginInstall": "Please refer to the official documentation to complete the installation and login of the Costrict, successfully send one conversation."
         },
         "rules": {
             "inviterLabel": "Inviter:",
@@ -144,14 +148,16 @@
             "newUserDescription": "New users need to complete three tasks according to the operation guide below to get 125 Credits reward,"
         },
         "qa": {
-            "question1": "How to check if Credits have arrived?",
-            "answer1": "Check the specific credit arrival status in the 'History' page of the 'Usage' module on the User Info & Quota Usage page.",
-            "question2": "Why are the Credits received not matching after completing all tasks?",
-            "answer2": "If the user logs in with a phone number but uses GitHub account to star Costrict on GitHub, and the two accounts are not associated, Credits will be distributed to both accounts separately. Just bind the accounts to see all Credits.",
+            "question1": "How to check if Credits have been deposited?",
+            "answer1": "Go to the \"Usage\" module on the User Info & Quota Usage page and check the \"Credit History\" section for detailed credit deposit records.",
+            "question2": "Why didn't I receive the correct amount of Credits after completing tasks?",
+            "answer2": "Credits are typically deposited within a few minutes. If you haven't received them after an extended period, please contact us via email ：zgsm@sangfor.com.cn. We will respond as soon as possible.",
             "accountBinding": "Bind GitHub account in the basic information module of the User Info & Quota Usage page.",
-            "goNow": "Go Now >> ",
-            "linkAddress": "Link Address:",
-            "basicInfoModule": ") basic information module to bind GitHub account."
+            "goNow": " View Now >> ",
+            "linkAddress": "Link: ",
+            "basicInfoModule": ") basic information module to bind GitHub account.",
+            "leftParenthesis": "(",
+            "rightParenthesis": ")"
         }
     },
     "utils": {
