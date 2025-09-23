@@ -138,7 +138,7 @@
 
         <!-- 复制链接按钮 -->
         <div
-            v-if="isInvite"
+            v-if="!isInvite"
             class="fixed bottom-4 right-10 z-50"
         >
             <n-button

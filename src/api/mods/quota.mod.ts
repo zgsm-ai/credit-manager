@@ -6,6 +6,8 @@ import { get, post } from '@/utils/request';
 import type {
     GetBindAccountReq,
     GetBindAccountRes,
+    GetInviteCodeRes,
+    GetLoginUrlRes,
     GetQuotaAuditRecordsReq,
     GetQuotaAuditRecordsRes,
     GetUserInfoRes,
@@ -57,4 +59,12 @@ export const getBindAccount = (
     params: GetBindAccountReq,
 ): Promise<ApiResponse<GetBindAccountRes>> => {
     return get('/oidc-auth/api/v1/manager/bind/account', params);
+};
+
+export const getInviteCode = (): Promise<ApiResponse<GetInviteCodeRes>> => {
+    return get('/oidc-auth/api/v1/manager/invite-code');
+};
+
+export const getLoginUrl = (): Promise<ApiResponse<GetLoginUrlRes>> => {
+    return get('/oidc-auth/api/v1/manager/login');
 };
