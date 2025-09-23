@@ -56,7 +56,11 @@
                             {{ t('activityCard.inviteNewUserDesc') }}
                         </div>
                         <div
-                            class="activity-invite-user__btn rounded-[20px] absolute right-4 top-14.5 px-4 py-1 w-27 h-7 flex items-center justify-center cursor-pointer"
+                            class="activity-invite-user__btn rounded-[20px] absolute right-4 top-14.5 px-4 py-1 w-27 h-7 flex items-center justify-center"
+                            :class="{
+                                'cursor-pointer': !isInviteLoading,
+                                'cursor-not-allowed opacity-50': isInviteLoading,
+                            }"
                             @click="toInvite"
                         >
                             <span class="text-sm">{{ t('activityCard.goInvite') }}</span>
@@ -91,9 +95,10 @@
 /**
  * @file activity-card.vue
  */
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CommonCard from '@/components/common-card.vue';
+import { getInviteCode } from '@/api/mods/quota.mod';
 import { useRouter } from 'vue-router';
 
 const { t } = useI18n();
@@ -118,10 +123,29 @@ const toGithub = () => {
     window.open('https://github.com/zgsm-ai/costrict');
 };
 
+const isInviteLoading = ref(false);
+
 const router = useRouter();
 
-const toInvite = () => {
-    router.push('/credit-reward-plan');
+const toInvite = async () => {
+    if (isInviteLoading.value) return;
+
+    isInviteLoading.value = true;
+    try {
+        const {
+            data: { invite_code = '' },
+        } = await getInviteCode();
+        router.push({
+            path: '/credit-reward-plan',
+            query: {
+                code: invite_code,
+            },
+        });
+    } catch (error) {
+        console.error('获取邀请码失败:', error);
+    } finally {
+        isInviteLoading.value = false;
+    }
 };
 </script>
 
