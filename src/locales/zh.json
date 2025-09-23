@@ -55,7 +55,11 @@
         "validDetailItem": "{amount} Credit将在 {expiryDate} 到期",
         "expiredDetailItem": "{amount} Credit已在 {expiryDate} 过期",
         "voucherCodeSuffix": "， 兑换码：",
-        "userRegisterZhuge": "用户注册Costrict"
+        "userRegisterZhuge": "用户注册Costrict",
+        "inviteeStarReward": "您参加\"邀请新用户\"运营活动奖励",
+        "inviterRegisterReward": "您邀请的新用户 {relatedUser} 完成了 Costrict 的注册任务",
+        "inviterStarReward": "您邀请的新用户 {relatedUser} 完成了 github 点亮 star 任务",
+        "mergeInDesc": "您将用户ID为 {relatedUser} 的账户与当前账户做了绑定，原账户的全部额度已经转入当前账户中"
     },
     "homePage": {
         "basicInfo": "基本信息",
@@ -151,7 +155,9 @@
             "accountBinding": "在用户信息&配额用量页面的基本信息模块绑定 Github 账号即可。",
             "goNow": "立即前往 >> ",
             "linkAddress": "链接地址：",
-            "basicInfoModule": "）的基本信息模块绑定 Github 账号即可。"
+            "basicInfoModule": "）的基本信息模块绑定 Github 账号即可。",
+            "leftParenthesis": "（",
+            "rightParenthesis": "）"
         }
     },
     "utils": {

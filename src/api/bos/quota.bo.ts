@@ -115,6 +115,10 @@ export interface GetInviteCodeRes {
     invite_code: string;
 }
 
+export interface GetLoginUrlReq {
+    inviter_code: string;
+}
+
 export interface GetLoginUrlRes {
     url: string;
 }
