@@ -110,3 +110,15 @@ export interface GetBindAccountRes {
     message: string;
     success: boolean;
 }
+
+export interface GetInviteCodeRes {
+    invite_code: string;
+}
+
+export interface GetLoginUrlReq {
+    inviter_code: string;
+}
+
+export interface GetLoginUrlRes {
+    url: string;
+}

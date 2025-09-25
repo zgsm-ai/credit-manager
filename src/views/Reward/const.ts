@@ -11,6 +11,10 @@ import task3_step1Img from '../../assets/operation/task3_step1.png';
 import task3_step2Img from '../../assets/operation/task3_step2.png';
 import task3_step3Img from '../../assets/operation/task3_step3.png';
 
+const origin = window.location.origin;
+
+const homePageUrl = `${origin}/credit/manager`;
+
 const renderCreditsText = (part: string) => {
     if (/^\d+\s+Credits$/.test(part)) {
         const number = part.match(/(\d+)/)?.[0] || '';
@@ -23,7 +27,7 @@ const renderCreditsText = (part: string) => {
 };
 
 // 创建翻译函数，接收 t 函数作为参数
-export const createOperationGuide = (t: (key: string) => string): OperationGuide[] => [
+export const createOperationGuide = (t: (key: string) => string, url: string): OperationGuide[] => [
     {
         title: t('rewardPlan.operationGuide.task1Title'),
         steps: [
@@ -33,14 +37,14 @@ export const createOperationGuide = (t: (key: string) => string): OperationGuide
                     h('p', {}, [
                         t('rewardPlan.operationGuide.pleaseLoginFirst'),
                         h(
-                            'span',
-                            { class: 'text-[#4394FF] cursor-pointer' },
+                            'a',
+                            { class: 'text-[#4394FF] cursor-pointer', href: url },
                             t('rewardPlan.operationGuide.loginNow'),
                         ),
+                        t('rewardPlan.qa.leftParenthesis'),
                         t('rewardPlan.operationGuide.linkAddress'),
-                        '（',
-                        h('span', { class: 'text-[#4394FF] cursor-pointer' }, 'xxxxxxxxxxxxxxxxxx'),
-                        '）',
+                        h('a', { class: 'text-[#4394FF] cursor-pointer', href: url }, url),
+                        t('rewardPlan.qa.rightParenthesis'),
                     ]),
                 content: t('rewardPlan.operationGuide.step1Content'),
                 tips: t('rewardPlan.operationGuide.step1Tips'),
@@ -62,18 +66,24 @@ export const createOperationGuide = (t: (key: string) => string): OperationGuide
                     h('p', {}, [
                         t('rewardPlan.operationGuide.visitGithub'),
                         h(
-                            'span',
-                            { class: 'text-[#4394FF] cursor-pointer' },
+                            'a',
+                            {
+                                class: 'text-[#4394FF] cursor-pointer',
+                                href: 'https://github.com/zgsm-ai/costrict',
+                            },
                             t('rewardPlan.operationGuide.goNow'),
                         ),
+                        t('rewardPlan.qa.leftParenthesis'),
                         t('rewardPlan.operationGuide.linkAddress'),
-                        '（',
                         h(
-                            'span',
-                            { class: 'text-[#4394FF] cursor-pointer' },
-                            'https://github.com/zgsm-ai/zgsm',
+                            'a',
+                            {
+                                class: 'text-[#4394FF] cursor-pointer',
+                                href: 'https://github.com/zgsm-ai/costrict',
+                            },
+                            'https://github.com/zgsm-ai/costrict',
                         ),
-                        '）',
+                        t('rewardPlan.qa.rightParenthesis'),
                     ]),
                 tips: t('rewardPlan.operationGuide.step2Tips'),
                 image: task2_step1Img,
@@ -89,18 +99,24 @@ export const createOperationGuide = (t: (key: string) => string): OperationGuide
                     h('p', {}, [
                         t('rewardPlan.operationGuide.completePluginInstall'),
                         h(
-                            'span',
-                            { class: 'text-[#4394FF] cursor-pointer' },
+                            'a',
+                            {
+                                class: 'text-[#4394FF] cursor-pointer',
+                                href: 'https://docs.costrict.ai/category/getting-started',
+                            },
                             t('rewardPlan.operationGuide.viewDocs'),
                         ),
+                        t('rewardPlan.qa.leftParenthesis'),
                         t('rewardPlan.operationGuide.linkAddress'),
-                        '（',
                         h(
-                            'span',
-                            { class: 'text-[#4394FF] cursor-pointer' },
+                            'a',
+                            {
+                                class: 'text-[#4394FF] cursor-pointer',
+                                href: 'https://docs.costrict.ai/category/getting-started',
+                            },
                             'https://docs.costrict.ai/category/getting-started',
                         ),
-                        '）',
+                        t('rewardPlan.qa.rightParenthesis'),
                     ]),
             },
         ],
@@ -141,15 +157,19 @@ export const createQaContent = (t: (key: string) => string): QaContent[] => [
             () =>
                 h('p', {}, [
                     t('rewardPlan.qa.answer1'),
-                    h('span', { class: 'text-[#4394FF] cursor-pointer' }, t('rewardPlan.qa.goNow')),
-                    t('rewardPlan.qa.linkAddress'),
-                    '（',
                     h(
-                        'span',
-                        { class: 'text-[#4394FF] cursor-pointer' },
-                        'https://github.com/zgsm-ai/zgsm',
+                        'a',
+                        { class: 'text-[#4394FF] cursor-pointer', href: homePageUrl },
+                        t('rewardPlan.qa.goNow'),
                     ),
-                    '）',
+                    t('rewardPlan.qa.leftParenthesis'),
+                    t('rewardPlan.qa.linkAddress'),
+                    h(
+                        'a',
+                        { class: 'text-[#4394FF] cursor-pointer', href: homePageUrl },
+                        homePageUrl,
+                    ),
+                    t('rewardPlan.qa.rightParenthesis'),
                 ]),
             () => h('img', { src: task3_step1Img, class: 'mt-4' }),
             () => h('img', { src: task3_step2Img, class: 'mt-3' }),
@@ -162,9 +182,13 @@ export const createQaContent = (t: (key: string) => string): QaContent[] => [
             () =>
                 h('p', { class: 'mt-2' }, [
                     t('rewardPlan.qa.accountBinding'),
+                    t('rewardPlan.qa.leftParenthesis'),
                     t('rewardPlan.qa.linkAddress'),
-                    '（',
-                    h('span', { class: 'text-[#4394FF] cursor-pointer' }, 'xxxxxxxxxxxx'),
+                    h(
+                        'a',
+                        { class: 'text-[#4394FF] cursor-pointer', href: homePageUrl },
+                        homePageUrl,
+                    ),
                     t('rewardPlan.qa.basicInfoModule'),
                 ]),
             () => h('img', { src: task3_step3Img, class: 'mt-4' }),

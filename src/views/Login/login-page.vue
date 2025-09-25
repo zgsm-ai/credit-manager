@@ -15,6 +15,8 @@
                 <n-button
                     type="info"
                     size="medium"
+                    :disabled="isLoggingIn"
+                    :loading="isLoggingIn"
                     @click="toLogin"
                 >
                     {{ t('login.loginImmediatly') }}
@@ -28,12 +30,27 @@
 /**
  * @file 登录页
  */
+import { ref } from 'vue';
+import { getLoginUrl } from '@/api/mods/quota.mod';
 import { NEmpty, NButton } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+const isLoggingIn = ref(false);
 
-const toLogin = () => {
-    // window.location.href = '';
+const toLogin = async () => {
+    if (isLoggingIn.value) return;
+
+    isLoggingIn.value = true;
+    try {
+        const {
+            data: { url },
+        } = await getLoginUrl();
+
+        window.location.href = url;
+    } catch (error) {
+        console.error('登录失败:', error);
+        isLoggingIn.value = false;
+    }
 };
 </script>

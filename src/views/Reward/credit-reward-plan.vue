@@ -10,7 +10,11 @@
             <template #label>
                 <div class="flex items-center">
                     {{ t('rewardPlan.invitationCodeLabel') }}
-                    <span class="text-[#12FFBB]">{{ invateCode }}</span>
+                    <span
+                        class="text-[#12FFBB]"
+                        :class="{ 'ml-1': !isZh }"
+                        >{{ invateCode }}</span
+                    >
                     <n-icon
                         size="14"
                         class="ml-2 cursor-pointer text-[#197DFF]"
@@ -35,7 +39,11 @@
             <template #header>
                 <div class="flex opertion-rule self-start items-end">
                     <span class="text-xl">{{ t('rewardPlan.operationGuideTitle') }}</span>
-                    <span class="text-sm">{{ t('rewardPlan.operationGuideSubtitle') }}</span>
+                    <span
+                        class="text-sm"
+                        :class="{ 'ml-1': !isZh }"
+                        >{{ t('rewardPlan.operationGuideSubtitle') }}</span
+                    >
                 </div>
             </template>
 
@@ -138,7 +146,7 @@
 
         <!-- 复制链接按钮 -->
         <div
-            v-if="isInvite"
+            v-if="!isInvite"
             class="fixed bottom-4 right-10 z-50"
         >
             <n-button
@@ -167,13 +175,29 @@ import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import OperationCard from './operation-card.vue';
 import { createOperationGuide, createRulesContent, createQaContent } from './const';
+import { getLoginUrl } from '@/api/mods/quota.mod';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const isZh = computed(() => locale.value === 'zh');
 const message = useMessage();
 const route = useRoute();
 
-const invateCode = ref('6ER2');
+const invateCode = ref('');
 const isInvite = ref(false);
+const loginUrl = ref('');
+
+const fetchLoginUrl = async () => {
+    try {
+        const {
+            data: { url },
+        } = await getLoginUrl({
+            inviter_code: invateCode.value,
+        });
+        loginUrl.value = url;
+    } catch (error) {
+        console.error('获取登录链接失败:', error);
+    }
+};
 
 // 从 URL 获取参数
 onMounted(() => {
@@ -182,6 +206,8 @@ onMounted(() => {
 
     isInvite.value = !!invite;
     invateCode.value = code;
+
+    fetchLoginUrl();
 });
 
 const copyCode = () => {
@@ -194,15 +220,14 @@ const copyCode = () => {
 const copyInviteLink = () => {
     const currentUrl = window.location.origin + window.location.pathname;
     const inviteUrl = `${currentUrl}?invite=true&code=${invateCode.value}`;
-    // copyToClipboard(inviteUrl, {
-    //     success: () => message.success('邀请链接已复制'),
-    //     error: message.error,
-    // });
-    console.log(inviteUrl);
+    copyToClipboard(inviteUrl, {
+        success: () => message.success('邀请链接已复制'),
+        error: message.error,
+    });
 };
 
 // 创建翻译后的数据
-const operationGuide = computed(() => createOperationGuide(t));
+const operationGuide = computed(() => createOperationGuide(t, loginUrl.value));
 const rulesContent = computed(() => createRulesContent(t));
 const qaContent = computed(() => createQaContent(t));
 </script>
