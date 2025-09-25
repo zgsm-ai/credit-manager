@@ -221,15 +221,15 @@ const copyInviteLink = () => {
     const currentUrl = window.location.origin + window.location.pathname;
     const inviteUrl = `${currentUrl}?invite=true&code=${invateCode.value}`;
     copyToClipboard(inviteUrl, {
-        success: () => message.success('邀请链接已复制'),
+        success: message.success,
         error: message.error,
     });
 };
 
 // 创建翻译后的数据
-const operationGuide = computed(() => createOperationGuide(t, loginUrl.value));
+const operationGuide = computed(() => createOperationGuide(t, loginUrl.value, isZh.value));
 const rulesContent = computed(() => createRulesContent(t));
-const qaContent = computed(() => createQaContent(t));
+const qaContent = computed(() => createQaContent(t, isZh.value));
 </script>
 
 <style lang="less" scoped>

@@ -10,6 +10,11 @@ import task2_step1Img from '../../assets/operation/task2_step1.png';
 import task3_step1Img from '../../assets/operation/task3_step1.png';
 import task3_step2Img from '../../assets/operation/task3_step2.png';
 import task3_step3Img from '../../assets/operation/task3_step3.png';
+import en_task1_step1Img from '../../assets/operation/task1_step1_en.png';
+import en_task1_step2Img from '../../assets/operation/task1_step2_en.png';
+import en_task2_step1Img from '../../assets/operation/task2_step1_en.png';
+import en_task3_step1Img from '../../assets/operation/task3_step1_en.png';
+import en_task3_step2Img from '../../assets/operation/task3_step2_en.png';
 
 const origin = window.location.origin;
 
@@ -27,7 +32,11 @@ const renderCreditsText = (part: string) => {
 };
 
 // 创建翻译函数，接收 t 函数作为参数
-export const createOperationGuide = (t: (key: string) => string, url: string): OperationGuide[] => [
+export const createOperationGuide = (
+    t: (key: string) => string,
+    url: string,
+    isZh: boolean,
+): OperationGuide[] => [
     {
         title: t('rewardPlan.operationGuide.task1Title'),
         steps: [
@@ -48,12 +57,12 @@ export const createOperationGuide = (t: (key: string) => string, url: string): O
                     ]),
                 content: t('rewardPlan.operationGuide.step1Content'),
                 tips: t('rewardPlan.operationGuide.step1Tips'),
-                image: task1_step1Img,
+                image: isZh ? task1_step1Img : en_task1_step1Img,
             },
             {
                 index: 2,
                 header: t('rewardPlan.operationGuide.step2Header'),
-                image: task1_step2Img,
+                image: isZh ? task1_step2Img : en_task1_step2Img,
             },
         ],
     },
@@ -86,7 +95,7 @@ export const createOperationGuide = (t: (key: string) => string, url: string): O
                         t('rewardPlan.qa.rightParenthesis'),
                     ]),
                 tips: t('rewardPlan.operationGuide.step2Tips'),
-                image: task2_step1Img,
+                image: isZh ? task2_step1Img : en_task2_step1Img,
             },
         ],
     },
@@ -150,7 +159,7 @@ export const createRulesContent = (t: (key: string) => string): RuleItem[] => [
 ];
 
 // 创建QA内容
-export const createQaContent = (t: (key: string) => string): QaContent[] => [
+export const createQaContent = (t: (key: string) => string, isZh: boolean): QaContent[] => [
     {
         question: t('rewardPlan.qa.question1'),
         answer: [
@@ -171,27 +180,45 @@ export const createQaContent = (t: (key: string) => string): QaContent[] => [
                     ),
                     t('rewardPlan.qa.rightParenthesis'),
                 ]),
-            () => h('img', { src: task3_step1Img, class: 'mt-4' }),
-            () => h('img', { src: task3_step2Img, class: 'mt-3' }),
+            () => h('img', { src: isZh ? task3_step1Img : en_task3_step1Img, class: 'mt-4' }),
+            () => h('img', { src: isZh ? task3_step2Img : en_task3_step2Img, class: 'mt-3' }),
         ],
     },
     {
         question: t('rewardPlan.qa.question2'),
         answer: [
-            t('rewardPlan.qa.answer2'),
             () =>
-                h('p', { class: 'mt-2' }, [
-                    t('rewardPlan.qa.accountBinding'),
-                    t('rewardPlan.qa.leftParenthesis'),
-                    t('rewardPlan.qa.linkAddress'),
+                h('p', {}, [
+                    "Credits are typically deposited within a few minutes. If you haven't received them after an extended period, please contact us via email: ",
                     h(
                         'a',
-                        { class: 'text-[#4394FF] cursor-pointer', href: homePageUrl },
-                        homePageUrl,
+                        {
+                            class: 'text-[#4394FF] cursor-pointer',
+                            href: 'mailto:zgsm@sangfor.com.cn',
+                        },
+                        'zgsm@sangfor.com.cn',
                     ),
-                    t('rewardPlan.qa.basicInfoModule'),
+                    '. We will respond as soon as possible.',
                 ]),
-            () => h('img', { src: task3_step3Img, class: 'mt-4' }),
+            () =>
+                h(
+                    'p',
+                    { class: 'mt-2' },
+                    isZh
+                        ? [
+                              t('rewardPlan.qa.accountBinding'),
+                              t('rewardPlan.qa.leftParenthesis'),
+                              t('rewardPlan.qa.linkAddress'),
+                              h(
+                                  'a',
+                                  { class: 'text-[#4394FF] cursor-pointer', href: homePageUrl },
+                                  homePageUrl,
+                              ),
+                              t('rewardPlan.qa.basicInfoModule'),
+                          ]
+                        : [],
+                ),
+            isZh ? () => h('img', { src: task3_step3Img, class: 'mt-4' }) : '',
         ],
     },
 ];
