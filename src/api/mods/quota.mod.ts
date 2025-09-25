@@ -66,6 +66,6 @@ export const getInviteCode = (): Promise<ApiResponse<GetInviteCodeRes>> => {
     return get('/oidc-auth/api/v1/manager/invite-code');
 };
 
-export const getLoginUrl = (params: GetLoginUrlReq): Promise<ApiResponse<GetLoginUrlRes>> => {
+export const getLoginUrl = (params?: GetLoginUrlReq): Promise<ApiResponse<GetLoginUrlRes>> => {
     return get('/oidc-auth/api/v1/manager/login', params);
 };
