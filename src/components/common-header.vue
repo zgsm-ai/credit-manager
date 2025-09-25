@@ -13,7 +13,7 @@
         <div class="menu">
             <div
                 class="user-menu"
-                v-if="!isCreditMdPage"
+                v-if="!isPublicPage"
             >
                 <n-popover
                     trigger="click"
@@ -106,11 +106,12 @@ import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/user';
 import { storeToRefs } from 'pinia';
 import { authService } from '@/services/auth.service';
+import { PUBLIC_ROUTES } from '@/router';
 
 const router = useRouter();
 const { t, locale } = useI18n();
 
-const isCreditMdPage = computed(() => router.currentRoute.value.path === '/credit-md-preview');
+const isPublicPage = computed(() => PUBLIC_ROUTES.includes(router.currentRoute.value.path));
 
 const languageOptions = ref([
     { label: t('common.langZh'), key: 'zh' },
