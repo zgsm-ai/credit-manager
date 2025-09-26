@@ -115,7 +115,13 @@
         "contactUsDescription": "If you have any questions, please contact us. Scan the QR code below to join the official communication group.",
         "officialAccount": "Scan to follow official account",
         "joinGroup": "Scan to join communication group",
-        "copyLink": "Copy Link",
+        "copyLink": "Copy Invitation Link",
+        "howToParticipate": "How to Participate",
+        "introTitle": "Running out of credits? Don't worry! 🔥",
+        "introContent": "Costrict officially launches the Credits Reward Program - complete the tasks below to easily earn credits and enjoy AI programming without burden. Invite friends to participate, collect more Credits, and explore unlimited possibilities!",
+        "participationStep1": "1. Copy your exclusive invitation link",
+        "participationStep2": "2. Share with developer friends",
+        "participationStep3": "3. Wait for rewards to be automatically credited!",
         "qaCard": {
             "question": "Q",
             "answer": "A"

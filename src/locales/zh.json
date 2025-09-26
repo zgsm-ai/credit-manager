@@ -115,7 +115,13 @@
         "contactUsDescription": "您有任何问题欢迎联系我们，扫描下方二维码进入官方交流群。",
         "officialAccount": "扫码关注公众号",
         "joinGroup": "扫码加入交流群",
-        "copyLink": "复制链接",
+        "copyLink": "复制邀请链接",
+        "howToParticipate": "如何参与",
+        "introTitle": "额度不够用？别着急！🔥",
+        "introContent": "Costrict 官方上线 Credits 奖励计划 —— 完成下方任务轻松赢取额度，让你无负担畅玩AI编程。快邀请好友一起参与，把更多 Credits 收入囊中，探索无限可能！",
+        "participationStep1": "1. 复制你的专属邀请链接",
+        "participationStep2": "2. 分享给开发者好友",
+        "participationStep3": "3. 坐等奖励自动到账！",
         "qaCard": {
             "question": "问",
             "answer": "答"
