@@ -56,7 +56,7 @@
         "expiredDetailItem": "{amount} Credit已在 {expiryDate} 过期",
         "voucherCodeSuffix": "， 兑换码：",
         "userRegisterZhuge": "用户注册Costrict",
-        "inviteeStarReward": "您参加\"邀请新用户\"运营活动奖励",
+        "inviteeStarReward": "您参加\"邀请新用户\"运营活动额外奖励",
         "inviterRegisterReward": "您邀请的新用户 {relatedUser} 完成了 Costrict 的注册任务",
         "inviterStarReward": "您邀请的新用户 {relatedUser} 完成了 github 点亮 star 任务",
         "mergeInDesc": "您将用户ID为 {relatedUser} 的账户与当前账户做了绑定，原账户的全部额度已经转入当前账户中"

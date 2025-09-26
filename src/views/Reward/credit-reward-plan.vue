@@ -13,14 +13,12 @@
             class="mt-6"
             :title="t('rewardPlan.howToParticipate')"
             content-class="mt-5"
+            v-if="!isInvite"
         >
             <template #content>
                 <div class="flex items-center">
                     {{ t('rewardPlan.participationStep1') }}
-                    <div
-                        v-if="!isInvite"
-                        class="ml-3"
-                    >
+                    <div class="ml-3">
                         <n-button
                             type="info"
                             @click="copyInviteLink"

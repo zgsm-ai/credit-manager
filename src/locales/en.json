@@ -56,7 +56,7 @@
         "expiredDetailItem": "{amount} Credits expired on {expiryDate}",
         "voucherCodeSuffix": ", redemption code:",
         "userRegisterZhuge": "User registered Costrict",
-        "inviteeStarReward": "You participated in the \"Invite New User\" campaign reward",
+        "inviteeStarReward": "You participated in the \"Invite New User\" campaign added bonus",
         "inviterRegisterReward": "The new user {relatedUser} you invited completed the Costrict registration task",
         "inviterStarReward": "The new user {relatedUser} you invited completed the GitHub star task",
         "mergeInDesc": "You have bound the account with user ID {relatedUser} to the current account, and all credits from the original account have been transferred to the current account"
