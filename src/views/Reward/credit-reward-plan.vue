@@ -187,25 +187,38 @@ import RewardCard from './reward-card.vue';
 import CreditQaCard from './credit-qa-card.vue';
 import { CopyOutline } from '@vicons/ionicons5';
 import { NIcon, useMessage, NTimeline, NTimelineItem, NButton } from 'naive-ui';
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import OperationCard from './operation-card.vue';
 import { createOperationGuide, createRulesContent, createQaContent } from './const';
 import { getLoginUrl } from '@/api/mods/quota.mod';
-// import { useHead } from '@vueuse/head';
-// import logo from '../../assets/logo.png';
+import { useMetaTags } from '@/composables/useMetaTags';
+import { ref as refVue } from 'vue';
+import type { SocialMetaConfig } from '@/config/meta';
 
-// useHead({
-//     meta: [
-//         { property: 'og:title', content: 'Costrict 喊你来薅羊毛啦（送 Credits）！' },
-//         {
-//             property: 'og:description',
-//             content: 'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。',
-//         },
-//         { property: 'og:image', content: logo },
-//     ],
-// });
+// 为积分奖励计划页面配置特定的Open Graph标签
+const customMeta = refVue<SocialMetaConfig>({
+    og: {
+        title: 'Costrict 喊你来薅羊毛啦（送 Credits）！',
+        description:
+            'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
+        image: '/social-share.png',
+        type: 'website',
+        siteName: 'Costrict',
+        locale: 'zh_CN',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Costrict 喊你来薅羊毛啦（送 Credits）！',
+        description:
+            'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
+        image: '/social-share.png',
+    },
+});
+
+// 使用自定义meta标签
+useMetaTags(customMeta);
 
 const { t, locale } = useI18n();
 const isZh = computed(() => locale.value === 'zh');
@@ -229,6 +242,14 @@ const fetchLoginUrl = async () => {
     }
 };
 
+// 强制滚动到顶部的函数
+const forceScrollToTop = () => {
+    // 立即强制滚动到顶部
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+};
+
 // 从 URL 获取参数
 onMounted(() => {
     const invite = route.query.invite as string;
@@ -239,6 +260,19 @@ onMounted(() => {
 
     fetchLoginUrl();
 });
+
+// 监听路由变化，当路由变化时也滚动到顶部
+watch(
+    () => route.path,
+    (newPath, oldPath) => {
+        // 只有当路由确实发生变化时才执行滚动
+        if (newPath !== oldPath) {
+            // 立即执行
+            forceScrollToTop();
+        }
+    },
+    { immediate: true },
+);
 
 const copyCode = () => {
     copyToClipboard(invateCode.value, {
