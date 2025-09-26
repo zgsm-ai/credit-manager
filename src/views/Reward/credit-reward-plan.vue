@@ -2,9 +2,42 @@
     <div class="credit-reward-plan mt-10">
         <div class="text-center text-[28px] font-semibold">{{ t('rewardPlan.title') }}</div>
 
+        <div class="mt-8">
+            <p>{{ t('rewardPlan.introTitle') }}</p>
+            <p>
+                {{ t('rewardPlan.introContent') }}
+            </p>
+        </div>
+
+        <reward-card
+            class="mt-6"
+            :title="t('rewardPlan.howToParticipate')"
+            content-class="mt-5"
+        >
+            <template #content>
+                <div class="flex items-center">
+                    {{ t('rewardPlan.participationStep1') }}
+                    <div
+                        v-if="!isInvite"
+                        class="ml-3"
+                    >
+                        <n-button
+                            type="info"
+                            @click="copyInviteLink"
+                            size="tiny"
+                        >
+                            {{ t('rewardPlan.copyLink') }}
+                        </n-button>
+                    </div>
+                </div>
+                <p>{{ t('rewardPlan.participationStep2') }}</p>
+                <p>{{ t('rewardPlan.participationStep3') }}</p>
+            </template>
+        </reward-card>
+
         <reward-card
             :title="t('rewardPlan.invitationCode')"
-            class="mt-15"
+            class="mt-6"
             :text="t('rewardPlan.invitationCodeText')"
         >
             <template #label>
@@ -143,20 +176,6 @@
                 </div>
             </template>
         </reward-card>
-
-        <!-- 复制链接按钮 -->
-        <div
-            v-if="!isInvite"
-            class="fixed bottom-4 right-10 z-50"
-        >
-            <n-button
-                type="info"
-                @click="copyInviteLink"
-                size="large"
-            >
-                {{ t('rewardPlan.copyLink') }}
-            </n-button>
-        </div>
     </div>
 </template>
 
@@ -176,6 +195,19 @@ import { useRoute } from 'vue-router';
 import OperationCard from './operation-card.vue';
 import { createOperationGuide, createRulesContent, createQaContent } from './const';
 import { getLoginUrl } from '@/api/mods/quota.mod';
+// import { useHead } from '@vueuse/head';
+// import logo from '../../assets/logo.png';
+
+// useHead({
+//     meta: [
+//         { property: 'og:title', content: 'Costrict 喊你来薅羊毛啦（送 Credits）！' },
+//         {
+//             property: 'og:description',
+//             content: 'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。',
+//         },
+//         { property: 'og:image', content: logo },
+//     ],
+// });
 
 const { t, locale } = useI18n();
 const isZh = computed(() => locale.value === 'zh');
