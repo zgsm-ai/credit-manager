@@ -101,7 +101,6 @@ import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CommonCard from '@/components/common-card.vue';
 import { getInviteCode } from '@/api/mods/quota.mod';
-import { useRouter } from 'vue-router';
 
 const { t } = useI18n();
 
@@ -127,8 +126,6 @@ const toGithub = () => {
 
 const isInviteLoading = ref(false);
 
-const router = useRouter();
-
 const toInvite = async () => {
     if (isInviteLoading.value) return;
 
@@ -137,12 +134,7 @@ const toInvite = async () => {
         const {
             data: { invite_code = '' },
         } = await getInviteCode();
-        router.push({
-            path: '/credit-reward-plan',
-            query: {
-                code: invite_code,
-            },
-        });
+        window.open(`/credit/manager/credit-reward-plan?code=${invite_code}`);
     } catch (error) {
         console.error('获取邀请码失败:', error);
     } finally {
