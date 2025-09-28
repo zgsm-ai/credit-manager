@@ -118,6 +118,7 @@
                                 <img
                                     v-if="step.image"
                                     class="mt-4 mb-10"
+                                    :class="step.imageClass"
                                     :src="step.image"
                                     alt=""
                                 />
