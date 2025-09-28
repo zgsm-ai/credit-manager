@@ -27,7 +27,9 @@
                                 t('activityCard.githubStar')
                             }}</span>
                         </div>
-                        <div class="activity-github-star__content text-sm ml-6 text-white mt-3">
+                        <div
+                            class="activity-github-star__content text-sm ml-6 text-white mt-3 max-w-[70%]"
+                        >
                             {{ t('activityCard.githubStarDesc') }}
                         </div>
                         <div
@@ -56,7 +58,7 @@
                             {{ t('activityCard.inviteNewUserDesc') }}
                         </div>
                         <div
-                            class="activity-invite-user__btn rounded-[20px] absolute right-4 top-14.5 px-4 py-1 w-27 h-7 flex items-center justify-center"
+                            class="activity-invite-user__btn rounded-[20px] absolute right-4 top-7.5 px-4 py-1 w-27 h-7 flex items-center justify-center"
                             :class="{
                                 'cursor-pointer': !isInviteLoading,
                                 'cursor-not-allowed opacity-50': isInviteLoading,

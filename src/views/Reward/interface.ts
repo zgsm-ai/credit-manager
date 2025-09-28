@@ -12,6 +12,7 @@ export interface OperationStep {
     content?: string;
     tips?: string;
     image?: string;
+    imageClass?: string;
 }
 
 // 操作指引整体接口定义
