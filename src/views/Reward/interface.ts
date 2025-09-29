@@ -21,14 +21,6 @@ export interface OperationGuide {
     steps: OperationStep[];
 }
 
-// 规则内容项接口定义
-export interface RuleItem {
-    key: number;
-    label: string;
-    text: string[];
-    descriptionRender: () => VNode;
-}
-
 type AnswerFn = () => VNode;
 
 export interface QaContent {
@@ -44,7 +36,7 @@ export interface RewardCardProps {
     contentClass?: string;
     content?: Array<{
         key: string | number;
-        label: string;
+        label?: string;
         text: string[];
         description?: string;
         labelRender?: () => VNode;
