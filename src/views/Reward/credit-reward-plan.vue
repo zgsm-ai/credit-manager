@@ -9,72 +9,155 @@
             </p>
         </div>
 
-        <reward-card
-            class="mt-6"
-            :title="t('rewardPlan.howToParticipate')"
-            content-class="mt-5"
-            v-if="!isInvite"
-        >
-            <template #content>
-                <div class="flex items-center">
-                    {{ t('rewardPlan.participationStep1') }}
-                    <div class="ml-3">
-                        <n-button
-                            type="info"
-                            @click="copyInviteLink"
-                            size="tiny"
-                        >
-                            {{ t('rewardPlan.copyLink') }}
-                        </n-button>
+        <!-- 邀请人展示 -->
+        <template v-if="!isInvite">
+            <!-- 规则说明 -->
+            <reward-card
+                :title="t('rewardPlan.rulesTitle')"
+                class="mt-10"
+            >
+                <template #content>
+                    <p>
+                        {{ t('rewardPlan.rules.rule1')
+                        }}<span class="credit-unit">{{ t('rewardPlan.rules.rule1NewUser') }}</span
+                        >{{ t('rewardPlan.rules.rule1Inviter')
+                        }}<span class="credit-unit">{{
+                            t('rewardPlan.rules.rule1InviterCredits')
+                        }}</span
+                        >{{ t('rewardPlan.rules.rule1End') }}
+                    </p>
+                    <div class="mt-1">
+                        <p>
+                            {{ t('rewardPlan.rules.rule2') }}
+                        </p>
+                        <p class="ml-4">
+                            <span class="opacity-70">a. </span>
+                            {{ t('rewardPlan.rules.rule2a')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2aCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2aTotal')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2aTotalCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2aEnd') }}
+                        </p>
+                        <p class="ml-4">
+                            <span class="opacity-70">b. </span>
+                            {{ t('rewardPlan.rules.rule2b')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2bCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2bTotal')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2bTotalCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2bEnd') }}
+                        </p>
                     </div>
-                </div>
-                <p>{{ t('rewardPlan.participationStep2') }}</p>
-                <p>{{ t('rewardPlan.participationStep3') }}</p>
-            </template>
-        </reward-card>
+                    <p class="mt-1">{{ t('rewardPlan.rules.rule3') }}</p>
+                </template>
+            </reward-card>
 
-        <reward-card
-            :title="t('rewardPlan.invitationCode')"
-            class="mt-6"
-            :text="t('rewardPlan.invitationCodeText')"
-        >
-            <template #label>
-                <div class="flex items-center">
-                    {{ t('rewardPlan.invitationCodeLabel') }}
-                    <span
-                        class="text-[#12FFBB]"
-                        :class="{ 'ml-1': !isZh }"
-                        >{{ invateCode }}</span
-                    >
-                    <n-icon
-                        size="14"
-                        class="ml-2 cursor-pointer text-[#197DFF]"
-                        @click="copyCode"
-                    >
-                        <copy-outline />
-                    </n-icon>
-                </div>
-            </template>
-        </reward-card>
+            <!-- 邀请码 -->
+            <reward-card
+                :title="
+                    inviteCode ? t('rewardPlan.invitationCode') : t('rewardPlan.invitationMethod')
+                "
+                class="mt-6"
+                v-if="inviteCode"
+            >
+                <template
+                    #label
+                    v-if="inviteCode"
+                >
+                    <div class="flex items-center">
+                        {{ t('rewardPlan.invitationCodeLabel') }}
+                        <span
+                            class="text-[#12FFBB]"
+                            :class="{ 'ml-1': !isZh }"
+                            >{{ inviteCode }}</span
+                        >
+                        <n-icon
+                            size="14"
+                            class="ml-2 cursor-pointer text-[#197DFF]"
+                            @click="copyCode"
+                        >
+                            <copy-outline />
+                        </n-icon>
+                    </div>
+                </template>
+                <template #content>
+                    <template v-if="inviteCode">
+                        <p class="text-xs opacity-70 mt-2">
+                            {{ t('rewardPlan.invitationCodeText') }}
+                        </p>
+                        <div class="mt-2 flex items-center">
+                            <span :class="{ 'mr-1': !isZh }">{{
+                                t('rewardPlan.exclusiveInvitationLink')
+                            }}</span>
+                            <n-button
+                                type="info"
+                                @click="copyInviteLink"
+                                size="tiny"
+                            >
+                                {{ t('rewardPlan.copyLink') }}
+                            </n-button>
+                        </div>
+                    </template>
+                </template>
+            </reward-card>
 
-        <reward-card
-            :title="t('rewardPlan.rulesTitle')"
-            class="mt-10"
-            :content="rulesContent"
-        />
+            <!-- 如何参与 -->
+            <!-- <reward-card
+                class="mt-6"
+                :title="t('rewardPlan.howToParticipate')"
+                content-class="mt-5"
+            >
+                <template #content>
+                    <div class="flex items-center">
+                        {{ t('rewardPlan.participationStep1') }}
+                        <div class="ml-3">
+                            <n-button
+                                type="info"
+                                @click="copyInviteLink"
+                                size="tiny"
+                            >
+                                {{ t('rewardPlan.copyLink') }}
+                            </n-button>
+                        </div>
+                    </div>
+                    <p>{{ t('rewardPlan.participationStep2') }}</p>
+                    <p>{{ t('rewardPlan.participationStep3') }}</p>
+                </template>
+            </reward-card> -->
+        </template>
 
+        <!-- 操作指引 -->
         <reward-card
             class="mt-10"
             content-class="mt-5"
         >
             <template #header>
-                <div class="flex opertion-rule self-start items-end">
+                <div class="flex opertion-rule self-start items-center">
                     <span class="text-xl">{{ t('rewardPlan.operationGuideTitle') }}</span>
-                    <span
+                    <!-- <span
                         class="text-sm"
                         :class="{ 'ml-1': !isZh }"
                         >{{ t('rewardPlan.operationGuideSubtitle') }}</span
+                    > -->
+                    <div
+                        class="ml-2 mt-0.5"
+                        v-if="inviteCode"
                     >
+                        <n-button
+                            type="info"
+                            @click="copyLoginLink"
+                            size="tiny"
+                        >
+                            {{ t('rewardPlan.copyLoginLink') }}
+                        </n-button>
+                    </div>
                 </div>
             </template>
 
@@ -129,6 +212,95 @@
             </template>
         </reward-card>
 
+        <!-- 被邀请人展示 -->
+        <template v-if="isInvite">
+            <!-- 邀请码 -->
+            <reward-card
+                :title="t('rewardPlan.invitationCode')"
+                class="mt-6"
+                :text="t('rewardPlan.invitationCodeText')"
+            >
+                <template #label>
+                    <div class="flex items-center">
+                        {{ t('rewardPlan.invitationCodeLabel') }}
+                        <span
+                            class="text-[#12FFBB]"
+                            :class="{ 'ml-1': !isZh }"
+                            >{{ inviteCode }}</span
+                        >
+                        <n-icon
+                            size="14"
+                            class="ml-2 cursor-pointer text-[#197DFF]"
+                            @click="copyCode"
+                        >
+                            <copy-outline />
+                        </n-icon>
+                    </div>
+                </template>
+                <template #content>
+                    <p class="text-xs opacity-70 mt-2">{{ t('rewardPlan.invitationCodeText') }}</p>
+                    <div class="mt-2">
+                        <n-button
+                            type="info"
+                            @click="copyInviteLink"
+                            size="tiny"
+                        >
+                            {{ t('rewardPlan.copyLink') }}
+                        </n-button>
+                    </div>
+                </template>
+            </reward-card>
+
+            <!-- 规则说明 -->
+            <reward-card
+                :title="t('rewardPlan.rulesTitle')"
+                class="mt-10"
+            >
+                <template #content>
+                    <p>
+                        {{ t('rewardPlan.rules.rule1')
+                        }}<span class="credit-unit">{{ t('rewardPlan.rules.rule1NewUser') }}</span
+                        >{{ t('rewardPlan.rules.rule1Inviter')
+                        }}<span class="credit-unit">{{
+                            t('rewardPlan.rules.rule1InviterCredits')
+                        }}</span
+                        >{{ t('rewardPlan.rules.rule1End') }}
+                    </p>
+                    <div class="mt-1">
+                        <p>
+                            {{ t('rewardPlan.rules.rule2') }}
+                        </p>
+                        <p class="ml-4">
+                            <span class="opacity-70">a. </span>
+                            {{ t('rewardPlan.rules.rule2a')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2aCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2aTotal')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2aTotalCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2aEnd') }}
+                        </p>
+                        <p class="ml-4">
+                            <span class="opacity-70">b. </span>
+                            {{ t('rewardPlan.rules.rule2b')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2bCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2bTotal')
+                            }}<span class="credit-unit">{{
+                                t('rewardPlan.rules.rule2bTotalCredits')
+                            }}</span
+                            >{{ t('rewardPlan.rules.rule2bEnd') }}
+                        </p>
+                    </div>
+                    <p class="mt-1">{{ t('rewardPlan.rules.rule3') }}</p>
+                </template>
+            </reward-card>
+        </template>
+
+        <!-- 关于Credits -->
         <reward-card
             :title="t('rewardPlan.aboutCreditsTitle')"
             class="mt-12.5"
@@ -147,6 +319,7 @@
             </template>
         </reward-card>
 
+        <!-- 联系我们 -->
         <reward-card
             :title="t('rewardPlan.contactUsTitle')"
             :description="t('rewardPlan.contactUsDescription')"
@@ -192,7 +365,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import OperationCard from './operation-card.vue';
-import { createOperationGuide, createRulesContent, createQaContent } from './const';
+import { createOperationGuide, createQaContent } from './const';
 import { getLoginUrl } from '@/api/mods/quota.mod';
 import { useMetaTags } from '@/composables/useMetaTags';
 import { ref as refVue } from 'vue';
@@ -226,7 +399,7 @@ const isZh = computed(() => locale.value === 'zh');
 const message = useMessage();
 const route = useRoute();
 
-const invateCode = ref('');
+const inviteCode = ref('');
 const isInvite = ref(false);
 const loginUrl = ref('');
 
@@ -235,7 +408,7 @@ const fetchLoginUrl = async () => {
         const {
             data: { url },
         } = await getLoginUrl({
-            inviter_code: invateCode.value,
+            inviter_code: inviteCode.value,
         });
         loginUrl.value = url;
     } catch (error) {
@@ -256,8 +429,8 @@ onMounted(() => {
     const invite = route.query.invite as string;
     const code = route.query.code as string;
 
-    isInvite.value = !!invite;
-    invateCode.value = code;
+    isInvite.value = invite === 'true';
+    inviteCode.value = code;
 
     fetchLoginUrl();
 });
@@ -276,16 +449,23 @@ watch(
 );
 
 const copyCode = () => {
-    copyToClipboard(invateCode.value, {
+    copyToClipboard(inviteCode.value, {
+        success: message.success,
+        error: message.error,
+    });
+};
+
+const copyLoginLink = () => {
+    const currentUrl = window.location.origin + window.location.pathname;
+    const inviteUrl = `${currentUrl}?invite=true&code=${inviteCode.value}`;
+    copyToClipboard(inviteUrl, {
         success: message.success,
         error: message.error,
     });
 };
 
 const copyInviteLink = () => {
-    const currentUrl = window.location.origin + window.location.pathname;
-    const inviteUrl = `${currentUrl}?invite=true&code=${invateCode.value}`;
-    copyToClipboard(inviteUrl, {
+    copyToClipboard(loginUrl.value, {
         success: message.success,
         error: message.error,
     });
@@ -293,7 +473,6 @@ const copyInviteLink = () => {
 
 // 创建翻译后的数据
 const operationGuide = computed(() => createOperationGuide(t, loginUrl.value, isZh.value));
-const rulesContent = computed(() => createRulesContent(t));
 const qaContent = computed(() => createQaContent(t, isZh.value));
 </script>
 
@@ -325,5 +504,9 @@ const qaContent = computed(() => createQaContent(t, isZh.value));
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.credit-unit {
+    color: rgba(18, 255, 187);
 }
 </style>

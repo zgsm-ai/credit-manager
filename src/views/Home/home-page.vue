@@ -15,6 +15,7 @@
                                         color: !githubName ? '#1876F2' : '#fff',
                                         cursor: !githubName ? 'pointer' : 'default',
                                     }"
+                                    :class="{ 'ml-1': !isZh }"
                                     @click="!githubName && bindGithub()"
                                 >
                                     {{ githubName || t('homePage.bindText') }}
@@ -30,6 +31,7 @@
                                         color: !phoneNumber ? '#1876F2' : '#fff',
                                         cursor: !phoneNumber ? 'pointer' : 'default',
                                     }"
+                                    :class="{ 'ml-1': !isZh }"
                                     @click="!phoneNumber && bindPhone()"
                                 >
                                     {{ phoneNumber || t('homePage.bindText') }}
@@ -37,13 +39,29 @@
                             </div>
                             <div class="item-userId">
                                 <div class="label">{{ t('homePage.userIdLabel') }}</div>
-                                <span>{{ userId || '-' }}</span>
+                                <span :class="{ 'ml-1': !isZh }">{{ userId || '-' }}</span>
                                 <n-icon
                                     v-if="userId"
                                     size="14"
                                     style="margin-left: 8px; cursor: pointer"
                                     color="#197DFF"
                                     @click="copyCode"
+                                >
+                                    <copy-outline />
+                                </n-icon>
+                            </div>
+
+                            <div class="item-invite-code flex items-center">
+                                <div class="label opacity-70">
+                                    {{ t('homePage.inviteCodeLabel') }}
+                                </div>
+                                <span :class="{ 'ml-1': !isZh }">{{ inviteCode || '-' }}</span>
+                                <n-icon
+                                    v-if="inviteCode"
+                                    size="14"
+                                    style="margin-left: 8px; cursor: pointer"
+                                    color="#197DFF"
+                                    @click="copyInviteCode"
                                 >
                                     <copy-outline />
                                 </n-icon>
@@ -167,7 +185,7 @@ import CommonCard from '@/components/common-card.vue';
 import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue';
 import CreditCodeModal from './credit-code-modal.vue';
 import ActivityCard from './activity-card.vue';
-import { getUserQuota, getBindAccount } from '@/api/mods/quota.mod';
+import { getUserQuota, getBindAccount, getInviteCode } from '@/api/mods/quota.mod';
 import type { QuotaList } from '@/api/bos/quota.bo';
 import { useUserStore } from '@/store/user';
 import { storeToRefs } from 'pinia';
@@ -275,12 +293,22 @@ const fetchUserQuota = async () => {
     isStar.value = data.is_star;
 };
 
+const inviteCode = ref('');
+
+const fetchInviteCode = async () => {
+    const {
+        data: { invite_code = '' },
+    } = await getInviteCode();
+
+    inviteCode.value = invite_code;
+};
+
 watch(
     isTokenInitialized,
     (val) => {
         if (val) {
             isLoading.value = true;
-            fetchUserQuota().finally(() => {
+            Promise.all([fetchUserQuota(), fetchInviteCode()]).finally(() => {
                 isLoading.value = false;
             });
         }
@@ -298,6 +326,13 @@ const message = useMessage();
 
 const copyCode = () => {
     copyToClipboard(userId.value, {
+        success: message.success,
+        error: message.error,
+    });
+};
+
+const copyInviteCode = () => {
+    copyToClipboard(inviteCode.value, {
         success: message.success,
         error: message.error,
     });
@@ -337,7 +372,6 @@ const copyCode = () => {
                 }
 
                 span {
-                    margin-left: 4px;
                     font-weight: 600;
                     color: #1876f2;
                 }

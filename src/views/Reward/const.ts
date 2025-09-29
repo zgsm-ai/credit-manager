@@ -3,7 +3,7 @@
  */
 
 import { h } from 'vue';
-import type { OperationGuide, QaContent, RuleItem } from './interface';
+import type { OperationGuide, QaContent } from './interface';
 import task1_step1_2xImg from '../../assets/operation/task1_step1@2x.png';
 import task1_step2Img from '../../assets/operation/task1_step2@2x.png';
 import task2_step1Img from '../../assets/operation/task2_step1@2x.png';
@@ -19,17 +19,6 @@ import en_task3_step2Img from '../../assets/operation/task3_step2_en@2x.png';
 const origin = window.location.origin;
 
 const homePageUrl = `${origin}/credit/manager`;
-
-const renderCreditsText = (part: string) => {
-    if (/^\d+\s+Credits$/.test(part)) {
-        const number = part.match(/(\d+)/)?.[0] || '';
-        const creditsText = ' Credits';
-        return [
-            h('span', { style: { color: 'rgba(18, 255, 187, 1)' } }, `${number}${creditsText}`),
-        ];
-    }
-    return part;
-};
 
 // 创建翻译函数，接收 t 函数作为参数
 export const createOperationGuide = (
@@ -143,32 +132,6 @@ export const createOperationGuide = (
     },
 ];
 
-// 创建规则内容数据
-export const createRulesContent = (t: (key: string) => string): RuleItem[] => [
-    {
-        key: 1,
-        label: t('rewardPlan.rules.inviterLabel'),
-        text: [t('rewardPlan.rules.inviterText1'), t('rewardPlan.rules.inviterText2')],
-        descriptionRender: () => {
-            const description = t('rewardPlan.rules.inviterDescription');
-            const parts = description.split(/(\d+\s+Credits)/);
-
-            return h('span', {}, parts.map(renderCreditsText));
-        },
-    },
-    {
-        key: 2,
-        label: t('rewardPlan.rules.newUserLabel'),
-        text: [t('rewardPlan.rules.newUserText1'), t('rewardPlan.rules.newUserText2')],
-        descriptionRender: () => {
-            const description = t('rewardPlan.rules.newUserDescription');
-            const parts = description.split(/(\d+\s+Credits)/);
-
-            return h('span', {}, parts.map(renderCreditsText));
-        },
-    },
-];
-
 // 创建QA内容
 export const createQaContent = (t: (key: string) => string, isZh: boolean): QaContent[] => [
     {
@@ -207,18 +170,24 @@ export const createQaContent = (t: (key: string) => string, isZh: boolean): QaCo
         question: t('rewardPlan.qa.question2'),
         answer: [
             () =>
-                h('p', {}, [
-                    "Credits are typically deposited within a few minutes. If you haven't received them after an extended period, please contact us via email: ",
-                    h(
-                        'a',
-                        {
-                            class: 'text-[#4394FF] cursor-pointer',
-                            href: 'mailto:zgsm@sangfor.com.cn',
-                        },
-                        'zgsm@sangfor.com.cn',
-                    ),
-                    '. We will respond as soon as possible.',
-                ]),
+                h(
+                    'p',
+                    {},
+                    isZh
+                        ? [t('rewardPlan.qa.answer2.before'), t('rewardPlan.qa.answer2.after')]
+                        : [
+                              t('rewardPlan.qa.answer2.before'),
+                              h(
+                                  'a',
+                                  {
+                                      class: 'text-[#4394FF] cursor-pointer',
+                                      href: 'mailto:zgsm@sangfor.com.cn',
+                                  },
+                                  'zgsm@sangfor.com.cn',
+                              ),
+                              t('rewardPlan.qa.answer2.after'),
+                          ],
+                ),
             () =>
                 h(
                     'p',
