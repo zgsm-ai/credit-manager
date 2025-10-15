@@ -342,7 +342,7 @@ const copyInviteCode = () => {
 <style scoped lang="less">
 .home-page {
     margin: auto;
-    width: 65%;
+    width: 1200px;
     padding-top: 24px;
 
     .usage,
