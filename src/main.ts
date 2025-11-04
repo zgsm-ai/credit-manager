@@ -4,7 +4,7 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
 import i18n from './locales';
-import { setupAuthGuard } from './router/guards/auth.guard';
+import { setupAuthGuard } from './router/guards/auth';
 import { createHead } from '@vueuse/head';
 
 const app = createApp(App);

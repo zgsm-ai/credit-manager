@@ -10,7 +10,7 @@ import { getUserQuota, getBindAccount, getInviteCode } from '@/api/mods/quota.mo
 import type { QuotaList } from '@/api/bos/quota.bo';
 import { BING_TYPE } from '../const';
 import { copyToClipboard } from '@/utils/copy';
-import { authService } from '@/services/auth.service';
+import { authService } from '@/services/auth';
 
 export function useProfile() {
     const router = useRouter();

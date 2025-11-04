@@ -379,7 +379,6 @@ watch(activeMenuKey, (newKey) => {
 
 <style scoped lang="less">
 .home-page {
-    height: 100vh;
     width: 1600px;
     display: flex;
     flex-direction: column;

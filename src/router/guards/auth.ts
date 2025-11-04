@@ -1,5 +1,5 @@
 import type { Router } from 'vue-router';
-import { authService } from '@/services/auth.service';
+import { authService } from '@/services/auth';
 import { PUBLIC_ROUTES } from '@/router';
 
 export function setupAuthGuard(router: Router) {

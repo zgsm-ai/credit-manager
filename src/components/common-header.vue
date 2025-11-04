@@ -105,7 +105,7 @@ import { NPopover } from 'naive-ui';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/user';
 import { storeToRefs } from 'pinia';
-import { authService } from '@/services/auth.service';
+import { authService } from '@/services/auth';
 import { PUBLIC_ROUTES } from '@/router';
 
 const router = useRouter();
