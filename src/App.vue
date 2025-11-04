@@ -2,7 +2,10 @@
     <div class="app-container">
         <common-header />
         <div class="content">
-            <n-config-provider :theme-overrides="themeOverrides">
+            <n-config-provider
+                :theme-overrides="themeOverrides"
+                :locale="zhCN"
+            >
                 <n-message-provider>
                     <common-content />
                 </n-message-provider>
@@ -13,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { NMessageProvider, NConfigProvider } from 'naive-ui';
+import { NMessageProvider, NConfigProvider, zhCN } from 'naive-ui';
 import CommonHeader from '@/components/common-header.vue';
 import CommonContent from '@/components/common-content.vue';
 import AuthLoading from '@/components/auth-loading.vue';

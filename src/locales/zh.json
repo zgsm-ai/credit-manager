@@ -68,7 +68,7 @@
         "phoneLabel": "手机号：",
         "userIdLabel": "用户ID：",
         "inviteCodeLabel": "邀请码：",
-        "usageTitle": "用量",
+        "usageTitle": "用量概览",
         "creditTransfer": "Credit转出&转入",
         "creditRecords": "Credit 记录>>",
         "userCredits": "用户 Prompt Credits",
@@ -76,12 +76,30 @@
         "creditValidity": "Credit 有效期",
         "expiryDate": "到期时间",
         "creditNum": "Credit数",
-        "activityTitle": "活动",
-        "creditPlan": "Credits 奖励计划 （程序员节将至，福利加倍🔥🔥）",
+        "activityTitle": "运营活动",
+        "creditPlan": "Credits 奖励计划",
         "planDesc": "如果您的 Credits 告急，无法继续使用高级模型，快来完成以下任务获取更多额度吧!",
         "githubStar": "首次在GitHub上点击star收藏Costrict开源项目，可获赠 50Credit（5分钟内自动生效）",
         "useCredit": "{used} / {total} 已使用",
-        "restCredit": "剩余 {rest}"
+        "restCredit": "剩余 {rest}",
+        "menu": {
+            "profile": "个人信息",
+            "subscription": "订阅",
+            "usage": "用量统计",
+            "usageConsumption": "用量消耗统计",
+            "activity": "运营活动"
+        },
+        "usageConsumptionTitle": "用量消耗统计",
+        "usageConsumptionDesc": "查看您的用量消耗详细记录",
+        "subscriptionTitle": "订阅",
+        "subscriptionDesc": "订阅管理功能正在开发中...",
+        "startTime": "时间",
+        "model": "模型",
+        "mode": "模式",
+        "tokens": "Tokens",
+        "creditsUsed": "Credits消耗",
+        "package": "套餐",
+        "source": "源"
     },
     "common": {
         "comma": "，",
@@ -93,9 +111,7 @@
         "header": {
             "appName": "Costrict",
             "accountAndUsage": "账户&用量",
-            "logout": "退出登录",
-            "operationalActivities": "运营活动",
-            "creditsUsage": "Credits用量"
+            "logout": "退出登录"
         },
         "request": {
             "requestFailed": "请求失败",
@@ -215,5 +231,101 @@
         "notLogged": "尚未登录",
         "getUserInfoBeforeLogin": "登录后查看用户信息 & Credits用量",
         "loginImmediatly": "立即登录"
+    },
+    "components": {
+        "datePicker": {
+            "displayText": "自定义日期",
+            "displayTextUnit": "至"
+        }
+    },
+    "pricingPlans": {
+        "personalFree": {
+            "title": "个人免费版",
+            "description": "官方赠送的 Credit，有效期视情况而定",
+            "buttonText": "下载使用",
+            "features": {
+                "newUserCredits": "新用户获赠 80 Credits（约等于80次请求）",
+                "freeCodeCompletion": "免费代码补全，有限使用次数",
+                "freeCodeReview": "免费 CodeReview，有限使用次数",
+                "advancedModelUnavailable": "高级模型不可用"
+            }
+        },
+        "trafficPackage1": {
+            "title": "流量套餐1",
+            "description": "按实际使用用量扣除 Credit，有效期1年",
+            "buttonText": "立即购买",
+            "features": {
+                "credits": "400 Credits（约等于400次请求）",
+                "freeCodeCompletion": "免费代码补全，无限使用",
+                "freeCodeReview": "免费 CodeReview，无限使用",
+                "advancedModelAvailable": "高级模型可用"
+            }
+        },
+        "trafficPackage2": {
+            "title": "流量套餐2",
+            "description": "按实际使用用量扣除 Credit，有效期1年",
+            "buttonText": "立即购买",
+            "features": {
+                "credits": "1800 Credits（约等于1800次请求）",
+                "freeCodeCompletion": "免费代码补全，无限使用",
+                "freeCodeReview": "免费 CodeReview，无限使用",
+                "advancedModelAvailable": "高级模型可用"
+            }
+        },
+        "trafficPackage3": {
+            "title": "流量套餐3",
+            "description": "按实际使用用量扣除 Credit，有效期1年",
+            "buttonText": "立即购买",
+            "features": {
+                "credits": "4800 Credits（约等于4800次请求）",
+                "freeCodeCompletion": "免费代码补全，无限使用",
+                "freeCodeReview": "免费 CodeReview，无限使用",
+                "advancedModelAvailable": "高级模型可用"
+            }
+        }
+    },
+    "guideSteps": {
+        "step1": {
+            "title": "选择合适套餐，点击\"立即购买\"。跳转至 CoStrict 官方京东旗舰店。了解更多套餐详情可查看",
+            "packageLink": "套餐&计费说明 >>"
+        },
+        "step2": {
+            "title": "登录个人京东账号，查看 CoStrict 京东旗舰店商品详情，选择套餐和份数，填写用户本人的 CoStrict 的用户ID以便官方能顺利发放 Credits"
+        },
+        "step3": {
+            "title": "用户ID查看：登录 CoStrict 后台管理页面（链接地址：",
+            "titleSuffix": "），复制用户ID。",
+            "managementLink": "https://zgsm.sangfor.com/credit/manager/",
+            "text1": "完成付费之后，返回 CoStrict 官方后台查看Credits到账情况（链接地址：链接到用量统计页面）",
+            "text2": "工作日周一 至 周五的 9:30-20:30 工作时间保证半小时内充值到账，非工作日时间有所延长，用户可通过企微号联系客服迅速添加",
+            "text3": "微信扫码可快速联系官方客服（CoStrict官方小助手-蔻蔻）"
+        }
+    },
+    "subscriptionSection": {
+        "subscriptionTitle": "订阅信息",
+        "billingDescription": "套餐&计费说明 >>",
+        "trafficLabel": "流量包",
+        "operationGuide": "操作指引",
+        "recordsTitle": "开通记录",
+        "totalItems": "共 {total} 条",
+        "orderNumber": "订单号",
+        "orderType": "订单类型",
+        "orderSource": "订单来源",
+        "purchaseCount": "购买个数",
+        "orderAmount": "订单金额",
+        "orderTime": "下单时间",
+        "validityPeriod": "有效期"
+    },
+    "homePageUi": {
+        "personalInfo": "个人信息",
+        "loginManagement": "登录管理",
+        "accountLogout": "账号退出登录",
+        "logout": "退出登录",
+        "subscription": "订阅",
+        "usageStatistics": "用量统计",
+        "today": "今天",
+        "within7Days": "7天内",
+        "within30Days": "30天内",
+        "packageBillingDescription": "套餐&计费说明 >>"
     }
 }

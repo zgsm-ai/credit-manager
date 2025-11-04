@@ -1,36 +1,54 @@
 <template>
-    <n-card class="common-card">
-        <template #header>
+    <div class="common-card">
+        <div
+            class="card-header-wrapper mb-4"
+            v-if="$slots.header || title"
+        >
             <slot name="header">
                 <div class="card-header">{{ title }}</div>
             </slot>
-        </template>
+            <div
+                class="card-header-extra"
+                v-if="$slots['header-extra']"
+            >
+                <slot name="header-extra"></slot>
+            </div>
+        </div>
 
-        <template #header-extra>
-            <slot name="header-extra"></slot>
-        </template>
+        <div
+            class="card-content"
+            :class="{ 'with-border': contentBorder }"
+        >
+            <slot></slot>
+        </div>
 
-        <slot></slot>
-
-        <template #footer>
+        <div
+            class="card-footer"
+            v-if="$slots.footer"
+        >
             <slot name="footer"></slot>
-        </template>
+        </div>
 
-        <template #action>
+        <div
+            class="card-action"
+            v-if="$slots.action"
+        >
             <slot name="action"></slot>
-        </template>
-    </n-card>
+        </div>
+    </div>
 </template>
 
 <script lang="ts" setup>
-import { NCard } from 'naive-ui';
-
-defineProps({
-    title: {
-        type: String,
-        default: '',
+withDefaults(
+    defineProps<{
+        title?: string;
+        contentBorder?: boolean;
+    }>(),
+    {
+        title: '',
+        contentBorder: true,
     },
-});
+);
 
 defineSlots<{
     default?: (props: Record<string, unknown>) => unknown;
@@ -45,13 +63,45 @@ defineSlots<{
 .common-card {
     border-radius: 10px;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #fff;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-    .card-header {
-        color: #fff;
-        font-size: 16px;
-        font-weight: 600;
+    .card-header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .card-header {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .card-header-extra {
+            margin-left: auto;
+        }
+    }
+
+    .card-content {
+        margin-bottom: 12px;
+
+        &.with-border {
+            padding: 20px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+    }
+
+    .card-footer {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-action {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 }
 </style>

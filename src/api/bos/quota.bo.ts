@@ -7,6 +7,34 @@ export interface QuotaList {
     expiry_date: string;
 }
 
+export interface UsageConsumptionRecord {
+    id: number;
+    user_id: string;
+    model: string;
+    mode: string;
+    tokens: number;
+    credits_used: number;
+    package: string;
+    record_time: string;
+    create_time: string;
+    update_time: string;
+}
+
+export interface GetUsageStatisticsReq {
+    page: number;
+    page_size: number;
+    start_time?: string;
+    end_time?: string;
+    time_range?: string;
+}
+
+export interface GetUsageStatisticsRes {
+    records: Array<UsageConsumptionRecord>;
+    total: number;
+    page: number;
+    page_size: number;
+}
+
 export interface GetUserQuotaRes {
     total_quota: number;
     used_quota: number;
@@ -121,4 +149,30 @@ export interface GetLoginUrlReq {
 
 export interface GetLoginUrlRes {
     url: string;
+}
+
+export interface GetOrdersReq {
+    page: number;
+    page_size: number;
+}
+
+export interface Order {
+    id: number;
+    order_id: string;
+    user_id: string;
+    amount: number;
+    status: string;
+    quota_type: string;
+    order_source: string;
+    credit_count: number;
+    credit_expire_date: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface GetOrdersRes {
+    orders: Array<Order>;
+    total: number;
+    limit: number;
+    offset: number;
 }

@@ -36,16 +36,24 @@ export const createOperationGuide = (
                         t('rewardPlan.operationGuide.pleaseLoginFirst'),
                         h(
                             'a',
-                            { class: 'text-[#4394FF] cursor-pointer', href: url, target: '_blank' },
+                            {
+                                class: 'text-[#4394FF] cursor-pointer',
+                                href: url,
+                                target: '_blank',
+                            },
                             t('rewardPlan.operationGuide.loginNow'),
                         ),
                         t('rewardPlan.qa.leftParenthesis'),
                         t('rewardPlan.operationGuide.linkAddress'),
-                        h(
-                            'a',
-                            { class: 'text-[#4394FF] cursor-pointer', href: url, target: '_blank' },
-                            url,
-                        ),
+                        // h(
+                        //     'a',
+                        //     {
+                        //         class: 'text-[#4394FF] cursor-pointer',
+                        //         href: url,
+                        //         target: '_blank',
+                        //     },
+                        //     url,
+                        // ),
                         t('rewardPlan.qa.rightParenthesis'),
                     ]),
                 content: t('rewardPlan.operationGuide.step1Content'),
