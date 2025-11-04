@@ -77,11 +77,29 @@
         "expiryDate": "Expiration Time",
         "creditNum": "Credit Number",
         "activityTitle": "ActivityTitle",
-        "creditPlan": "Credits Reward Plan (Programmer's Day is coming, benefits will be doubled🔥🔥)",
+        "creditPlan": "Credits Reward Plan",
         "planDesc": "If your credits are running low and you can't continue using the premium model, complete the following tasks to get more credits!",
         "githubStar": "Get 50 Credits (automatically effective within 5 minutes) for your first star on the Costrict open-source project on GitHub.",
         "useCredit": "{used} / {total} Used ",
-        "restCredit": "{rest} left"
+        "restCredit": "{rest} left",
+        "menu": {
+            "profile": "Profile",
+            "subscription": "Subscription",
+            "usage": "Usage Stats",
+            "usageConsumption": "Usage Consumption",
+            "activity": "Operations"
+        },
+        "usageConsumptionTitle": "Usage Consumption Stats",
+        "usageConsumptionDesc": "View your detailed usage consumption records",
+        "subscriptionTitle": "Subscription",
+        "subscriptionDesc": "Subscription management features are under development...",
+        "startTime": "Time",
+        "model": "Model",
+        "mode": "Mode",
+        "tokens": "Tokens",
+        "creditsUsed": "Credits Used",
+        "package": "Package",
+        "source": "Source"
     },
     "common": {
         "comma": ",",
@@ -93,9 +111,7 @@
         "header": {
             "appName": "Costrict",
             "accountAndUsage": "ACCOUNT & USAGE",
-            "logout": "LOG OUT",
-            "operationalActivities": "Operational activities",
-            "creditsUsage": "Credits usage"
+            "logout": "LOG OUT"
         },
         "request": {
             "requestFailed": "Request failed",
@@ -215,5 +231,101 @@
         "notLogged": "Not logged in yet",
         "getUserInfoBeforeLogin": "Log in to view user information and credit usage",
         "loginImmediatly": "Log in now"
+    },
+    "components": {
+        "datePicker": {
+            "displayText": "Custom Date",
+            "displayTextUnit": "to"
+        }
+    },
+    "pricingPlans": {
+        "personalFree": {
+            "title": "Personal Free",
+            "description": "Official gift Credits, validity depends on situation",
+            "buttonText": "Download",
+            "features": {
+                "newUserCredits": "New users get 80 Credits (approximately 80 requests)",
+                "freeCodeCompletion": "Free code completion, limited usage",
+                "freeCodeReview": "Free CodeReview, limited usage",
+                "advancedModelUnavailable": "Advanced models not available"
+            }
+        },
+        "trafficPackage1": {
+            "title": "Traffic Package 1",
+            "description": "Deduct Credits based on actual usage, valid for 1 year",
+            "buttonText": "Buy Now",
+            "features": {
+                "credits": "400 Credits (approximately 400 requests)",
+                "freeCodeCompletion": "Free code completion, unlimited usage",
+                "freeCodeReview": "Free CodeReview, unlimited usage",
+                "advancedModelAvailable": "Advanced models available"
+            }
+        },
+        "trafficPackage2": {
+            "title": "Traffic Package 2",
+            "description": "Deduct Credits based on actual usage, valid for 1 year",
+            "buttonText": "Buy Now",
+            "features": {
+                "credits": "1800 Credits (approximately 1800 requests)",
+                "freeCodeCompletion": "Free code completion, unlimited usage",
+                "freeCodeReview": "Free CodeReview, unlimited usage",
+                "advancedModelAvailable": "Advanced models available"
+            }
+        },
+        "trafficPackage3": {
+            "title": "Traffic Package 3",
+            "description": "Deduct Credits based on actual usage, valid for 1 year",
+            "buttonText": "Buy Now",
+            "features": {
+                "credits": "4800 Credits (approximately 4800 requests)",
+                "freeCodeCompletion": "Free code completion, unlimited usage",
+                "freeCodeReview": "Free CodeReview, unlimited usage",
+                "advancedModelAvailable": "Advanced models available"
+            }
+        }
+    },
+    "guideSteps": {
+        "step1": {
+            "title": "Select the appropriate package and click \"Buy Now\". Redirect to CoStrict official JD flagship store. For more package details, please check",
+            "packageLink": "Package & Billing Description >>"
+        },
+        "step2": {
+            "title": "Log in to your personal JD account, view the product details on CoStrict JD flagship store, select the package and quantity, and fill in your CoStrict User ID so that the official can smoothly distribute Credits"
+        },
+        "step3": {
+            "title": "User ID check: Log in to the CoStrict admin management page (link: ",
+            "titleSuffix": "), copy your User ID.",
+            "managementLink": "https://zgsm.sangfor.com/credit/manager/",
+            "text1": "After completing the payment, return to the CoStrict official backend to check the Credits arrival status (link to usage statistics page)",
+            "text2": "From Monday to Friday, 9:30-20:30 working hours guarantee recharge within half an hour, non-working days may be extended, users can contact customer service via enterprise WeChat for quick addition",
+            "text3": "Scan WeChat QR code to quickly contact official customer service (CoStrict Official Assistant - Koko)"
+        }
+    },
+    "subscriptionSection": {
+        "subscriptionTitle": "Subscription Information",
+        "billingDescription": "Package & Billing Description >>",
+        "trafficLabel": "Traffic Package",
+        "operationGuide": "Operation Guide",
+        "recordsTitle": "Activation Records",
+        "totalItems": "Total {total} items",
+        "orderNumber": "Order Number",
+        "orderType": "Order Type",
+        "orderSource": "Order Source",
+        "purchaseCount": "Purchase Count",
+        "orderAmount": "Order Amount",
+        "orderTime": "Order Time",
+        "validityPeriod": "Validity Period"
+    },
+    "homePageUi": {
+        "personalInfo": "Personal Information",
+        "loginManagement": "Login Management",
+        "accountLogout": "Account Logout",
+        "logout": "Logout",
+        "subscription": "Subscription",
+        "usageStatistics": "Usage Statistics",
+        "today": "Today",
+        "within7Days": "Within 7 Days",
+        "within30Days": "Within 30 Days",
+        "packageBillingDescription": "Package & Billing Description >>"
     }
 }

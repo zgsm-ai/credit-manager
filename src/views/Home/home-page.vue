@@ -1,169 +1,207 @@
 <template>
-    <n-spin :show="isLoading">
-        <div class="home-page">
-            <section class="info">
-                <common-card :title="t('homePage.basicInfo')">
-                    <template #default>
-                        <div class="info-item">
-                            <div
-                                class="item-account"
-                                v-if="!isPrivate"
-                            >
-                                <div class="label">{{ t('homePage.githubAccount') }}</div>
-                                <span
-                                    :style="{
-                                        color: !githubName ? '#1876F2' : '#fff',
-                                        cursor: !githubName ? 'pointer' : 'default',
-                                    }"
-                                    :class="{ 'ml-1': !isZh }"
-                                    @click="!githubName && bindGithub()"
-                                >
-                                    {{ githubName || t('homePage.bindText') }}
-                                </span>
-                            </div>
-                            <div
-                                class="item-phone"
-                                v-if="isZh"
-                            >
-                                <div class="label">{{ t('homePage.phoneLabel') }}</div>
-                                <span
-                                    :style="{
-                                        color: !phoneNumber ? '#1876F2' : '#fff',
-                                        cursor: !phoneNumber ? 'pointer' : 'default',
-                                    }"
-                                    :class="{ 'ml-1': !isZh }"
-                                    @click="!phoneNumber && bindPhone()"
-                                >
-                                    {{ phoneNumber || t('homePage.bindText') }}
-                                </span>
-                            </div>
-                            <div class="item-userId">
-                                <div class="label">{{ t('homePage.userIdLabel') }}</div>
-                                <span :class="{ 'ml-1': !isZh }">{{ userId || '-' }}</span>
-                                <n-icon
-                                    v-if="userId"
-                                    size="14"
-                                    style="margin-left: 8px; cursor: pointer"
-                                    color="#197DFF"
-                                    @click="copyCode"
-                                >
-                                    <copy-outline />
-                                </n-icon>
-                            </div>
-
-                            <div class="item-invite-code flex items-center">
-                                <div class="label opacity-70">
-                                    {{ t('homePage.inviteCodeLabel') }}
-                                </div>
-                                <span :class="{ 'ml-1': !isZh }">{{ inviteCode || '-' }}</span>
-                                <n-icon
-                                    v-if="inviteCode"
-                                    size="14"
-                                    style="margin-left: 8px; cursor: pointer"
-                                    color="#197DFF"
-                                    @click="copyInviteCode"
-                                >
-                                    <copy-outline />
-                                </n-icon>
-                            </div>
+    <div class="home-page mt-12">
+        <n-layout
+            class="layout-container"
+            has-sider
+        >
+            <n-layout-sider
+                class="menu-sider"
+                :width="250"
+                :native-scrollbar="false"
+            >
+                <n-menu
+                    class="side-menu"
+                    :options="menuOptions"
+                    :value="activeMenuKey"
+                    @update:value="handleMenuSelect"
+                />
+            </n-layout-sider>
+            <n-layout-content class="content-area">
+                <div class="page-content">
+                    <!-- 个人信息 -->
+                    <section
+                        class="info"
+                        v-if="activeMenuKey === 'profile'"
+                    >
+                        <div class="info-title text-white text-xl mb-9">
+                            {{ t('homePageUi.personalInfo') }}
                         </div>
-                    </template>
-                </common-card>
-            </section>
-            <section class="usage">
-                <common-card :title="t('homePage.usageTitle')">
-                    <template #header-extra>
-                        <span
-                            class="credit-action"
-                            @click="transferCredit"
-                            >{{ t('homePage.creditTransfer') }}</span
-                        >
-                        <span
-                            class="usage-credit"
-                            @click="toCredits"
-                            >{{ t('homePage.creditRecords') }}</span
-                        >
-                    </template>
-                    <template #default>
-                        <div class="usage-content">
-                            <div class="content-title">{{ t('homePage.userCredits') }}</div>
-                            <div class="content-desc">{{ t('homePage.creditDesc') }}</div>
-                            <div class="content-progress">
-                                <n-progress
-                                    type="line"
-                                    :percentage="percentage"
-                                    :show-indicator="false"
-                                    :color="{
-                                        stops: [
-                                            'rgba(0, 102, 255, 0.7)',
-                                            'rgba(0, 255, 183, 0.7)',
-                                            'rgba(247, 255, 253, 0.7)',
-                                            'rgba(0, 94, 255, 0.7)',
-                                        ],
-                                    }"
-                                    :offset="[0, 47, 65, 99]"
-                                    :height="6"
-                                    rail-color="rgba(255, 255, 255, 0.2)"
+                        <!-- 基本信息 -->
+                        <common-card :title="t('homePage.basicInfo')">
+                            <template #default>
+                                <profile-section
+                                    :github-name="githubName"
+                                    :phone-number="phoneNumber"
+                                    :user-id="userId"
+                                    :invite-code="inviteCode"
+                                    :is-private="isPrivate"
+                                    :is-zh="isZh"
+                                    @bind-github="bindGithub"
+                                    @bind-phone="bindPhone"
+                                    @copy-user-id="copyCode"
+                                    @copy-invite-code="copyInviteCode"
                                 />
-                            </div>
-                            <div class="usage-static">
-                                <div class="static-use">
-                                    {{
-                                        t('homePage.useCredit', {
-                                            used: usedQuota.toFixed(2),
-                                            total: totalQuota.toFixed(2),
-                                        })
-                                    }}
-                                </div>
-                                <div class="static-total">
-                                    {{
-                                        t('homePage.restCredit', {
-                                            rest: restCredit,
-                                        })
-                                    }}
-                                </div>
-                            </div>
-                            <div class="credit-validity">
-                                <n-collapse
-                                    arrow-placement="right"
-                                    :default-expanded-names="['1']"
-                                >
-                                    <n-collapse-item
-                                        :title="t('homePage.creditValidity')"
-                                        name="1"
+                            </template>
+                        </common-card>
+
+                        <!-- 登录管理 -->
+                        <common-card :title="t('homePageUi.loginManagement')">
+                            <template #default>
+                                <div class="flex items-center">
+                                    <span>{{ t('homePageUi.accountLogout') }}</span>
+                                    <div
+                                        class="cursor-pointer ml-auto text-xs btn-logout"
+                                        @click="logout"
                                     >
-                                        <n-data-table
-                                            :columns="columns"
-                                            :data="columnsData"
-                                            :bordered="false"
-                                            :max-height="120"
-                                            size="small"
-                                        />
-                                    </n-collapse-item>
-                                </n-collapse>
-                            </div>
+                                        {{ t('homePageUi.logout') }}
+                                    </div>
+                                </div>
+                            </template>
+                        </common-card>
+                    </section>
+
+                    <!-- 订阅 -->
+                    <section
+                        class="subscription"
+                        v-if="activeMenuKey === 'subscription'"
+                    >
+                        <div class="info-title text-white text-xl mb-9">
+                            {{ t('homePageUi.subscription') }}
                         </div>
-                    </template>
-                </common-card>
-            </section>
-            <section class="activity">
-                <activity-card />
-            </section>
-            <credit-transfer-modal
-                :user-quota-data="transferData"
-                :show="showCreditTransferModal"
-                :is-star="isStar"
-                @update:show="updateCreditModalShow"
-                @update:submit="openCreditCodeModal"
-                @update:transferIn="transferInCallBack"
-            />
-            <credit-code-modal
-                :show="showCreditCodeModal"
-                @update:show="updateCreditCodeModalShow"
-                :voucher-code="voucherCode"
-            />
-        </div>
-    </n-spin>
+                        <subscription-section
+                            :records-data="ordersData"
+                            :total="ordersTotal"
+                            :page="ordersPage"
+                            :page-size="ordersPageSize"
+                            :loading="ordersLoading"
+                            @update:page="handleOrdersPageChange"
+                            @update:pageSize="handleOrdersPageSizeChange"
+                        />
+                    </section>
+
+                    <!-- 用量统计 -->
+                    <section
+                        class="usage"
+                        v-if="activeMenuKey === 'usage'"
+                    >
+                        <div class="info-title text-white text-xl mb-9">
+                            {{ t('homePageUi.usageStatistics') }}
+                        </div>
+                        <common-card :title="t('homePage.usageTitle')">
+                            <template #header-extra>
+                                <span
+                                    class="credit-action"
+                                    @click="transferCredit"
+                                    >{{ t('homePage.creditTransfer') }}</span
+                                >
+                                <span
+                                    class="usage-credit cursor-pointer"
+                                    @click="toCredits"
+                                    >{{ t('homePage.creditRecords') }}</span
+                                >
+                            </template>
+                            <template #default>
+                                <usage-section
+                                    :used-quota="usedQuota"
+                                    :total-quota="totalQuota"
+                                    :columns-data="columnsData"
+                                    :is-star="isStar"
+                                    @transfer-credit="transferCredit"
+                                    @to-credits="toCredits"
+                                />
+                            </template>
+                        </common-card>
+
+                        <!-- 用量消耗统计 -->
+                        <section class="usage-consumption mt-7">
+                            <common-card>
+                                <template #header>
+                                    <div class="flex items-center">
+                                        <span class="text-base">{{
+                                            t('homePage.usageConsumptionTitle')
+                                        }}</span>
+                                        <div class="select-time__group flex ml-2.5 items-center">
+                                            <div
+                                                class="select-time__group-item text-xs cursor-pointer mr-1 opacity-70"
+                                                :class="{
+                                                    active: selectedTimeRange === 'today',
+                                                }"
+                                                @click="handleTimeRangeSelectWithReset('today')"
+                                            >
+                                                {{ t('homePageUi.today') }}
+                                            </div>
+                                            <div
+                                                class="select-time__group-item text-xs cursor-pointer mr-1 opacity-70"
+                                                :class="{
+                                                    active: selectedTimeRange === '7days',
+                                                }"
+                                                @click="handleTimeRangeSelectWithReset('7days')"
+                                            >
+                                                {{ t('homePageUi.within7Days') }}
+                                            </div>
+                                            <div
+                                                class="select-time__group-item text-xs cursor-pointer mr-1 opacity-70"
+                                                :class="{
+                                                    active: selectedTimeRange === '30days',
+                                                }"
+                                                @click="handleTimeRangeSelectWithReset('30days')"
+                                            >
+                                                {{ t('homePageUi.within30Days') }}
+                                            </div>
+                                            <custom-date-picker
+                                                v-model="customDateRangeFormatted"
+                                                :is-selected="selectedTimeRange === 'custom'"
+                                                @update:model-value="
+                                                    handleCustomDateRangeChangeWithReset
+                                                "
+                                            />
+                                        </div>
+                                    </div>
+                                </template>
+                                <template #header-extra>
+                                    <span class="billing-btn cursor-pointer ml-auto">{{
+                                        t('homePageUi.packageBillingDescription')
+                                    }}</span>
+                                </template>
+                                <template #default>
+                                    <usage-consumption-section
+                                        :table-data="usageConsumptionData"
+                                        :loading="usageConsumptionLoading"
+                                        :current-page="usageConsumptionPage"
+                                        :page-size="usageConsumptionPageSize"
+                                        :total-count="usageConsumptionTotal"
+                                        @update:page="handleUsageConsumptionPageChange"
+                                        @update:pageSize="handleUsageConsumptionPageSizeChange"
+                                    />
+                                </template>
+                            </common-card>
+                        </section>
+                    </section>
+
+                    <!-- 运营活动 -->
+                    <section
+                        class="activity"
+                        v-if="activeMenuKey === 'activity'"
+                    >
+                        <activity-section />
+                    </section>
+                </div>
+            </n-layout-content>
+        </n-layout>
+        <credit-transfer-modal
+            :user-quota-data="transferData"
+            :show="showCreditTransferModal"
+            :is-star="isStar"
+            @update:show="updateCreditModalShow"
+            @update:submit="openCreditCodeModal"
+            @update:transferIn="transferInCallBack"
+        />
+        <credit-code-modal
+            :show="showCreditCodeModal"
+            @update:show="updateCreditCodeModalShow"
+            :voucher-code="voucherCode"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -172,52 +210,102 @@
  */
 import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import {
-    NProgress,
-    NCollapse,
-    NCollapseItem,
-    NDataTable,
-    NSpin,
-    NIcon,
-    useMessage,
-} from 'naive-ui';
+import { NLayout, NLayoutSider, NLayoutContent, NMenu } from 'naive-ui';
 import CommonCard from '@/components/common-card.vue';
 import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue';
 import CreditCodeModal from './credit-code-modal.vue';
-import ActivityCard from './activity-card.vue';
-import { getUserQuota, getBindAccount, getInviteCode } from '@/api/mods/quota.mod';
-import type { QuotaList } from '@/api/bos/quota.bo';
-import { useUserStore } from '@/store/user';
-import { storeToRefs } from 'pinia';
-import { BING_TYPE } from './const';
-import { formatDate } from '@/utils/date';
-import { CopyOutline } from '@vicons/ionicons5';
-import { copyToClipboard } from '@/utils/copy';
+import ProfileSection from './components/profile-section.vue';
+import SubscriptionSection from './components/subscription-section.vue';
+import UsageSection from './components/usage-section.vue';
+import ActivitySection from './components/activity-section.vue';
+import CustomDatePicker from './components/custom-date-picker.vue';
+import { useMenu, type MenuKey } from './hook/useMenu';
+import { useProfile } from './hook/useProfile';
+import { useSubscription } from './hook/useSubscription';
+import { useUsageStatistics } from './hook/useUsageStatistics';
+import usageConsumptionSection from './components/usage-consumption-section.vue';
 
 const { t, locale } = useI18n();
-
 const isZh = computed(() => locale.value === 'zh');
 
-const bindAction = async (bindType: keyof typeof BING_TYPE) => {
-    const { data } = await getBindAccount({
-        bindType,
-        state: 'state',
-    });
+// 使用菜单hook
+const {
+    activeMenuKey,
+    menuOptions,
+    handleMenuSelect,
+    setMenuLoading,
+    markMenuAsLoaded,
+    resetUsageMenuLoadedState,
+} = useMenu();
 
-    if (!data.url) {
-        return;
-    }
+// 使用个人信息hook
+const {
+    usedQuota,
+    totalQuota,
+    columnsData,
+    isStar,
+    inviteCode,
+    githubName,
+    phoneNumber,
+    userId,
+    isPrivate,
+    isTokenInitialized,
+    transferData,
+    fetchUserQuota,
+    fetchInviteCode,
+    bindGithub,
+    bindPhone,
+    copyCode,
+    copyInviteCode,
+    logout,
+    toCredits,
+    transferInCallBack,
+} = useProfile();
 
-    window.location.href = data.url;
+// 使用订阅hook
+const {
+    ordersData,
+    ordersTotal,
+    ordersPage,
+    ordersPageSize,
+    ordersLoading,
+    fetchOrders,
+    handleOrdersPageChange,
+    handleOrdersPageSizeChange,
+} = useSubscription();
+
+// 使用用量统计hook
+const {
+    usageConsumptionData,
+    usageConsumptionLoading,
+    usageConsumptionPage,
+    usageConsumptionPageSize,
+    usageConsumptionTotal,
+    selectedTimeRange,
+    customDateRangeFormatted,
+    fetchUsageConsumptionData,
+    handleUsageConsumptionPageChange,
+    handleUsageConsumptionPageSizeChange,
+    handleTimeRangeSelect,
+    handleCustomDateRangeChange,
+} = useUsageStatistics();
+
+// 修改时间范围选择处理函数，以便在时间范围改变时重置usage菜单的加载状态
+const handleTimeRangeSelectWithReset = (range: string) => {
+    resetUsageMenuLoadedState();
+    handleTimeRangeSelect(range);
 };
 
-const bindGithub = () => bindAction(BING_TYPE.github);
+// 修改自定义日期范围变化处理函数
+const handleCustomDateRangeChangeWithReset = (value: [string, string] | null) => {
+    resetUsageMenuLoadedState();
+    handleCustomDateRangeChange(value);
+};
 
-const bindPhone = () => bindAction(BING_TYPE.sms);
-
+// 模态框相关状态
 const voucherCode = ref();
-
 const showCreditCodeModal = ref(false);
+const showCreditTransferModal = ref(false);
 
 const openCreditCodeModal = (code: string) => {
     fetchUserQuota();
@@ -233,8 +321,6 @@ const updateCreditCodeModalShow = (status: boolean) => {
     showCreditCodeModal.value = status;
 };
 
-const showCreditTransferModal = ref(false);
-
 const transferCredit = () => {
     showCreditTransferModal.value = true;
 };
@@ -243,74 +329,39 @@ const updateCreditModalShow = (status: boolean) => {
     showCreditTransferModal.value = status;
 };
 
-const usedQuota = ref<number>(0);
+// 根据菜单加载相应的数据
+const loadMenuData = async (menuKey: MenuKey) => {
+    if (!isTokenInitialized.value) return;
 
-const totalQuota = ref<number>(0);
+    setMenuLoading(menuKey, true);
 
-const percentage = computed(() => Number(((usedQuota.value / totalQuota.value) * 100).toFixed(0)));
+    try {
+        switch (menuKey) {
+            case 'profile':
+                await Promise.all([fetchUserQuota(), fetchInviteCode()]);
+                break;
+            case 'subscription':
+                await fetchOrders();
+                break;
+            case 'usage':
+                await Promise.all([fetchUserQuota(), fetchUsageConsumptionData()]);
+                break;
+            case 'activity':
+                break;
+        }
 
-const restCredit = computed(() => (totalQuota.value - usedQuota.value).toFixed(2));
-
-const columns = computed(() => [
-    {
-        title: t('homePage.expiryDate'),
-        key: 'expiry_date',
-        width: 280,
-        render: (row: QuotaList) => formatDate(row.expiry_date),
-    },
-    {
-        title: t('homePage.creditNum'),
-        key: 'amount',
-    },
-]);
-
-const columnsData = ref<QuotaList[]>([]);
-
-const transferData = computed(() =>
-    isStar.value === 'true' || isStar.value === undefined ? columnsData.value : [],
-);
-
-const toCredits = () => window.open('/credit/manager/credits');
-
-const isLoading = ref(false);
-
-const userStore = useUserStore();
-
-const isStar = ref<string | undefined>();
-
-const { githubName, phoneNumber, userId, isPrivate, isTokenInitialized } = storeToRefs(userStore);
-
-const fetchUserQuota = async () => {
-    const { data } = await getUserQuota();
-
-    if (!data) {
-        return;
+        markMenuAsLoaded(menuKey);
+    } finally {
+        setMenuLoading(menuKey, false);
     }
-
-    columnsData.value = data.quota_list || [];
-    usedQuota.value = data.used_quota || 0;
-    totalQuota.value = data.total_quota || 0;
-    isStar.value = data.is_star;
 };
 
-const inviteCode = ref('');
-
-const fetchInviteCode = async () => {
-    const {
-        data: { invite_code = '' },
-    } = await getInviteCode();
-
-    inviteCode.value = invite_code;
-};
-
+// 初始化时加载默认菜单数据
 watch(
     isTokenInitialized,
     (val) => {
         if (val) {
-            isLoading.value = true;
-            Promise.all([fetchUserQuota(), fetchInviteCode()]).finally(() => {
-                isLoading.value = false;
-            });
+            loadMenuData(activeMenuKey.value);
         }
     },
     {
@@ -318,40 +369,115 @@ watch(
     },
 );
 
-const transferInCallBack = () => {
-    fetchUserQuota();
-};
-
-const message = useMessage();
-
-const copyCode = () => {
-    copyToClipboard(userId.value, {
-        success: message.success,
-        error: message.error,
-    });
-};
-
-const copyInviteCode = () => {
-    copyToClipboard(inviteCode.value, {
-        success: message.success,
-        error: message.error,
-    });
-};
+// 监听菜单切换，加载相应数据
+watch(activeMenuKey, (newKey) => {
+    if (newKey) {
+        loadMenuData(newKey);
+    }
+});
 </script>
 
 <style scoped lang="less">
 .home-page {
-    margin: auto;
-    width: 1200px;
-    padding-top: 24px;
+    height: 100vh;
+    width: 1600px;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+
+    .layout-container {
+        flex: 1;
+        display: flex;
+        background: transparent;
+        min-height: 0;
+    }
+
+    .select-time__group {
+        .select-time__group-item {
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            height: 28px;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                opacity: 1;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            &.active {
+                opacity: 1;
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+
+    .menu-sider {
+        background: rgba(0, 0, 0);
+
+        .side-menu {
+            background: transparent;
+            color: #fff;
+            height: 100%;
+        }
+
+        /deep/.n-menu-item-content {
+            opacity: 0.7;
+        }
+
+        /deep/.n-menu-item-content--selected {
+            opacity: 1;
+        }
+    }
+
+    .content-area {
+        flex: 1;
+        background: transparent;
+        overflow-y: auto;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .page-content {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
 
     .usage,
-    .activity {
-        margin-top: 24px;
-
+    .activity,
+    .subscription {
         .activity-title {
             font-size: 16px;
             font-weight: 600;
+        }
+    }
+
+    .info {
+        margin-top: 0;
+
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 5.5px 16px;
+        }
+    }
+
+    .subscription {
+        .subscription-content {
+            padding: 20px 0;
+
+            .subscription-info {
+                text-align: center;
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 14px;
+
+                p {
+                    margin: 0;
+                    line-height: 1.5;
+                }
+            }
         }
     }
 
@@ -391,8 +517,11 @@ const copyInviteCode = () => {
 
     .usage {
         .usage-credit {
-            color: #1876f2;
-            cursor: pointer;
+            background: linear-gradient(95deg, #2a7fff 5%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
 
         .credit-action {
@@ -407,6 +536,7 @@ const copyInviteCode = () => {
             font-size: 14px;
             margin-right: 12px;
             cursor: pointer;
+            display: inline-block;
         }
 
         .credit-action::before {
@@ -415,7 +545,6 @@ const copyInviteCode = () => {
             inset: 0;
             border-radius: inherit;
             padding: 1px;
-            // background: linear-gradient(101deg, #0066FF 1%, #00FFB7 43%, #F7FFFD 55%, #FFFFFF 62%, #005EFF 101%);
             mask:
                 linear-gradient(#fff 0 0) content-box,
                 linear-gradient(#fff 0 0);
@@ -451,6 +580,23 @@ const copyInviteCode = () => {
 
         .credit-validity {
             margin-top: 30px;
+        }
+
+        .billing-btn {
+            background: linear-gradient(95deg, #2a7fff 5%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+    }
+
+    .usage-consumption {
+        .select-time__group {
+            &-item {
+                padding: 2px 8px;
+                background: rgba(255, 255, 255, 0.15);
+            }
         }
     }
 }

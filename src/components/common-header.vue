@@ -10,23 +10,6 @@
             />
             <span>{{ t('common.header.appName') }}</span>
         </div>
-        <div
-            class="mr-auto self-center ml-20"
-            v-if="isHomePage"
-        >
-            <span
-                class="mr-10 cursor-pointer opacity-70"
-                :class="{ active: activeButton === 'activity' }"
-                @click="scrollToActivity"
-                >{{ t('common.header.operationalActivities') }}</span
-            >
-            <span
-                class="cursor-pointer opacity-70"
-                :class="{ active: activeButton === 'usage' }"
-                @click="scrollToUsage"
-                >{{ t('common.header.creditsUsage') }}</span
-            >
-        </div>
         <div class="menu">
             <div
                 class="user-menu"
@@ -129,7 +112,6 @@ const router = useRouter();
 const { t, locale } = useI18n();
 
 const isPublicPage = computed(() => PUBLIC_ROUTES.includes(router.currentRoute.value.path));
-const isHomePage = computed(() => router.currentRoute.value.path === '/');
 
 const languageOptions = ref([
     { label: t('common.langZh'), key: 'zh' },
@@ -184,27 +166,6 @@ const handleLogout = async () => {
 const userStore = useUserStore();
 
 const { userName } = storeToRefs(userStore);
-
-// 活动按钮状态
-const activeButton = ref<string | null>(null);
-
-// 滚动到运营活动部分
-const scrollToActivity = () => {
-    const activitySection = document.querySelector('.activity');
-    if (activitySection) {
-        activitySection.scrollIntoView({ behavior: 'smooth' });
-        activeButton.value = 'activity';
-    }
-};
-
-// 滚动到Credits用量部分
-const scrollToUsage = () => {
-    const usageSection = document.querySelector('.usage');
-    if (usageSection) {
-        usageSection.scrollIntoView({ behavior: 'smooth' });
-        activeButton.value = 'usage';
-    }
-};
 </script>
 
 <style scoped lang="less">

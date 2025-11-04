@@ -1,21 +1,24 @@
 <template>
-    <common-card>
+    <common-card :content-border="false">
         <template #header>
-            <div class="activity-title">
+            <div class="activity-title text-xl mb-5">
                 <span>{{ t('homePage.activityTitle') }}</span>
-                <img
-                    src="../../assets/activity.svg"
-                    alt=""
-                />
             </div>
         </template>
         <template #default>
             <div class="activity-content">
-                <div class="content-title">{{ t('homePage.creditPlan') }}</div>
+                <div class="content-title text-base flex">
+                    {{ t('homePage.creditPlan')
+                    }}<img
+                        src="../../assets/activity.svg"
+                        alt=""
+                        class="ml-2"
+                    />
+                </div>
                 <div class="content-desc">{{ t('homePage.planDesc') }}</div>
             </div>
             <common-card class="mt-3 relative">
-                <template #header>
+                <template #default>
                     <div class="activity-github-star">
                         <div class="activity-github-star__header flex">
                             <img
@@ -42,7 +45,7 @@
                 </template>
             </common-card>
             <common-card class="mt-3 relative">
-                <template #header>
+                <template #default>
                     <div class="activity-invite-user">
                         <div class="activity-invite-user__header flex">
                             <img
@@ -68,8 +71,6 @@
                             <span class="text-sm">{{ t('activityCard.goInvite') }}</span>
                         </div>
                     </div>
-                </template>
-                <template #default>
                     <ul class="invite-ser__list ml-6 text-white/70 leading-7">
                         <template
                             v-for="(item, index) in inviteRules"
@@ -150,7 +151,6 @@ const toInvite = async () => {
 
     span {
         color: #fff;
-        font-size: 16px;
     }
 
     img {

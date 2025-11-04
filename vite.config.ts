@@ -38,6 +38,13 @@ export default defineConfig({
                 changeOrigin: true,
                 secure: false,
             },
+            '/quota-order-manager': {
+                target: 'https://costrict.sangfor.com:30443',
+                // target: 'https://zgsm.sangfor.com',
+                // target: 'http://10.48.19.11:8080',
+                changeOrigin: true,
+                secure: false,
+            },
         },
     },
 });

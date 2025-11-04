@@ -9,8 +9,12 @@ import type {
     GetInviteCodeRes,
     GetLoginUrlReq,
     GetLoginUrlRes,
+    GetOrdersReq,
+    GetOrdersRes,
     GetQuotaAuditRecordsReq,
     GetQuotaAuditRecordsRes,
+    GetUsageStatisticsReq,
+    GetUsageStatisticsRes,
     GetUserInfoRes,
     GetUserQuotaRes,
     GetUserTokenRes,
@@ -68,4 +72,14 @@ export const getInviteCode = (): Promise<ApiResponse<GetInviteCodeRes>> => {
 
 export const getLoginUrl = (params?: GetLoginUrlReq): Promise<ApiResponse<GetLoginUrlRes>> => {
     return get('/oidc-auth/api/v1/manager/login', params);
+};
+
+export const getUsageStatistics = (
+    params: GetUsageStatisticsReq,
+): Promise<ApiResponse<GetUsageStatisticsRes>> => {
+    return get('/quota-manager/api/v1/usage/statistics', params);
+};
+
+export const getOrders = (params: GetOrdersReq): Promise<ApiResponse<GetOrdersRes>> => {
+    return get('/quota-order-manager/api/v1/orders', params);
 };
