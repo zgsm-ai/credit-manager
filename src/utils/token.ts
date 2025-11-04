@@ -22,11 +22,27 @@ export const clearToken = () => {
     return Cookies.remove(TOKEN_KEY);
 };
 
+export const cleanUrlState = () => {
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+
+    if (params.has('state')) {
+        params.delete('state');
+        const newUrl =
+            url.origin +
+            url.pathname +
+            (params.toString() ? '?' + params.toString() : '') +
+            url.hash;
+        history.replaceState({}, document.title, newUrl);
+    }
+};
+
 export const tokenManager = {
     getHashToken,
     getToken,
     setToken,
     clearToken,
+    cleanUrlState,
     validateToken: (token: string) => {
         return !!token && token.length > 0;
     },

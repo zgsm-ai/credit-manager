@@ -92,9 +92,12 @@ export function useMenu() {
     // 处理菜单选择
     const handleMenuSelect = (key: string) => {
         activeMenuKey.value = key as MenuKey;
-        // 更新URL参数
+        // 更新URL参数，同时清除state参数
+        const filteredQuery = Object.fromEntries(
+            Object.entries(route.query).filter(([param]) => param !== 'state'),
+        );
         router.replace({
-            query: { ...route.query, tab: key },
+            query: { ...filteredQuery, tab: key },
         });
     };
 

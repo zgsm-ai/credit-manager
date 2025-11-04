@@ -1,5 +1,5 @@
 import { tokenManager } from '@/utils/token';
-import { userService, type UserInfo } from './user.service';
+import { userService, type UserInfo } from './user';
 import { getUserToken } from '@/api/mods/quota.mod';
 
 export interface AuthResult {
@@ -68,6 +68,9 @@ export class AuthService {
             if (tokenResponse.data?.access_token) {
                 // 设置新的 access_token
                 tokenManager.setToken(tokenResponse.data.access_token);
+
+                // 清理 URL 中的 state 参数
+                tokenManager.cleanUrlState();
 
                 // 获取用户信息
                 const userInfo = await userService.fetchUserInfo();
