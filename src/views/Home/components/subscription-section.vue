@@ -90,7 +90,7 @@
                                 src="../../../assets/icon/x.svg"
                                 alt="unavailable"
                             />
-                            <p class="ml-2">{{ feature.text }}</p>
+                            <p class="ml-2 whitespace-nowrap">{{ feature.text }}</p>
                         </li>
                     </ul>
                 </div>

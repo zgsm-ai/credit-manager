@@ -86,11 +86,11 @@ const columns = computed(() => [
         key: 'mode',
         width: 100,
     },
-    {
-        title: t('homePage.tokens'),
-        key: 'tokens',
-        width: 100,
-    },
+    // {
+    //     title: t('homePage.tokens'),
+    //     key: 'tokens',
+    //     width: 100,
+    // },
     {
         title: t('homePage.creditsUsed'),
         key: 'credits_used',
