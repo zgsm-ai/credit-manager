@@ -70,6 +70,7 @@
                         :class="{
                             'btn-purchase': plan.buttonType === 'purchase',
                         }"
+                        @click="plan.clickEvent"
                     >
                         {{ plan.buttonText }}
                     </div>

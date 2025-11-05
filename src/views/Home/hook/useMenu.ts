@@ -1,7 +1,7 @@
 /**
  * @description home页面菜单hook
  */
-import { ref, watch, h } from 'vue';
+import { ref, watch, h, computed, type ComputedRef } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { type MenuOption } from 'naive-ui';
@@ -66,7 +66,7 @@ export function useMenu() {
     };
 
     // 菜单选项
-    const menuOptions: MenuOption[] = [
+    const menuOptions: ComputedRef<MenuOption[]> = computed(() => [
         {
             label: t('homePage.menu.profile'),
             key: 'profile',
@@ -87,7 +87,7 @@ export function useMenu() {
             key: 'activity',
             icon: renderMenuIcon('activity'),
         },
-    ];
+    ]);
 
     // 处理菜单选择
     const handleMenuSelect = (key: string) => {

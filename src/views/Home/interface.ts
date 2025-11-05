@@ -29,6 +29,7 @@ export interface PricingPlan {
     buttonType: 'download' | 'purchase';
     showTrafficLabel?: boolean;
     features: Feature[];
+    clickEvent: () => void;
 }
 
 export interface GuideStep {

@@ -1,2 +1,3 @@
 # credit-manager
-The backend management system for Costrict
+
+The backend management system for CoStrict

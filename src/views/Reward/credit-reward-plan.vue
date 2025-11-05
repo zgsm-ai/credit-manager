@@ -374,19 +374,19 @@ import type { SocialMetaConfig } from '@/config/meta';
 // 为积分奖励计划页面配置特定的Open Graph标签
 const customMeta = refVue<SocialMetaConfig>({
     og: {
-        title: 'Costrict 喊你来薅羊毛啦（送 Credits）！',
+        title: 'CoStrict 喊你来薅羊毛啦（送 Credits）！',
         description:
-            'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
+            'CoStrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
         image: '/social-share.png',
         type: 'website',
-        siteName: 'Costrict',
+        siteName: 'CoStrict',
         locale: 'zh_CN',
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Costrict 喊你来薅羊毛啦（送 Credits）！',
+        title: 'CoStrict 喊你来薅羊毛啦（送 Credits）！',
         description:
-            'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
+            'CoStrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
         image: '/social-share.png',
     },
 });
