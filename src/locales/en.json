@@ -55,9 +55,9 @@
         "validDetailItem": "{amount} Credits will expire on {expiryDate}",
         "expiredDetailItem": "{amount} Credits expired on {expiryDate}",
         "voucherCodeSuffix": ", redemption code:",
-        "userRegisterZhuge": "User registered Costrict",
+        "userRegisterZhuge": "User registered CoStrict",
         "inviteeStarReward": "You participated in the \"Invite New User\" campaign added bonus",
-        "inviterRegisterReward": "The new user {relatedUser} you invited completed the Costrict registration task",
+        "inviterRegisterReward": "The new user {relatedUser} you invited completed the CoStrict registration task",
         "inviterStarReward": "The new user {relatedUser} you invited completed the GitHub star task",
         "mergeInDesc": "You have bound the account with user ID {relatedUser} to the current account, and all credits from the original account have been transferred to the current account"
     },
@@ -79,7 +79,7 @@
         "activityTitle": "ActivityTitle",
         "creditPlan": "Credits Reward Plan",
         "planDesc": "If your credits are running low and you can't continue using the premium model, complete the following tasks to get more credits!",
-        "githubStar": "Get 50 Credits (automatically effective within 5 minutes) for your first star on the Costrict open-source project on GitHub.",
+        "githubStar": "Get 50 Credits (automatically effective within 5 minutes) for your first star on the CoStrict open-source project on GitHub.",
         "useCredit": "{used} / {total} Used ",
         "restCredit": "{rest} left",
         "menu": {
@@ -109,7 +109,7 @@
             "copyright": "©2025 SANGFOR TECHNOLOGIES. ALL RIGHTS RESERVED."
         },
         "header": {
-            "appName": "Costrict",
+            "appName": "CoStrict",
             "accountAndUsage": "ACCOUNT & USAGE",
             "logout": "LOG OUT"
         },
@@ -139,7 +139,7 @@
         "copyLoginLink": "Click to copy",
         "howToParticipate": "How to Participate",
         "introTitle": "Running out of credits? Don't worry! 🔥",
-        "introContent": "Costrict officially launches the Credits Reward Program - complete the tasks below to easily earn credits and enjoy AI programming without burden. Invite friends to participate, collect more Credits, and explore unlimited possibilities!",
+        "introContent": "CoStrict officially launches the Credits Reward Program - complete the tasks below to easily earn credits and enjoy AI programming without burden. Invite friends to participate, collect more Credits, and explore unlimited possibilities!",
         "participationStep1": "1. Copy your exclusive invitation link",
         "participationStep2": "2. Share with developer friends",
         "participationStep3": "3. Wait for rewards to be automatically credited!",
@@ -155,31 +155,31 @@
             "answer": "A"
         },
         "operationGuide": {
-            "task1Title": "Task 1: Registration and Login Costrict",
-            "task2Title": "Task 2: Click Star on GitHub to bookmark the Costrict project",
-            "task3Title": "Task 3: Install the Costrict product and experience its features",
+            "task1Title": "Task 1: Registration and Login CoStrict",
+            "task2Title": "Task 2: Click Star on GitHub to bookmark the CoStrict project",
+            "task3Title": "Task 3: Install the CoStrict product and experience its features",
             "step1Content": "Please confirm that the invitation code has been automatically filled in (if not, please enter it manually). Use GitHub to log in.",
             "step1Tips": "If you do not have a GitHub account, follow the guided process to register first.",
             "step2Header": "After login, the page will automatically redirect to the User Info & Quota Usage page.",
             "step2Tips": "If you do not have a GitHub account, follow the guided process to register first.",
-            "step3Content": "Please follow the official documentation to complete Costrict plugin installation and login, and successfully send a conversation",
+            "step3Content": "Please follow the official documentation to complete CoStrict plugin installation and login, and successfully send a conversation",
             "loginNow": " Log in Now >> ",
             "goNow": " Go Now >> ",
             "viewDocs": " View official documentation >> ",
             "linkAddress": "Link: ",
-            "visitGithub": "Visit the Costrict project page on GitHub, click the Star button to bookmark the project.",
-            "pleaseLoginFirst": "Please log in to Costrict,",
-            "completePluginInstall": "Please refer to the official documentation to complete the installation and login of the Costrict, successfully send one conversation."
+            "visitGithub": "Visit the CoStrict project page on GitHub, click the Star button to bookmark the project.",
+            "pleaseLoginFirst": "Please log in to CoStrict,",
+            "completePluginInstall": "Please refer to the official documentation to complete the installation and login of the CoStrict, successfully send one conversation."
         },
         "rules": {
             "inviterLabel": "Inviter:",
             "newUserLabel": "New User:",
-            "rule1": "1. For each new user invited to register a Costrict account, the new user immediately gets",
+            "rule1": "1. For each new user invited to register a CoStrict account, the new user immediately gets",
             "rule1NewUser": " 200 Credits",
             "rule1Inviter": ", and the inviter gets",
             "rule1InviterCredits": " 100 Credits",
             "rule1End": ";",
-            "rule2": "2. New user downloads the Costrict plugin, completes a simple conversation, and clicks Star on GitHub to favorite Costrict:",
+            "rule2": "2. New user downloads the CoStrict plugin, completes a simple conversation, and clicks Star on GitHub to favorite CoStrict:",
             "rule2a": "New user gets an additional",
             "rule2aCredits": " 400 Credits",
             "rule2aTotal": " (total",
@@ -214,14 +214,14 @@
     },
     "activityCard": {
         "githubStar": "GitHub Star",
-        "githubStarDesc": "First time clicking star on Costrict open source project on GitHub, get 200 Credits (automatically effective within 10 minutes)",
+        "githubStarDesc": "First time clicking star on CoStrict open source project on GitHub, get 200 Credits (automatically effective within 10 minutes)",
         "gitStarNow": "git star now >",
         "inviteNewUser": "Invite New User",
         "inviteNewUserDesc": "Invite new users to register, inviter gets 400 Credits, new user gets 250 Credits.",
         "goInvite": "Go Invite >",
         "inviteRules": {
-            "rule1": "For each new user invited to register Costrict account, new user immediately gets 200 Credits, inviter gets 100 Credits;",
-            "rule2": "New user downloads Costrict plugin and stars on GitHub:",
+            "rule1": "For each new user invited to register CoStrict account, new user immediately gets 200 Credits, inviter gets 100 Credits;",
+            "rule2": "New user downloads CoStrict plugin and stars on GitHub:",
             "rule2a": "a. New user gets additional 300 Credits (total 500 Credits).",
             "rule2b": "b. Inviter gets additional 300 Credits (total 400 Credits).",
             "rule3": "Rewards can be stacked, the more new users invited, the more Credits."
@@ -240,81 +240,81 @@
     },
     "pricingPlans": {
         "personalFree": {
-            "title": "Personal Free",
-            "description": "Official gift Credits, validity depends on situation",
-            "buttonText": "Download",
+            "title": "个人免费版",
+            "description": "官方赠送的 Credit，有效期视情况而定",
+            "buttonText": "下载使用",
             "features": {
-                "newUserCredits": "New users get 80 Credits (approximately 80 requests)",
-                "freeCodeCompletion": "Free code completion, limited usage",
-                "freeCodeReview": "Free CodeReview, limited usage",
-                "advancedModelUnavailable": "Advanced models not available"
+                "newUserCredits": "新用户获赠 80 Credits（约等于80次请求）",
+                "freeCodeCompletion": "免费代码补全，有限使用次数",
+                "freeCodeReview": "免费 CodeReview，有限使用次数",
+                "advancedModelUnavailable": "高级模型不可用"
             }
         },
         "trafficPackage1": {
-            "title": "Traffic Package 1",
-            "description": "Deduct Credits based on actual usage, valid for 1 year",
-            "buttonText": "Buy Now",
+            "title": "流量套餐1",
+            "description": "按实际使用用量扣除 Credit，有效期1年",
+            "buttonText": "立即购买",
             "features": {
-                "credits": "400 Credits (approximately 400 requests)",
-                "freeCodeCompletion": "Free code completion, unlimited usage",
-                "freeCodeReview": "Free CodeReview, unlimited usage",
-                "advancedModelAvailable": "Advanced models available"
+                "credits": "500 Credits（约等于500次请求）",
+                "freeCodeCompletion": "免费代码补全，有限使用",
+                "freeCodeReview": "免费代码审查，有限使用",
+                "advancedModelAvailable": "高级模型可用"
             }
         },
         "trafficPackage2": {
-            "title": "Traffic Package 2",
-            "description": "Deduct Credits based on actual usage, valid for 1 year",
-            "buttonText": "Buy Now",
+            "title": "流量套餐2",
+            "description": "按实际使用用量扣除 Credit，有效期1年",
+            "buttonText": "立即购买",
             "features": {
-                "credits": "1800 Credits (approximately 1800 requests)",
-                "freeCodeCompletion": "Free code completion, unlimited usage",
-                "freeCodeReview": "Free CodeReview, unlimited usage",
-                "advancedModelAvailable": "Advanced models available"
+                "credits": "2000+额外赠送 100Credits（等于2100次请求）",
+                "freeCodeCompletion": "免费代码补全，无限使用",
+                "freeCodeReview": "免费代码审查，无限使用",
+                "advancedModelAvailable": "高级模型可用"
             }
         },
         "trafficPackage3": {
-            "title": "Traffic Package 3",
-            "description": "Deduct Credits based on actual usage, valid for 1 year",
-            "buttonText": "Buy Now",
+            "title": "流量套餐3",
+            "description": "按实际使用用量扣除 Credit，有效期1年",
+            "buttonText": "立即购买",
             "features": {
-                "credits": "4800 Credits (approximately 4800 requests)",
-                "freeCodeCompletion": "Free code completion, unlimited usage",
-                "freeCodeReview": "Free CodeReview, unlimited usage",
-                "advancedModelAvailable": "Advanced models available"
+                "credits": "5000+额外赠送 400Credits（等于5400次请求）",
+                "freeCodeCompletion": "免费代码补全，无限使用",
+                "freeCodeReview": "免费代码审查，无限使用",
+                "advancedModelAvailable": "高级模型可用"
             }
         }
     },
     "guideSteps": {
         "step1": {
-            "title": "Select the appropriate package and click \"Buy Now\". Redirect to CoStrict official JD flagship store. For more package details, please check",
-            "packageLink": "Package & Billing Description >>"
+            "title": "选择合适套餐，点击\"立即购买\"。跳转至 CoStrict 官方京东旗舰店。了解更多套餐详情可查看",
+            "packageLink": "套餐&计费说明 >>"
         },
         "step2": {
-            "title": "Log in to your personal JD account, view the product details on CoStrict JD flagship store, select the package and quantity, and fill in your CoStrict User ID so that the official can smoothly distribute Credits"
+            "title": "登录个人京东账号，查看 CoStrict 京东旗舰店商品详情，选择套餐和份数，填写用户本人的 CoStrict 的用户ID以便官方能顺利发放 Credits"
         },
         "step3": {
-            "title": "User ID check: Log in to the CoStrict admin management page (link: ",
-            "titleSuffix": "), copy your User ID.",
+            "title": "用户ID查看：登录 CoStrict 后台管理页面（链接地址：",
+            "titleSuffix": "），复制用户ID。",
             "managementLink": "https://zgsm.sangfor.com/credit/manager/",
-            "text1": "After completing the payment, return to the CoStrict official backend to check the Credits arrival status (link to usage statistics page)",
-            "text2": "From Monday to Friday, 9:30-20:30 working hours guarantee recharge within half an hour, non-working days may be extended, users can contact customer service via enterprise WeChat for quick addition",
-            "text3": "Scan WeChat QR code to quickly contact official customer service (CoStrict Official Assistant - Koko)"
+            "text1": "完成付费之后，返回 CoStrict 官方后台查看Credits到账情况（链接地址：链接到用量统计页面）",
+            "text2": "工作日周一 至 周五的 9:30-20:30 工作时间保证半小时内充值到账，非工作日时间有所延长，用户可通过企微号联系客服迅速添加",
+            "text3": "微信扫码可快速联系官方客服（手机端可长按识别二维码）"
         }
     },
     "subscriptionSection": {
-        "subscriptionTitle": "Subscription Information",
-        "billingDescription": "Package & Billing Description >>",
-        "trafficLabel": "Traffic Package",
-        "operationGuide": "Operation Guide",
-        "recordsTitle": "Activation Records",
-        "totalItems": "Total {total} items",
-        "orderNumber": "Order Number",
-        "orderType": "Order Type",
-        "orderSource": "Order Source",
-        "purchaseCount": "Purchase Count",
-        "orderAmount": "Order Amount",
-        "orderTime": "Order Time",
-        "validityPeriod": "Validity Period"
+        "subscriptionTitle": "订阅信息",
+        "billingDescription": "套餐&计费说明 >>",
+        "trafficLabel": "流量包",
+        "operationGuide": "操作指引",
+        "recordsTitle": "开通记录",
+        "totalItems": "共 {total} 条",
+        "orderNumber": "订单号",
+        "orderType": "订单类型",
+        "orderSource": "订单来源",
+        "purchaseCount": "购买个数",
+        "orderAmount": "订单金额",
+        "orderTime": "下单时间",
+        "validityPeriod": "有效期"
     },
     "homePageUi": {
         "personalInfo": "Personal Information",

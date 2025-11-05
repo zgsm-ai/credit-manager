@@ -28,16 +28,16 @@ export interface SocialMetaConfig {
  */
 export const DEFAULT_SOCIAL_META: SocialMetaConfig = {
     og: {
-        title: 'Costrict-开源免费 AI 编程工具',
+        title: 'CoStrict-开源免费 AI 编程工具',
         description: '为企业严肃编程量身打造的AI编程助手，支持多种编程语言和框架',
         image: '/social-share.png',
         type: 'website',
-        siteName: 'Costrict',
+        siteName: 'CoStrict',
         locale: 'zh_CN',
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Costrict-开源免费 AI 编程工具',
+        title: 'CoStrict-开源免费 AI 编程工具',
         description: '为企业严肃编程量身打造的AI编程助手，支持多种编程语言和框架',
         image: '/social-share.png',
     },
@@ -48,19 +48,19 @@ export const DEFAULT_SOCIAL_META: SocialMetaConfig = {
  */
 export const CREDIT_REWARD_PLAN_SOCIAL_META: SocialMetaConfig = {
     og: {
-        title: 'Costrict 喊你来薅羊毛啦（送 Credits）！',
+        title: 'CoStrict 喊你来薅羊毛啦（送 Credits）！',
         description:
-            'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
+            'CoStrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
         image: '/social-share.png',
         type: 'website',
-        siteName: 'Costrict',
+        siteName: 'CoStrict',
         locale: 'zh_CN',
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Costrict 喊你来薅羊毛啦（送 Credits）！',
+        title: 'CoStrict 喊你来薅羊毛啦（送 Credits）！',
         description:
-            'Costrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
+            'CoStrict-开源免费 AI 编程工具，为企业严肃编程量身打造。邀请好友注册，双方均可获得Credits奖励！',
         image: '/social-share.png',
     },
 };

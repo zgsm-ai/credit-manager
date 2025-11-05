@@ -6,6 +6,7 @@ import { h } from 'vue';
 import type { GuideStep, PricingPlan } from './interface';
 import guideStep3Img1 from '../../assets/price/guide_step3_1.png';
 import guideStep3Img2 from '../../assets/price/guide_step3_2.png';
+import qrCode from '../../assets/price/qr_code.png';
 
 export const BING_TYPE = {
     github: 'github',
@@ -56,6 +57,9 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
                 available: false,
             },
         ],
+        clickEvent() {
+            window.open('https://costrict.ai/download');
+        },
     },
     {
         title: t('pricingPlans.trafficPackage1.title'),
@@ -83,6 +87,9 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
                 available: true,
             },
         ],
+        clickEvent() {
+            window.open('https://item.jd.com/100295277058.html');
+        },
     },
     {
         title: t('pricingPlans.trafficPackage2.title'),
@@ -110,6 +117,9 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
                 available: true,
             },
         ],
+        clickEvent() {
+            window.open('https://item.jd.com/100295277076.html');
+        },
     },
     {
         title: t('pricingPlans.trafficPackage3.title'),
@@ -137,6 +147,9 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
                 available: true,
             },
         ],
+        clickEvent() {
+            window.open('https://item.jd.com/100295277048.html');
+        },
     },
 ];
 
@@ -213,7 +226,7 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
                             t('guideSteps.step3.text3'),
                         ),
                         h('img', {
-                            // src: qrCode,
+                            src: qrCode,
                             class: 'mt-2',
                         }),
                     ]),
