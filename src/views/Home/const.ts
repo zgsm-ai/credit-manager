@@ -7,6 +7,8 @@ import type { GuideStep, PricingPlan } from './interface';
 import guideStep3Img1 from '../../assets/price/guide_step3_1.png';
 import guideStep3Img2 from '../../assets/price/guide_step3_2.png';
 import qrCode from '../../assets/price/qr_code.png';
+import jdService1Img from '../../assets/price/jd_service1.png';
+import jdService2Img from '../../assets/price/jd_service2.png';
 
 export const BING_TYPE = {
     github: 'github',
@@ -162,7 +164,7 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
                 h(
                     'a',
                     {
-                        href: '#',
+                        href: 'https://docs.costrict.ai/billing/purchase',
                         style: 'color: #2A7FFF; margin-left: 4px; text-decoration: none;',
                         target: '_blank',
                     },
@@ -172,7 +174,36 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
     },
     {
         title: t('guideSteps.step2.title'),
+    },
+    {
+        title: () =>
+            h('div', { class: 'flex' }, [
+                h('div', t('guideSteps.step3.contactCustomerService')),
+                h('div', { class: 'text-[#00FFC8] ml-1' }, t('guideSteps.step3.userId')),
+                h('div', t('guideSteps.step3.userIdKey')),
+            ]),
         imageTextPairs: [
+            {
+                imgUrl: () =>
+                    h('div', { class: 'flex mb-7' }, [
+                        h('img', { src: jdService1Img, class: 'h-100' }),
+                        h('img', { src: jdService2Img, class: 'h-100 ml-2.5' }),
+                    ]),
+                text: () =>
+                    h('div', { class: 'text-white text-xs' }, [
+                        h('span', t('guideSteps.step3.title')),
+                        h(
+                            'a',
+                            {
+                                href: 'https://zgsm.sangfor.com/credit/manager/',
+                                target: '_blank',
+                                style: 'color: #2A7FFF; text-decoration: none;',
+                            },
+                            'https://zgsm.sangfor.com/credit/manager/',
+                        ),
+                        h('span', t('guideSteps.step3.titleSuffix')),
+                    ]),
+            },
             {
                 imgUrl: guideStep3Img1,
             },
@@ -180,40 +211,35 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
     },
     {
         title: () =>
-            h('div', [
-                h('span', t('guideSteps.step3.title')),
+            h('div', { class: 'custom-text' }, [
                 h(
-                    'a',
+                    'p',
                     {
-                        href: 'https://zgsm.sangfor.com/credit/manager/',
-                        target: '_blank',
-                        style: 'color: #2A7FFF; text-decoration: none;',
+                        class: 'text-white text-xs leading-5 flex',
                     },
-                    t('guideSteps.step3.managementLink'),
+                    [
+                        h('p', t('guideSteps.step3.rechargeComplete')),
+                        h(
+                            'a',
+                            {
+                                href: 'https://zgsm.sangfor.com/credit/manager/?tab=usage',
+                                target: '_blank',
+                                style: 'color: #2A7FFF; text-decoration: none;',
+                            },
+                            'https://zgsm.sangfor.com/credit/manager/?tab=usage',
+                        ),
+                        h('span', t('guideSteps.step3.rightParenthesis')),
+                    ],
                 ),
-                h('span', t('guideSteps.step3.titleSuffix')),
+                h(
+                    'p',
+                    {
+                        class: 'text-white text-xs mt-1 leading-5 opacity-70',
+                    },
+                    t('guideSteps.step3.text2'),
+                ),
             ]),
         imageTextPairs: [
-            {
-                imgUrl: guideStep3Img1,
-                text: () =>
-                    h('div', { class: 'custom-text' }, [
-                        h(
-                            'p',
-                            {
-                                class: 'text-white text-xs leading-5',
-                            },
-                            t('guideSteps.step3.text1'),
-                        ),
-                        h(
-                            'p',
-                            {
-                                class: 'text-white text-xs mt-1 leading-5',
-                            },
-                            t('guideSteps.step3.text2'),
-                        ),
-                    ]),
-            },
             {
                 imgUrl: guideStep3Img2,
                 text: () =>
@@ -221,7 +247,7 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
                         h(
                             'p',
                             {
-                                class: 'text-white text-xs leading-5',
+                                class: 'text-white text-xs leading-5 opacity-70',
                             },
                             t('guideSteps.step3.text3'),
                         ),

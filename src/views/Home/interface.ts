@@ -39,6 +39,6 @@ export interface GuideStep {
     imageTextPairs?: ImageTextPair[];
 }
 export interface ImageTextPair {
-    imgUrl?: string;
+    imgUrl?: string | (() => VNode);
     text?: string | (() => VNode);
 }
