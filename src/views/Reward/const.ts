@@ -163,10 +163,10 @@ export const createQaContent = (t: (key: string) => string, isZh: boolean): QaCo
                         'a',
                         {
                             class: 'text-[#4394FF] cursor-pointer',
-                            href: homePageUrl,
+                            href: `${homePageUrl}/?tab=usage`,
                             target: '_blank',
                         },
-                        homePageUrl,
+                        `${homePageUrl}/?tab=usage`,
                     ),
                     t('rewardPlan.qa.rightParenthesis'),
                 ]),
