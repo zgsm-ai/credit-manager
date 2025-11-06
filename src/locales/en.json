@@ -290,7 +290,7 @@
             "packageLink": "套餐&计费说明 >>"
         },
         "step2": {
-            "title": "登录个人京东账号，查看 CoStrict 京东旗舰店商品详情，选择套餐和份数，填写用户本人的 CoStrict 的用户ID以便官方能顺利发放 Credits"
+            "title": "登录个人京东账号，查看 CoStrict 京东旗舰店商品详情，选择套餐和份数并支付。"
         },
         "step3": {
             "title": "用户ID查看：登录 CoStrict 后台管理页面（链接地址：",
@@ -298,7 +298,12 @@
             "managementLink": "https://zgsm.sangfor.com/credit/manager/",
             "text1": "完成付费之后，返回 CoStrict 官方后台查看Credits到账情况（链接地址：链接到用量统计页面）",
             "text2": "工作日周一 至 周五的 9:30-20:30 工作时间保证半小时内充值到账，非工作日时间有所延长，用户可通过企微号联系客服迅速添加",
-            "text3": "微信扫码可快速联系官方客服（手机端可长按识别二维码）"
+            "text3": "微信扫码可快速联系官方客服（手机端可长按识别二维码）",
+            "contactCustomerService": "支付完成后请联系客服，告知客服本人的 CoStrict 的",
+            "userId": "用户ID",
+            "userIdKey": "（这是 Credits 能正常到账的关键）。",
+            "rechargeComplete": "充值完成后，用户可返回 CoStrict 官方后台查看 Credits 到账情况（链接地址：",
+            "rightParenthesis": "）"
         }
     },
     "subscriptionSection": {

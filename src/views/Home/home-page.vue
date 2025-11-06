@@ -159,9 +159,11 @@
                                     </div>
                                 </template>
                                 <template #header-extra>
-                                    <span class="billing-btn cursor-pointer ml-auto">{{
-                                        t('homePageUi.packageBillingDescription')
-                                    }}</span>
+                                    <span
+                                        class="billing-btn cursor-pointer ml-auto"
+                                        @click="toBillingDocs"
+                                        >{{ t('homePageUi.packageBillingDescription') }}</span
+                                    >
                                 </template>
                                 <template #default>
                                     <usage-consumption-section
@@ -354,6 +356,10 @@ const loadMenuData = async (menuKey: MenuKey) => {
     } finally {
         setMenuLoading(menuKey, false);
     }
+};
+
+const toBillingDocs = () => {
+    window.open('https://docs.costrict.ai/billing/purchase');
 };
 
 // 初始化时加载默认菜单数据

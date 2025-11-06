@@ -28,9 +28,11 @@
         <!-- 订阅信息 -->
         <div class="subscription-title flex items-center">
             <span class="text-base">{{ t('subscriptionSection.subscriptionTitle') }}</span>
-            <span class="billing-btn cursor-pointer ml-2.5">{{
-                t('subscriptionSection.billingDescription')
-            }}</span>
+            <span
+                class="billing-btn cursor-pointer ml-2.5"
+                @click="toBillingDocs"
+                >{{ t('subscriptionSection.billingDescription') }}</span
+            >
         </div>
         <div class="subscription-content mt-8">
             <div class="content-version grid grid-cols-4 gap-5">
@@ -155,9 +157,18 @@
                                             :key="pairIndex"
                                             class="image-text-item"
                                         >
-                                            <img
+                                            <component
                                                 v-if="pair.imgUrl"
-                                                :src="pair.imgUrl"
+                                                :is="
+                                                    typeof pair.imgUrl === 'function'
+                                                        ? pair.imgUrl
+                                                        : 'img'
+                                                "
+                                                :src="
+                                                    typeof pair.imgUrl === 'string'
+                                                        ? pair.imgUrl
+                                                        : undefined
+                                                "
                                                 :alt="
                                                     typeof pair.text === 'function'
                                                         ? undefined
@@ -309,6 +320,10 @@ const recordColumns = computed(() => [
         render: (row: Order) => formatDate(row.credit_expire_date),
     },
 ]);
+
+const toBillingDocs = () => {
+    window.open('https://docs.costrict.ai/billing/purchase');
+};
 </script>
 
 <style scoped lang="less">
