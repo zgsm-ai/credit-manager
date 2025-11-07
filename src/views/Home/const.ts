@@ -125,8 +125,8 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
     },
     {
         title: t('pricingPlans.trafficPackage3.title'),
-        price: 500,
-        originalPrice: 248,
+        price: 248,
+        originalPrice: 500,
         description: t('pricingPlans.trafficPackage3.description'),
         buttonText: t('pricingPlans.trafficPackage3.buttonText'),
         buttonType: 'purchase',
