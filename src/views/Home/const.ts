@@ -185,7 +185,7 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
         imageTextPairs: [
             {
                 imgUrl: () =>
-                    h('div', { class: 'flex mb-7' }, [
+                    h('div', { class: 'flex mb-7 jd-step' }, [
                         h('img', { src: jdService1Img, class: 'h-100' }),
                         h('img', { src: jdService2Img, class: 'h-100 ml-2.5' }),
                     ]),
@@ -250,6 +250,13 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
                                 class: 'text-white text-xs leading-5 opacity-70',
                             },
                             t('guideSteps.step3.text3'),
+                        ),
+                        h(
+                            'p',
+                            {
+                                class: 'text-white text-xs leading-5 opacity-70',
+                            },
+                            t('guideSteps.step3.text4'),
                         ),
                         h('img', {
                             src: qrCode,

@@ -34,12 +34,13 @@
                 >{{ t('subscriptionSection.billingDescription') }}</span
             >
         </div>
-        <div class="subscription-content mt-8">
+        <div class="mt-4">{{ t('homePageUi.tips') }}</div>
+        <div class="subscription-content mt-4">
             <div class="content-version grid grid-cols-4 gap-5">
                 <div
                     v-for="(plan, index) in pricingPlans"
                     :key="index"
-                    class="content-version__item h-88 px-5 py-6 relative"
+                    class="content-version__item min-88 px-5 py-6 relative"
                 >
                     <div
                         v-if="plan.showTrafficLabel"
@@ -80,19 +81,23 @@
                         <li
                             v-for="(feature, featureIndex) in plan.features"
                             :key="featureIndex"
-                            class="flex items-center leading-8"
+                            class="mb-4"
                         >
-                            <img
-                                v-if="feature.available"
-                                src="../../../assets/icon/y.svg"
-                                alt="available"
-                            />
-                            <img
-                                v-else
-                                src="../../../assets/icon/x.svg"
-                                alt="unavailable"
-                            />
-                            <p class="ml-2 whitespace-nowrap">{{ feature.text }}</p>
+                            <div class="flex items-start">
+                                <img
+                                    v-if="feature.available"
+                                    src="../../../assets/icon/y.svg"
+                                    alt="available"
+                                    class="mt-1"
+                                />
+                                <img
+                                    v-else
+                                    src="../../../assets/icon/x.svg"
+                                    alt="unavailable"
+                                    class="mt-1"
+                                />
+                                <p class="ml-2">{{ feature.text }}</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -496,6 +501,26 @@ const toBillingDocs = () => {
 
         .n-base-loading__icon {
             color: #1876f2;
+        }
+    }
+}
+/deep/.jd-step {
+    @media (max-width: 968px) {
+        flex-direction: column;
+
+        img {
+            align-self: start;
+        }
+
+        img:last-of-type {
+            margin-top: 10px;
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        img {
+            height: 300px;
         }
     }
 }

@@ -244,7 +244,7 @@
             "description": "官方赠送的 Credit，有效期视情况而定",
             "buttonText": "下载使用",
             "features": {
-                "newUserCredits": "新用户获赠 80 Credits（约等于80次请求）",
+                "newUserCredits": "新用户获赠 200 Credits（约等于200次请求）",
                 "freeCodeCompletion": "免费代码补全，有限使用次数",
                 "freeCodeReview": "免费 CodeReview，有限使用次数",
                 "advancedModelUnavailable": "高级模型不可用"
@@ -299,6 +299,7 @@
             "text1": "完成付费之后，返回 CoStrict 官方后台查看Credits到账情况（链接地址：链接到用量统计页面）",
             "text2": "工作日周一 至 周五的 9:30-20:30 工作时间保证半小时内充值到账，非工作日时间有所延长，用户可通过企微号联系客服迅速添加",
             "text3": "微信扫码可快速联系官方客服（手机端可长按识别二维码）",
+            "text4": "🎯 福利加码! 下单后，立即添加 CoStrict 小助手-蔻蔻，即可尊享【10% Credits 额外赠送】！更有 VIP 客户群专享技术服务等您解锁。",
             "contactCustomerService": "支付完成后请联系客服，告知客服本人的 CoStrict 的",
             "userId": "用户ID",
             "userIdKey": "（这是 Credits 能正常到账的关键）。",
@@ -331,6 +332,7 @@
         "today": "今天",
         "within7Days": "7天内",
         "within30Days": "30天内",
-        "packageBillingDescription": "套餐&计费说明 >>"
+        "packageBillingDescription": "套餐&计费说明 >>",
+        "tips": "🎯 部分模型夜间和周末半价，可以和auto模式九折叠加"
     }
 }

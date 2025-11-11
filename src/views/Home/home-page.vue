@@ -2,11 +2,27 @@
     <div class="home-page mt-12">
         <n-layout
             class="layout-container"
-            has-sider
+            :has-sider="!isMobileLayout"
         >
+            <!-- 移动端横向菜单 -->
+            <n-layout-header
+                v-if="isMobileLayout"
+                class="mobile-menu-header"
+            >
+                <n-menu
+                    class="horizontal-menu"
+                    mode="horizontal"
+                    :options="menuOptions"
+                    :value="activeMenuKey"
+                    @update:value="handleMenuSelect"
+                />
+            </n-layout-header>
+
+            <!-- 桌面端侧边栏菜单 -->
             <n-layout-sider
+                v-if="!isMobileLayout"
                 class="menu-sider"
-                :width="250"
+                width="15%"
                 :native-scrollbar="false"
             >
                 <n-menu
@@ -16,7 +32,7 @@
                     @update:value="handleMenuSelect"
                 />
             </n-layout-sider>
-            <n-layout-content class="content-area">
+            <n-layout-content class="content-area ml-2">
                 <div class="page-content">
                     <!-- 个人信息 -->
                     <section
@@ -210,9 +226,9 @@
 /**
  * @file home-page.vue
  */
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { NLayout, NLayoutSider, NLayoutContent, NMenu } from 'naive-ui';
+import { NLayout, NLayoutSider, NLayoutContent, NLayoutHeader, NMenu } from 'naive-ui';
 import CommonCard from '@/components/common-card.vue';
 import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue';
 import CreditCodeModal from './credit-code-modal.vue';
@@ -229,6 +245,24 @@ import usageConsumptionSection from './components/usage-consumption-section.vue'
 
 const { t, locale } = useI18n();
 const isZh = computed(() => locale.value === 'zh');
+
+// 响应式布局状态
+const isMobileLayout = ref(false);
+
+// 检查屏幕宽度
+const checkScreenWidth = () => {
+    isMobileLayout.value = window.innerWidth <= 1440;
+};
+
+// 监听窗口大小变化
+onMounted(() => {
+    checkScreenWidth();
+    window.addEventListener('resize', checkScreenWidth);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', checkScreenWidth);
+});
 
 // 使用菜单hook
 const {
@@ -385,17 +419,62 @@ watch(activeMenuKey, (newKey) => {
 
 <style scoped lang="less">
 .home-page {
-    width: 1600px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
+
+    // 移动端布局调整
+    @media (max-width: 1440px) {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
 
     .layout-container {
         flex: 1;
         display: flex;
         background: transparent;
         min-height: 0;
+
+        // 移动端上下布局
+        @media (max-width: 1440px) {
+            flex-direction: column;
+        }
+    }
+
+    // 移动端横向菜单样式
+    .mobile-menu-header {
+        background: rgba(0, 0, 0);
+        padding: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        .horizontal-menu {
+            background: transparent;
+            color: #fff;
+            height: 60px;
+
+            /deep/ .n-menu-item {
+                margin-right: 0;
+            }
+
+            /deep/ .n-menu-item-content {
+                opacity: 0.7;
+                padding: 12px 20px;
+                border-radius: 0;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                &--selected {
+                    opacity: 1;
+                }
+            }
+        }
     }
 
     .select-time__group {
@@ -443,12 +522,23 @@ watch(activeMenuKey, (newKey) => {
         overflow-y: auto;
         min-width: 0;
         box-sizing: border-box;
+
+        // 移动端内容区域调整
+        @media (max-width: 1440px) {
+            padding: 20px 0;
+        }
     }
 
     .page-content {
         width: 100%;
         max-width: 1300px;
         margin: 0 auto;
+
+        // 移动端页面内容调整
+        @media (max-width: 1440px) {
+            max-width: 100%;
+            padding: 0;
+        }
     }
 
     .usage,
