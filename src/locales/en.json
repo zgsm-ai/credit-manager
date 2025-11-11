@@ -240,86 +240,87 @@
     },
     "pricingPlans": {
         "personalFree": {
-            "title": "个人免费版",
-            "description": "官方赠送的 Credit，有效期视情况而定",
-            "buttonText": "下载使用",
+            "title": "Personal Free Version",
+            "description": "Officially gifted Credits, validity period varies depending on the situation",
+            "buttonText": "Download and Use",
             "features": {
-                "newUserCredits": "新用户获赠 80 Credits（约等于80次请求）",
-                "freeCodeCompletion": "免费代码补全，有限使用次数",
-                "freeCodeReview": "免费 CodeReview，有限使用次数",
-                "advancedModelUnavailable": "高级模型不可用"
+                "newUserCredits": "New users get 200 Credits (approximately equal to 200 requests)",
+                "freeCodeCompletion": "Free code completion, limited usage count",
+                "freeCodeReview": "Free CodeReview, limited usage count",
+                "advancedModelUnavailable": "Advanced models unavailable"
             }
         },
         "trafficPackage1": {
-            "title": "流量套餐1",
-            "description": "按实际使用用量扣除 Credit，有效期1年",
-            "buttonText": "立即购买",
+            "title": "Traffic Package 1",
+            "description": "Credits deducted based on actual usage, valid for 1 year",
+            "buttonText": "Buy Now",
             "features": {
-                "credits": "500 Credits（约等于500次请求）",
-                "freeCodeCompletion": "免费代码补全，有限使用",
-                "freeCodeReview": "免费代码审查，有限使用",
-                "advancedModelAvailable": "高级模型可用"
+                "credits": "500 Credits (approximately equal to 500 requests)",
+                "freeCodeCompletion": "Free code completion, limited usage",
+                "freeCodeReview": "Free code review, limited usage",
+                "advancedModelAvailable": "Advanced models available"
             }
         },
         "trafficPackage2": {
-            "title": "流量套餐2",
-            "description": "按实际使用用量扣除 Credit，有效期1年",
-            "buttonText": "立即购买",
+            "title": "Traffic Package 2",
+            "description": "Credits deducted based on actual usage, valid for 1 year",
+            "buttonText": "Buy Now",
             "features": {
-                "credits": "2000+额外赠送 100Credits（等于2100次请求）",
-                "freeCodeCompletion": "免费代码补全，无限使用",
-                "freeCodeReview": "免费代码审查，无限使用",
-                "advancedModelAvailable": "高级模型可用"
+                "credits": "2000 + extra 100 Credits (equal to 2100 requests)",
+                "freeCodeCompletion": "Free code completion, unlimited usage",
+                "freeCodeReview": "Free code review, unlimited usage",
+                "advancedModelAvailable": "Advanced models available"
             }
         },
         "trafficPackage3": {
-            "title": "流量套餐3",
-            "description": "按实际使用用量扣除 Credit，有效期1年",
-            "buttonText": "立即购买",
+            "title": "Traffic Package 3",
+            "description": "Credits deducted based on actual usage, valid for 1 year",
+            "buttonText": "Buy Now",
             "features": {
-                "credits": "5000+额外赠送 400Credits（等于5400次请求）",
-                "freeCodeCompletion": "免费代码补全，无限使用",
-                "freeCodeReview": "免费代码审查，无限使用",
-                "advancedModelAvailable": "高级模型可用"
+                "credits": "5000 + extra 400 Credits (equal to 5400 requests)",
+                "freeCodeCompletion": "Free code completion, unlimited usage",
+                "freeCodeReview": "Free code review, unlimited usage",
+                "advancedModelAvailable": "Advanced models available"
             }
         }
     },
     "guideSteps": {
         "step1": {
-            "title": "选择合适套餐，点击\"立即购买\"。跳转至 CoStrict 官方京东旗舰店。了解更多套餐详情可查看",
-            "packageLink": "套餐&计费说明 >>"
+            "title": "Select the appropriate package and click \"Buy Now\". You will be redirected to the CoStrict official JD flagship store. For more package details, please check",
+            "packageLink": "Package & Billing Description >>"
         },
         "step2": {
-            "title": "登录个人京东账号，查看 CoStrict 京东旗舰店商品详情，选择套餐和份数并支付。"
+            "title": "Log in to your personal JD account, view the product details at the CoStrict JD flagship store, select the package and quantity, and make payment."
         },
         "step3": {
-            "title": "用户ID查看：登录 CoStrict 后台管理页面（链接地址：",
-            "titleSuffix": "），复制用户ID。",
+            "title": "User ID viewing: Log in to the CoStrict backend management page (link: ",
+            "titleSuffix": "), copy the User ID.",
             "managementLink": "https://zgsm.sangfor.com/credit/manager/",
-            "text1": "完成付费之后，返回 CoStrict 官方后台查看Credits到账情况（链接地址：链接到用量统计页面）",
-            "text2": "工作日周一 至 周五的 9:30-20:30 工作时间保证半小时内充值到账，非工作日时间有所延长，用户可通过企微号联系客服迅速添加",
-            "text3": "微信扫码可快速联系官方客服（手机端可长按识别二维码）",
-            "contactCustomerService": "支付完成后请联系客服，告知客服本人的 CoStrict 的",
-            "userId": "用户ID",
-            "userIdKey": "（这是 Credits 能正常到账的关键）。",
-            "rechargeComplete": "充值完成后，用户可返回 CoStrict 官方后台查看 Credits 到账情况（链接地址：",
-            "rightParenthesis": "）"
+            "text1": "After completing the payment, return to the CoStrict official backend to check the Credits arrival status (link: to the usage statistics page)",
+            "text2": "During working hours from Monday to Friday, 9:30-20:30, we guarantee that the recharge will be completed within half an hour. The time may be extended during non-working hours. Users can contact customer service through the enterprise WeChat account for quick addition.",
+            "text3": "Scan the QR code with WeChat to quickly contact official customer service (mobile users can press and hold to recognize the QR code)",
+            "text4": "🎯 Extra Benefits! After placing an order, immediately add CoStrict Assistant - Koko to enjoy an additional [10% Credits bonus]! More VIP customer group exclusive technical services are waiting for you to unlock.",
+            "contactCustomerService": "After payment, please contact customer service and inform them of your CoStrict",
+            "userId": "User ID",
+            "userIdKey": "(This is the key to ensure Credits are properly credited to your account).",
+            "rechargeComplete": "After the recharge is completed, users can return to the CoStrict official backend to check the Credits arrival status (link: ",
+            "rightParenthesis": ")"
         }
     },
     "subscriptionSection": {
-        "subscriptionTitle": "订阅信息",
-        "billingDescription": "套餐&计费说明 >>",
-        "trafficLabel": "流量包",
-        "operationGuide": "操作指引",
-        "recordsTitle": "开通记录",
-        "totalItems": "共 {total} 条",
-        "orderNumber": "订单号",
-        "orderType": "订单类型",
-        "orderSource": "订单来源",
-        "purchaseCount": "购买个数",
-        "orderAmount": "订单金额",
-        "orderTime": "下单时间",
-        "validityPeriod": "有效期"
+        "subscriptionTitle": "Subscription Information",
+        "billingDescription": "Package & Billing Description >>",
+        "trafficLabel": "Traffic",
+        "operationGuide": "Operation Guide",
+        "recordsTitle": "Activation Records",
+        "totalItems": "Total {total} items",
+        "orderNumber": "Order Number",
+        "orderType": "Order Type",
+        "orderSource": "Order Source",
+        "purchaseCount": "Purchase Quantity",
+        "orderAmount": "Order Amount",
+        "orderTime": "Order Time",
+        "validityPeriod": "Validity Period"
     },
     "homePageUi": {
         "personalInfo": "Personal Information",
@@ -331,6 +332,7 @@
         "today": "Today",
         "within7Days": "Within 7 Days",
         "within30Days": "Within 30 Days",
-        "packageBillingDescription": "Package & Billing Description >>"
+        "packageBillingDescription": "Package & Billing Description >>",
+        "tips": "🎯 Some models are half-price at night and on weekends, which can be stacked with a 10% discount in auto mode"
     }
 }

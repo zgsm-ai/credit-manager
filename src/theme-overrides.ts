@@ -96,6 +96,9 @@ export const themeOverrides: GlobalThemeOverrides = {
         itemColorActive: 'rgba(255, 255, 255, 0.15)',
         itemColorHover: 'rgba(255, 255, 255, 0.15)',
         itemTextColorHover: 'rgba(255, 255, 255, 1)',
+        itemTextColorActiveHorizontal: 'rgba(255, 255, 255, 1)',
+        itemTextColorActiveHoverHorizontal: 'rgba(255, 255, 255, 1)',
+        itemTextColorHoverHorizontal: 'rgba(255, 255, 255, 1)',
     },
     Pagination: {
         itemTextColor: '#fff',

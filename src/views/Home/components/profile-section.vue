@@ -131,12 +131,13 @@ const handleCopyInviteCode = () => {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        column-gap: 40px;
+        row-gap: 10px;
 
         .item-account,
         .item-phone {
             display: flex;
             align-items: center;
-            margin-right: 40px;
 
             .label {
                 opacity: 0.7;
@@ -151,7 +152,6 @@ const handleCopyInviteCode = () => {
         .item-userId {
             display: flex;
             align-items: center;
-            margin-right: 40px;
 
             .label {
                 opacity: 0.7;
