@@ -69,9 +69,6 @@ export class AuthService {
                 // 设置新的 access_token
                 tokenManager.setToken(tokenResponse.data.access_token);
 
-                // 清理 URL 中的 state 参数
-                tokenManager.cleanUrlState();
-
                 // 获取用户信息
                 const userInfo = await userService.fetchUserInfo();
 
@@ -80,11 +77,17 @@ export class AuthService {
                 userStore.updateUserInfo(userInfo);
                 userStore.updateTokenInitialized(true);
 
+                // 清理 URL 中的 state 参数（在用户状态更新后再清理，确保所有异步操作完成）
+                setTimeout(() => {
+                    tokenManager.cleanUrlState();
+                }, 0);
+
                 return { success: true, user: userInfo };
             }
 
             return { success: false, error: 'Failed to get access token' };
-        } catch {
+        } catch (error) {
+            console.error('Hash token authentication failed:', error);
             const userStore = await this.getUserStore();
             userStore.setAuthError('Hash token authentication failed');
             return { success: false, error: 'Hash token authentication failed' };
