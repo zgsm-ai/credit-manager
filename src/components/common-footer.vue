@@ -100,6 +100,10 @@ const isRewardPlanPage = computed(() => router.currentRoute.value.path === '/cre
         margin-top: 12px;
         flex-wrap: wrap;
 
+        @media (max-width: 830px) {
+            flex-direction: column;
+        }
+
         p {
             display: flex;
             align-items: center;

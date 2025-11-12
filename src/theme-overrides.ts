@@ -99,6 +99,9 @@ export const themeOverrides: GlobalThemeOverrides = {
         itemTextColorActiveHorizontal: 'rgba(255, 255, 255, 1)',
         itemTextColorActiveHoverHorizontal: 'rgba(255, 255, 255, 1)',
         itemTextColorHoverHorizontal: 'rgba(255, 255, 255, 1)',
+        itemTextColorHorizontal: 'rgba(255, 255, 255, 0.7)',
+        itemTextColorChildActiveHorizontal: 'rgba(255, 255, 255, 0.7)',
+        itemTextColorChildActiveHoverHorizontal: 'rgba(255, 255, 255, 1)',
     },
     Pagination: {
         itemTextColor: '#fff',
@@ -122,5 +125,11 @@ export const themeOverrides: GlobalThemeOverrides = {
         fontSize: '12px',
         itemSize: '28px',
         itemMargin: '0 4px',
+    },
+    Dropdown: {
+        optionTextColor: 'rgba(255, 255, 255, 0.7)',
+        color: 'rgba(0, 0, 0, 0.7)',
+        optionTextColorActive: 'rgba(255, 255, 255, 1)',
+        optionTextColorHover: 'rgba(0, 0, 0, 0.7)',
     },
 };
