@@ -37,6 +37,10 @@ import { themeOverrides } from '@/theme-overrides';
         overflow: auto;
         padding: 0 48px;
         box-sizing: border-box;
+
+        @media (max-width: 480px) {
+            padding: 0;
+        }
     }
 }
 </style>

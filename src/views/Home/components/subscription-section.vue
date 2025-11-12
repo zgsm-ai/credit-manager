@@ -81,20 +81,19 @@
                         <li
                             v-for="(feature, featureIndex) in plan.features"
                             :key="featureIndex"
-                            class="mb-4"
+                            class="mb-4 last-of-type:mb-0"
                         >
                             <div class="flex items-start">
                                 <img
                                     v-if="feature.available"
                                     src="../../../assets/icon/y.svg"
                                     alt="available"
-                                    class="mt-1"
+                                    class="mt-0.5"
                                 />
                                 <img
                                     v-else
                                     src="../../../assets/icon/x.svg"
                                     alt="unavailable"
-                                    class="mt-1"
                                 />
                                 <p class="ml-2">{{ feature.text }}</p>
                             </div>
@@ -344,7 +343,7 @@ const toBillingDocs = () => {
         }
     }
     .content-version {
-        @media (max-width: 1320px) {
+        @media (max-width: 1200px) {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 

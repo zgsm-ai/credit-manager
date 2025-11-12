@@ -98,6 +98,7 @@ const isRewardPlanPage = computed(() => router.currentRoute.value.path === '/cre
         color: #a1a7b3;
         margin-bottom: 20px;
         margin-top: 12px;
+        flex-wrap: wrap;
 
         p {
             display: flex;
