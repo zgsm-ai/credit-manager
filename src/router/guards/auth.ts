@@ -1,6 +1,7 @@
 import type { Router } from 'vue-router';
 import { authService } from '@/services/auth';
 import { PUBLIC_ROUTES } from '@/router';
+import { tokenManager } from '@/utils/token';
 
 export function setupAuthGuard(router: Router) {
     router.beforeEach(async (to, from, next) => {
@@ -41,8 +42,11 @@ export function setupAuthGuard(router: Router) {
         }
     });
 
-    router.afterEach(() => {
-        // 可以在这里添加一些后置逻辑，比如页面标题更新等
-        // 目前暂时不需要特殊处理
+    router.afterEach((to) => {
+        // 在路由导航完成后，检查并清理URL中的state参数
+        // 这确保了即使在其他地方有导航操作，state参数也会被清理
+        if (to.query.state !== undefined) {
+            tokenManager.cleanUrlState();
+        }
     });
 }
