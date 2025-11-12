@@ -35,9 +35,13 @@
                     {{ phoneNumber || t('homePage.bindText') }}
                 </span>
             </div>
-            <div class="item-userId">
-                <div class="label">{{ t('homePage.userIdLabel') }}</div>
-                <span :class="{ 'ml-1': !isZh }">{{ userId || '-' }}</span>
+            <div class="item-userId max-w-[100%]">
+                <div class="label whitespace-nowrap">{{ t('homePage.userIdLabel') }}</div>
+                <span
+                    class="truncate flex-1"
+                    :class="{ 'ml-1': !isZh }"
+                    >{{ userId || '-' }}</span
+                >
                 <n-icon
                     v-if="userId"
                     size="14"

@@ -14,6 +14,7 @@
                     mode="horizontal"
                     :options="menuOptions"
                     :value="activeMenuKey"
+                    responsive
                     @update:value="handleMenuSelect"
                 />
             </n-layout-header>
@@ -452,28 +453,21 @@ watch(activeMenuKey, (newKey) => {
         padding: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-        .horizontal-menu {
-            background: transparent;
-            color: #fff;
-            height: 60px;
+        /deep/ .n-menu-item {
+            margin-right: 0;
+        }
 
-            /deep/ .n-menu-item {
-                margin-right: 0;
+        /deep/ .n-menu-item-content {
+            opacity: 0.7;
+            border-radius: 0;
+            transition: all 0.3s ease;
+
+            &:hover {
+                opacity: 1;
             }
 
-            /deep/ .n-menu-item-content {
-                opacity: 0.7;
-                padding: 12px 20px;
-                border-radius: 0;
-                transition: all 0.3s ease;
-
-                &:hover {
-                    opacity: 1;
-                }
-
-                &--selected {
-                    opacity: 1;
-                }
+            &--selected {
+                opacity: 1;
             }
         }
     }
