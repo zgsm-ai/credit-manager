@@ -127,7 +127,7 @@
         "invitationCodeText": "Please fill in the invitation code on the login/registration page. If missed, Credits cannot be distributed.",
         "exclusiveInvitationLink": "Exclusive invitation link:",
         "invitationCodeLabel": "Invitation Code: ",
-        "rulesTitle": "Invite new users to register, the new user will receive 250 Credits, and the inviter will receive 200 Credits",
+        "rulesTitle": "Invite new users to register, the new user will receive 500 Credits, and the inviter will receive 400 Credits",
         "operationGuideTitle": "New User Operation Guide",
         "operationGuideSubtitle": "(New users can follow the instructions to complete tasks)",
         "aboutCreditsTitle": "About Credits",

@@ -127,7 +127,7 @@
         "invitationCodeText": "请在登录注册页面填写邀请码，如果遗漏将导致 Credit 无法发放",
         "exclusiveInvitationLink": "专属邀请链接：",
         "invitationCodeLabel": "邀请码：",
-        "rulesTitle": "邀请新用户注册，新用户获250 Credits，邀请者获200 Credits",
+        "rulesTitle": "邀请新用户注册，新用户获500 Credits，邀请者获400 Credits",
         "operationGuideTitle": "新用户操作指引",
         "operationGuideSubtitle": "（新用户可参照指引完成任务）",
         "aboutCreditsTitle": "关于Credits",
