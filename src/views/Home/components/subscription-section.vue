@@ -282,6 +282,7 @@ const paginationConfig = computed(() => ({
         currentPage.value = 1; // 重置到第一页
         emit('update:pageSize', pageSize);
     },
+    simple: true,
 }));
 
 // 创建带有默认渲染函数的处理器

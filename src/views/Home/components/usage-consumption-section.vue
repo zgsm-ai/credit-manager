@@ -22,6 +22,7 @@
                 :page-sizes="[10, 20, 50]"
                 @update:page="handlePageChange"
                 @update:page-size="handlePageSizeChange"
+                simple
             />
         </div>
     </div>

@@ -1,5 +1,8 @@
 <template>
-    <div class="home-page mt-12">
+    <div
+        class="home-page mt-12"
+        :class="responsiveClass"
+    >
         <n-layout
             class="layout-container"
             :has-sider="!isMobileLayout"
@@ -133,7 +136,11 @@
                         <section class="usage-consumption mt-7">
                             <common-card>
                                 <template #header>
-                                    <div class="flex items-center">
+                                    <!-- 大屏幕布局 -->
+                                    <div
+                                        v-if="!isSmallScreen"
+                                        class="flex items-center"
+                                    >
                                         <span class="text-base">{{
                                             t('homePage.usageConsumptionTitle')
                                         }}</span>
@@ -174,10 +181,53 @@
                                             />
                                         </div>
                                     </div>
+
+                                    <!-- 小屏幕布局 -->
+                                    <div v-else>
+                                        <span class="text-base">{{
+                                            t('homePage.usageConsumptionTitle')
+                                        }}</span>
+                                        <div class="select-time__group mt-2">
+                                            <div
+                                                class="select-time__group-item text-xs cursor-pointer mr-1 opacity-70"
+                                                :class="{
+                                                    active: selectedTimeRange === 'today',
+                                                }"
+                                                @click="handleTimeRangeSelectWithReset('today')"
+                                            >
+                                                {{ t('homePageUi.today') }}
+                                            </div>
+                                            <div
+                                                class="select-time__group-item text-xs cursor-pointer mr-1 opacity-70"
+                                                :class="{
+                                                    active: selectedTimeRange === '7days',
+                                                }"
+                                                @click="handleTimeRangeSelectWithReset('7days')"
+                                            >
+                                                {{ t('homePageUi.within7Days') }}
+                                            </div>
+                                            <div
+                                                class="select-time__group-item text-xs cursor-pointer mr-1 opacity-70"
+                                                :class="{
+                                                    active: selectedTimeRange === '30days',
+                                                }"
+                                                @click="handleTimeRangeSelectWithReset('30days')"
+                                            >
+                                                {{ t('homePageUi.within30Days') }}
+                                            </div>
+                                            <custom-date-picker
+                                                v-model="customDateRangeFormatted"
+                                                :is-selected="selectedTimeRange === 'custom'"
+                                                @update:model-value="
+                                                    handleCustomDateRangeChangeWithReset
+                                                "
+                                            />
+                                        </div>
+                                    </div>
                                 </template>
                                 <template #header-extra>
                                     <span
-                                        class="billing-btn cursor-pointer ml-auto"
+                                        class="billing-btn cursor-pointer ml-auto whitespace-nowrap"
                                         @click="toBillingDocs"
                                         >{{ t('homePageUi.packageBillingDescription') }}</span
                                     >
@@ -227,7 +277,7 @@
 /**
  * @file home-page.vue
  */
-import { computed, ref, watch, onMounted, onUnmounted } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { NLayout, NLayoutSider, NLayoutContent, NLayoutHeader, NMenu } from 'naive-ui';
 import CommonCard from '@/components/common-card.vue';
@@ -242,28 +292,14 @@ import { useMenu, type MenuKey } from './hook/useMenu';
 import { useProfile } from './hook/useProfile';
 import { useSubscription } from './hook/useSubscription';
 import { useUsageStatistics } from './hook/useUsageStatistics';
+import { useResponsive } from './hook/useResponsive';
 import usageConsumptionSection from './components/usage-consumption-section.vue';
 
 const { t, locale } = useI18n();
 const isZh = computed(() => locale.value === 'zh');
 
-// 响应式布局状态
-const isMobileLayout = ref(false);
-
-// 检查屏幕宽度
-const checkScreenWidth = () => {
-    isMobileLayout.value = window.innerWidth <= 1440;
-};
-
-// 监听窗口大小变化
-onMounted(() => {
-    checkScreenWidth();
-    window.addEventListener('resize', checkScreenWidth);
-});
-
-onUnmounted(() => {
-    window.removeEventListener('resize', checkScreenWidth);
-});
+// 使用响应式布局hook
+const { isMobileLayout, isSmallScreen, responsiveClass } = useResponsive();
 
 // 使用菜单hook
 const {
@@ -491,6 +527,20 @@ watch(activeMenuKey, (newKey) => {
                 background-color: rgba(255, 255, 255, 0.2);
             }
         }
+
+        // 小屏幕布局调整
+        @media (max-width: 768px) {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .select-time__group-item {
+                margin-right: 0;
+                flex: 1;
+                min-width: 60px;
+                justify-content: center;
+            }
+        }
     }
 
     .menu-sider {
@@ -694,5 +744,39 @@ watch(activeMenuKey, (newKey) => {
 .modal-title {
     font-size: 14px;
     text-align: center;
+}
+
+/deep/.card-header-extra {
+    @media (max-width: 640px) {
+        align-self: baseline;
+        position: absolute;
+        right: 0;
+    }
+}
+
+// 英文版本的响应式样式
+&.responsive-en {
+    /deep/.card-header-extra {
+        @media (max-width: 830px) {
+            align-self: baseline;
+            position: absolute;
+            right: 0;
+        }
+    }
+    .select-time__group {
+        @media (max-width: 830px) {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .select-time__group-item {
+                margin-right: 0;
+                flex: 1;
+                min-width: 60px;
+                justify-content: center;
+                white-space: nowrap;
+            }
+        }
+    }
 }
 </style>
