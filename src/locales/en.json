@@ -330,9 +330,9 @@
         "subscription": "Subscription",
         "usageStatistics": "Usage Statistics",
         "today": "Today",
-        "within7Days": "Within 7 Days",
-        "within30Days": "Within 30 Days",
-        "packageBillingDescription": "Package & Billing Description >>",
+        "within7Days": "7 Days",
+        "within30Days": "30 Days",
+        "packageBillingDescription": "Package & Billing >>",
         "tips": "🎯 Some models are half-price at night and on weekends, which can be stacked with a 10% discount in auto mode"
     }
 }
