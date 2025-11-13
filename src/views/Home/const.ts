@@ -177,7 +177,7 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
     },
     {
         title: () =>
-            h('div', { class: 'flex' }, [
+            h('div', { class: 'flex flex-wrap' }, [
                 h('div', t('guideSteps.step3.contactCustomerService')),
                 h('div', { class: 'text-[#00FFC8] ml-1' }, t('guideSteps.step3.userId')),
                 h('div', t('guideSteps.step3.userIdKey')),
@@ -215,7 +215,7 @@ export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
                 h(
                     'p',
                     {
-                        class: 'text-white text-xs leading-5 flex',
+                        class: 'text-white text-xs leading-5 flex flex-wrap',
                     },
                     [
                         h('p', t('guideSteps.step3.rechargeComplete')),
