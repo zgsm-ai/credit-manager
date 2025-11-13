@@ -40,6 +40,7 @@
                 <span
                     class="truncate flex-1"
                     :class="{ 'ml-1': !isZh }"
+                    v-hover="userId"
                     >{{ userId || '-' }}</span
                 >
                 <n-icon

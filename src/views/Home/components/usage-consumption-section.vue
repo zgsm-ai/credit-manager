@@ -37,6 +37,7 @@ import { useI18n } from 'vue-i18n';
 import { NDataTable, NPagination } from 'naive-ui';
 import type { UsageConsumptionRecord } from '@/api/bos/quota.bo';
 import { formatDate } from '@/utils/date';
+import { withDefaultRender } from '../hook/useTableRender';
 
 const { t } = useI18n();
 
@@ -68,40 +69,39 @@ const handlePageSizeChange = (size: number) => {
     emit('update:pageSize', size);
 };
 
+const withDefaultColumnRender = withDefaultRender<UsageConsumptionRecord>();
+
 // 表格列配置
-const columns = computed(() => [
-    {
-        title: t('homePage.startTime'),
-        key: 'record_time',
-        width: 120,
-        render: (row: UsageConsumptionRecord) => formatDate(row.record_time),
-    },
-    {
-        title: t('homePage.model'),
-        key: 'model',
-        width: 120,
-    },
-    {
-        title: t('homePage.mode'),
-        key: 'mode',
-        width: 100,
-    },
-    // {
-    //     title: t('homePage.tokens'),
-    //     key: 'tokens',
-    //     width: 100,
-    // },
-    {
-        title: t('homePage.creditsUsed'),
-        key: 'credits_used',
-        width: 120,
-    },
-    {
-        title: t('homePage.package'),
-        key: 'package',
-        width: 120,
-    },
-]);
+const columns = computed(() =>
+    withDefaultColumnRender([
+        {
+            title: t('homePage.startTime'),
+            key: 'record_time',
+            width: 120,
+            render: (row: UsageConsumptionRecord) => formatDate(row.record_time),
+        },
+        {
+            title: t('homePage.model'),
+            key: 'model',
+            width: 120,
+        },
+        {
+            title: t('homePage.mode'),
+            key: 'mode',
+            width: 100,
+        },
+        {
+            title: t('homePage.creditsUsed'),
+            key: 'credits_used',
+            width: 120,
+        },
+        {
+            title: t('homePage.package'),
+            key: 'package',
+            width: 120,
+        },
+    ]),
+);
 </script>
 
 <style scoped lang="less">

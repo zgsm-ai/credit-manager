@@ -75,6 +75,7 @@ import { useI18n } from 'vue-i18n';
 import { NProgress, NCollapse, NCollapseItem, NDataTable } from 'naive-ui';
 import type { QuotaList } from '@/api/bos/quota.bo';
 import { formatDate } from '@/utils/date';
+import { withDefaultRender } from '../hook/useTableRender';
 
 const { t } = useI18n();
 
@@ -110,23 +111,26 @@ const remainingQuota = computed(() => {
     return props.totalQuota - props.usedQuota;
 });
 
+const withDefaultColumnRender = withDefaultRender<QuotaList>();
 // 表格列配置
-const columns = computed(() => [
-    {
-        title: t('homePage.expiryDate'),
-        key: 'expiry_date',
-        width: 280,
-        render: (row: QuotaList) => formatDate(row.expiry_date),
-    },
-    {
-        title: t('homePage.creditNum'),
-        key: 'amount',
-    },
-    {
-        title: t('homePage.source'),
-        key: 'source',
-    },
-]);
+const columns = computed(() =>
+    withDefaultColumnRender([
+        {
+            title: t('homePage.expiryDate'),
+            key: 'expiry_date',
+            width: 280,
+            render: (row: QuotaList) => formatDate(row.expiry_date),
+        },
+        {
+            title: t('homePage.creditNum'),
+            key: 'amount',
+        },
+        {
+            title: t('homePage.source'),
+            key: 'source',
+        },
+    ]),
+);
 
 // 方法
 const formatNumber = (num: number): string => {

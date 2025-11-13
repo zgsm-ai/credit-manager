@@ -226,6 +226,7 @@ import { formatDate } from '@/utils/date';
 import CommonCard from '@/components/common-card.vue';
 import type { Order } from '@/api/bos/quota.bo';
 import { useI18n } from 'vue-i18n';
+import { formatAmount, withDefaultRender } from '../hook/useTableRender';
 
 // 国际化
 const { t } = useI18n();
@@ -283,47 +284,58 @@ const paginationConfig = computed(() => ({
     },
 }));
 
+// 创建带有默认渲染函数的处理器
+const withDefaultColumnRender = withDefaultRender<Order>();
+
 // 开通记录表格列配置
-const recordColumns = computed(() => [
-    {
-        title: t('subscriptionSection.orderNumber'),
-        key: 'order_id',
-        width: 180,
-    },
-    {
-        title: t('subscriptionSection.orderType'),
-        key: 'quota_type',
-        width: 120,
-    },
-    {
-        title: t('subscriptionSection.orderSource'),
-        key: 'order_source',
-        width: 120,
-    },
-    {
-        title: t('subscriptionSection.purchaseCount'),
-        key: 'credit_count',
-        width: 100,
-    },
-    {
-        title: t('subscriptionSection.orderAmount'),
-        key: 'amount',
-        width: 120,
-        render: (row: Order) => `￥${row.amount}`,
-    },
-    {
-        title: t('subscriptionSection.orderTime'),
-        key: 'created_at',
-        width: 180,
-        render: (row: Order) => formatDate(row.created_at),
-    },
-    {
-        title: t('subscriptionSection.validityPeriod'),
-        key: 'credit_expire_date',
-        width: 180,
-        render: (row: Order) => formatDate(row.credit_expire_date),
-    },
-]);
+const recordColumns = computed(() =>
+    withDefaultColumnRender([
+        {
+            title: t('subscriptionSection.orderNumber'),
+            key: 'order_id',
+            width: 180,
+        },
+        {
+            title: t('subscriptionSection.orderType'),
+            key: 'quota_type',
+            width: 120,
+        },
+        {
+            title: t('subscriptionSection.orderSource'),
+            key: 'order_source',
+            width: 120,
+        },
+        {
+            title: t('subscriptionSection.purchaseCount'),
+            key: 'credit_count',
+            width: 100,
+        },
+        {
+            title: t('subscriptionSection.orderAmount'),
+            key: 'amount',
+            width: 120,
+            render: (row: Order) => formatAmount(row.amount, '￥'),
+        },
+        {
+            title: t('subscriptionSection.orderTime'),
+            key: 'created_at',
+            width: 180,
+            render: (row: Order) => {
+                const value = formatDate(row.created_at);
+                return value || '-';
+            },
+        },
+        {
+            title: t('subscriptionSection.validityPeriod'),
+            key: 'credit_expire_date',
+            width: 180,
+            render: (row: Order) => {
+                const value = formatDate(row.credit_expire_date);
+                return value || '-';
+            },
+        },
+    ]),
+);
 
 const toBillingDocs = () => {
     window.open('https://docs.costrict.ai/billing/purchase');
