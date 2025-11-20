@@ -161,7 +161,10 @@ const hoverDirective = {
                 checkAndHideTooltip();
             } else {
                 // 设置 1 秒延迟隐藏
-                el._hideTimer = window.setTimeout(checkAndHideTooltip, 1000);
+                // 使用类型断言确保兼容性
+                el._hideTimer = setTimeout(checkAndHideTooltip, 1000) as unknown as ReturnType<
+                    typeof setTimeout
+                >;
             }
         };
 

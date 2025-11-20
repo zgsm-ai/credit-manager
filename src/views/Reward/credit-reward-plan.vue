@@ -361,7 +361,7 @@ import RewardCard from './reward-card.vue';
 import CreditQaCard from './credit-qa-card.vue';
 import { CopyOutline } from '@vicons/ionicons5';
 import { NIcon, useMessage, NTimeline, NTimelineItem, NButton } from 'naive-ui';
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import OperationCard from './operation-card.vue';
@@ -416,14 +416,6 @@ const fetchLoginUrl = async () => {
     }
 };
 
-// 强制滚动到顶部的函数
-const forceScrollToTop = () => {
-    // 立即强制滚动到顶部
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-};
-
 // 从 URL 获取参数
 onMounted(() => {
     const invite = route.query.invite as string;
@@ -434,19 +426,6 @@ onMounted(() => {
 
     fetchLoginUrl();
 });
-
-// 监听路由变化，当路由变化时也滚动到顶部
-watch(
-    () => route.path,
-    (newPath, oldPath) => {
-        // 只有当路由确实发生变化时才执行滚动
-        if (newPath !== oldPath) {
-            // 立即执行
-            forceScrollToTop();
-        }
-    },
-    { immediate: true },
-);
 
 const copyCode = () => {
     copyToClipboard(inviteCode.value, {
