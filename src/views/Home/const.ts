@@ -2,13 +2,8 @@
  * @file home const
  */
 
-import { h } from 'vue';
-import type { GuideStep, PricingPlan } from './interface';
-import guideStep3Img1 from '../../assets/price/guide_step3_1.png';
-import guideStep3Img2 from '../../assets/price/guide_step3_2.png';
-import qrCode from '../../assets/price/qr_code.png';
-import jdService1Img from '../../assets/price/jd_service1.png';
-import jdService2Img from '../../assets/price/jd_service2.png';
+import type { Router } from 'vue-router';
+import type { PricingPlan } from './interface';
 
 export const BING_TYPE = {
     github: 'github',
@@ -32,8 +27,46 @@ export const TRANSFER_IN_STATUS = {
     alreadyRedeemed: 'ALREADY_REDEEMED',
 } as const;
 
+// 发票状态值常量
+export const INVOICE_STATUS = {
+    PENDING: 0, // 待开票
+    PROCESSING: 1, // 开票中
+    COMPLETED: 2, // 已开票
+    CANCELLED: 3, // 已作废
+} as const;
+
+// 发票相关常量生成函数，使用国际化
+export const getInvoiceConstants = (t: (key: string) => string) => ({
+    // 抬头类型
+    HEADER_TYPE: {
+        COMPANY: 'company',
+        PERSONAL: 'personal',
+    },
+    // 发票类型
+    INVOICE_TYPE: {
+        VAT: 'vat',
+        SPECIAL: 'special',
+    },
+    // 发票状态
+    STATUS: INVOICE_STATUS,
+    // 发票状态颜色
+    STATUS_COLORS: {
+        [INVOICE_STATUS.PENDING]: '#FFC300', // 待开票 - 橙色
+        [INVOICE_STATUS.PROCESSING]: '#4A90E2', // 开票中 - 蓝色
+        [INVOICE_STATUS.COMPLETED]: '#52C41A', // 已开票 - 绿色
+        [INVOICE_STATUS.CANCELLED]: '#8C8C8C', // 已作废 - 灰色
+    } as Record<number, string>,
+    // 发票状态文本
+    STATUS_TEXT: {
+        [INVOICE_STATUS.PENDING]: t('invoiceStatus.pending'),
+        [INVOICE_STATUS.PROCESSING]: t('invoiceStatus.processing'),
+        [INVOICE_STATUS.COMPLETED]: t('invoiceStatus.completed'),
+        [INVOICE_STATUS.CANCELLED]: t('invoiceStatus.cancelled'),
+    } as Record<number, string>,
+});
+
 // 套餐配置生成函数，使用国际化
-export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
+export const getPricingPlans = (t: (key: string) => string, router: Router): PricingPlan[] => [
     {
         title: t('pricingPlans.personalFree.title'),
         price: 0,
@@ -90,7 +123,12 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
             },
         ],
         clickEvent() {
-            window.open('https://item.jd.com/100295277058.html');
+            router.push({
+                path: '/subscribe',
+                query: {
+                    type: 1,
+                },
+            });
         },
     },
     {
@@ -120,7 +158,12 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
             },
         ],
         clickEvent() {
-            window.open('https://item.jd.com/100295277076.html');
+            router.push({
+                path: '/subscribe',
+                query: {
+                    type: 2,
+                },
+            });
         },
     },
     {
@@ -150,120 +193,12 @@ export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
             },
         ],
         clickEvent() {
-            window.open('https://item.jd.com/100295277048.html');
+            router.push({
+                path: '/subscribe',
+                query: {
+                    type: 3,
+                },
+            });
         },
-    },
-];
-
-// 引导步骤配置生成函数，使用国际化
-export const getGuideSteps = (t: (key: string) => string): GuideStep[] => [
-    {
-        title: () =>
-            h('div', { class: 'custom-title leading-5' }, [
-                h('span', t('guideSteps.step1.title')),
-                h(
-                    'a',
-                    {
-                        href: 'https://docs.costrict.ai/billing/purchase',
-                        style: 'color: #2A7FFF; margin-left: 4px; text-decoration: none;',
-                        target: '_blank',
-                    },
-                    t('guideSteps.step1.packageLink'),
-                ),
-            ]),
-    },
-    {
-        title: t('guideSteps.step2.title'),
-    },
-    {
-        title: () =>
-            h('div', { class: 'flex flex-wrap' }, [
-                h('div', t('guideSteps.step3.contactCustomerService')),
-                h('div', { class: 'text-[#00FFC8] ml-1' }, t('guideSteps.step3.userId')),
-                h('div', t('guideSteps.step3.userIdKey')),
-            ]),
-        imageTextPairs: [
-            {
-                imgUrl: () =>
-                    h('div', { class: 'flex mb-7 jd-step' }, [
-                        h('img', { src: jdService1Img, class: 'h-100' }),
-                        h('img', { src: jdService2Img, class: 'h-100 ml-2.5' }),
-                    ]),
-                text: () =>
-                    h('div', { class: 'text-white text-xs' }, [
-                        h('span', t('guideSteps.step3.title')),
-                        h(
-                            'a',
-                            {
-                                href: 'https://zgsm.sangfor.com/credit/manager/',
-                                target: '_blank',
-                                style: 'color: #2A7FFF; text-decoration: none;',
-                            },
-                            'https://zgsm.sangfor.com/credit/manager/',
-                        ),
-                        h('span', t('guideSteps.step3.titleSuffix')),
-                    ]),
-            },
-            {
-                imgUrl: guideStep3Img1,
-            },
-        ],
-    },
-    {
-        title: () =>
-            h('div', { class: 'custom-text' }, [
-                h(
-                    'p',
-                    {
-                        class: 'text-white text-xs leading-5 flex flex-wrap',
-                    },
-                    [
-                        h('p', t('guideSteps.step3.rechargeComplete')),
-                        h(
-                            'a',
-                            {
-                                href: 'https://zgsm.sangfor.com/credit/manager/?tab=usage',
-                                target: '_blank',
-                                style: 'color: #2A7FFF; text-decoration: none;',
-                            },
-                            'https://zgsm.sangfor.com/credit/manager/?tab=usage',
-                        ),
-                        h('span', t('guideSteps.step3.rightParenthesis')),
-                    ],
-                ),
-                h(
-                    'p',
-                    {
-                        class: 'text-white text-xs mt-1 leading-5 opacity-70',
-                    },
-                    t('guideSteps.step3.text2'),
-                ),
-            ]),
-        imageTextPairs: [
-            {
-                imgUrl: guideStep3Img2,
-                text: () =>
-                    h('div', { class: 'custom-text mt-2.5' }, [
-                        h(
-                            'p',
-                            {
-                                class: 'text-white text-xs leading-5 opacity-70',
-                            },
-                            t('guideSteps.step3.text3'),
-                        ),
-                        h(
-                            'p',
-                            {
-                                class: 'text-white text-xs leading-5 opacity-70',
-                            },
-                            t('guideSteps.step3.text4'),
-                        ),
-                        h('img', {
-                            src: qrCode,
-                            class: 'mt-2',
-                        }),
-                    ]),
-            },
-        ],
     },
 ];

@@ -320,7 +320,8 @@
         "purchaseCount": "购买个数",
         "orderAmount": "订单金额",
         "orderTime": "下单时间",
-        "validityPeriod": "有效期"
+        "validityPeriod": "有效期",
+        "invoiceStatus": "状态"
     },
     "homePageUi": {
         "personalInfo": "个人信息",
@@ -334,5 +335,144 @@
         "within30Days": "30天内",
         "packageBillingDescription": "套餐&计费说明 >>",
         "tips": "🎯 部分模型夜间和周末半价，可以和auto模式九折叠加"
+    },
+    "paymentMethods": {
+        "alipay": {
+            "name": "支付宝",
+            "description": "使用支付宝安全支付"
+        },
+        "wechat": {
+            "name": "微信支付",
+            "description": "使用微信安全支付"
+        },
+        "unionpay": {
+            "name": "银行卡",
+            "description": "使用银联卡支付"
+        }
+    },
+    "paymentModals": {
+        "paymentFailure": {
+            "title": "支付失败",
+            "tip": "请确认付款方式和订单后再试",
+            "returnButton": "返回"
+        },
+        "paymentSuccess": {
+            "title": "支付成功",
+            "tip": "预计支付成功后24小时内到账，扫码可快速加入官方售后群"
+        }
+    },
+    "subscribePage": {
+        "breadcrumb": {
+            "price": "价格",
+            "purchase": "购买"
+        },
+        "package": {
+            "description": "接实际使用用量扣除 Credit，有效期1年",
+            "unit": "/ 套"
+        },
+        "total": "共计：",
+        "paymentMethod": "支付方式",
+        "agreement": {
+            "prefix": "点击表示同意",
+            "linkText": "付费服务协议",
+            "modalTitle": "协议确认",
+            "modalContent": "请先阅读并同意",
+            "confirm": "同意",
+            "cancel": "取消"
+        },
+        "purchase": "购买",
+        "paymentModal": {
+            "title": "扫码支付",
+            "unit": "元",
+            "instruction": "请扫码完成支付",
+            "agreementText": "您已同意 CoStrict 付费服务协议",
+            "loading": "加载中...",
+            "qrCodeError": "二维码获取失败，请关闭弹窗后重新购买"
+        },
+        "testButtons": {
+            "simulateSuccess": "模拟支付成功",
+            "simulateFailure": "模拟支付失败"
+        },
+        "quantityPlaceholder": "请输入数量",
+        "quantityRulesMssage": "输入值不得小于0"
+    },
+    "invoiceModal": {
+        "title": "申请开具发票",
+        "tip": "电子发票与纸质发票具备同等法律效力，发票将在审核通过后 7个工作日内发送至您的邮箱",
+        "headerType": {
+            "label": "抬头类型：",
+            "company": "企业/单位",
+            "personal": "个人"
+        },
+        "invoiceType": {
+            "label": "发票类型：",
+            "vat": "增值税普通发票",
+            "special": "增值税专用发票"
+        },
+        "invoiceTitle": {
+            "label": "发票抬头",
+            "companyPlaceholder": "请输入企业/单位全称",
+            "personalValue": "个人"
+        },
+        "taxNumber": {
+            "label": "纳税人识别号：",
+            "placeholder": "请输入18位纳税人识别号"
+        },
+        "address": {
+            "label": "企业注册地址：",
+            "placeholder": "请输入单位地址"
+        },
+        "phone": {
+            "label": "企业注册电话：",
+            "placeholder": "请输入号码"
+        },
+        "bank": {
+            "label": "开户银行：",
+            "placeholder": "请输入开户银行"
+        },
+        "bankAccount": {
+            "label": "银行账号：",
+            "placeholder": "请输入银行账号"
+        },
+        "email": {
+            "label": "收票邮箱：",
+            "placeholder": "请输入邮箱账号，电子发票将发送至该邮箱"
+        },
+        "orderInfo": {
+            "orderNumber": "订单号：",
+            "amount": "金额：",
+            "content": "发票内容：",
+            "serviceFee": "软件服务费"
+        },
+        "buttons": {
+            "submit": "提交申请",
+            "cancel": "取消"
+        },
+        "validation": {
+            "selectHeaderType": "请选择抬头类型",
+            "selectInvoiceType": "请选择发票类型",
+            "enterEmail": "请输入收票邮箱",
+            "emailFormatInvalid": "请输入正确的邮箱格式",
+            "enterInvoiceTitle": "请输入发票抬头",
+            "taxNumberTooLong": "纳税人识别号不能超过18位",
+            "taxNumberDigitsOnly": "纳税人识别号只能包含数字",
+            "invoiceTitleEmpty": "发票抬头不能为空"
+        },
+        "submitSuccess": "提交申请成功",
+        "submitFailed": "提交申请失败"
+    },
+    "subscriptionComments": {
+        "subscriptionInfo": "订阅信息",
+        "operationGuide": "操作指引",
+        "activationRecords": "开通记录",
+        "invoiceModal": "发票弹窗",
+        "operation": "操作",
+        "goToInvoice": "去开票"
+    },
+    "invoiceStatus": {
+        "pending": "待开票",
+        "processing": "开票中",
+        "completed": "已开票",
+        "cancelled": "已作废"
     }
 }

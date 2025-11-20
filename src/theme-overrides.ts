@@ -2,7 +2,7 @@ import { type GlobalThemeOverrides } from 'naive-ui';
 
 export const themeOverrides: GlobalThemeOverrides = {
     Checkbox: {
-        colorChecked: '#000',
+        colorChecked: '#1770E6',
         borderChecked: '1px solid rgba(255, 255, 255, 0.2)',
         borderFocus: 'rgba(255, 255, 255, 0.2)',
         boxShadowFocus: '#fff',
@@ -131,5 +131,19 @@ export const themeOverrides: GlobalThemeOverrides = {
         color: 'rgba(0, 0, 0, 0.7)',
         optionTextColorActive: 'rgba(255, 255, 255, 1)',
         optionTextColorHover: 'rgba(0, 0, 0, 0.7)',
+    },
+    Breadcrumb: {
+        itemTextColorActive: '#fff',
+        itemTextColor: '#84878C',
+    },
+    Divider: {
+        color: 'rgba(255, 255, 255, 0.3)',
+    },
+    Radio: {
+        dotColorActive: '#fff',
+        colorActive: '#1770E6',
+        boxShadowActive: '#1770E6',
+        boxShadowHover: '#fff',
+        boxShadowFocus: '#1770E6',
     },
 };

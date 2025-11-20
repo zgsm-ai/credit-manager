@@ -102,100 +102,6 @@
                 </div>
             </div>
         </div>
-        <!-- 操作指引 -->
-        <div class="subscription-operation mt-2.5">
-            <n-collapse
-                :default-expanded-names="[]"
-                arrow-placement="right"
-            >
-                <n-collapse-item name="operation-guide">
-                    <template #header>
-                        <div class="flex items-center">
-                            <img
-                                src="../../../assets/price/light.svg"
-                                alt=""
-                                class="w-4"
-                            />
-                            <span class="ml-1">{{ t('subscriptionSection.operationGuide') }}</span>
-                        </div>
-                    </template>
-                    <!-- 展开的内容后续补充 -->
-                    <div class="operation-content">
-                        <!-- 这里后续添加操作指引的具体内容 -->
-                        <n-timeline :icon-size="20">
-                            <n-timeline-item
-                                v-for="(step, index) in guideSteps"
-                                :key="index"
-                                :title="typeof step.title === 'function' ? undefined : step.title"
-                                line-type="dashed"
-                                color="#4083E8"
-                            >
-                                <template #icon>
-                                    <div class="timeline-icon">{{ index + 1 }}</div>
-                                </template>
-                                <template
-                                    #header
-                                    v-if="typeof step.title === 'function'"
-                                >
-                                    <component :is="step.title" />
-                                </template>
-                                <div class="step-wrapper">
-                                    <div class="step-content-area">
-                                        <div
-                                            class="step-content"
-                                            v-if="step.content"
-                                        >
-                                            <component
-                                                v-if="typeof step.content === 'function'"
-                                                :is="step.content"
-                                            />
-                                            <template v-else>{{ step.content }}</template>
-                                        </div>
-                                    </div>
-                                    <div
-                                        v-if="step.imageTextPairs && step.imageTextPairs.length > 0"
-                                        class="image-text-pairs"
-                                    >
-                                        <div
-                                            v-for="(pair, pairIndex) in step.imageTextPairs"
-                                            :key="pairIndex"
-                                            class="image-text-item"
-                                        >
-                                            <component
-                                                v-if="pair.imgUrl"
-                                                :is="
-                                                    typeof pair.imgUrl === 'function'
-                                                        ? pair.imgUrl
-                                                        : 'img'
-                                                "
-                                                :src="
-                                                    typeof pair.imgUrl === 'string'
-                                                        ? pair.imgUrl
-                                                        : undefined
-                                                "
-                                                :alt="
-                                                    typeof pair.text === 'function'
-                                                        ? undefined
-                                                        : pair.text
-                                                "
-                                                class="step-image"
-                                            />
-                                            <div class="image-text">
-                                                <component
-                                                    v-if="typeof pair.text === 'function'"
-                                                    :is="pair.text"
-                                                />
-                                                <template v-else>{{ pair.text }}</template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </n-timeline-item>
-                        </n-timeline>
-                    </div>
-                </n-collapse-item>
-            </n-collapse>
-        </div>
         <!-- 开通记录 -->
         <div class="subscription-records mt-9">
             <common-card :title="t('subscriptionSection.recordsTitle')">
@@ -211,6 +117,14 @@
                 />
             </common-card>
         </div>
+
+        <!-- 发票弹窗 -->
+        <invoice-modal
+            v-model:show="showInvoiceModal"
+            :order-no="currentOrder?.order_id"
+            :amount="currentOrder?.amount"
+            @invoice-submitted="handleInvoiceSubmitted"
+        />
     </div>
 </template>
 
@@ -219,23 +133,32 @@
  * @file subscription-section.vue
  * @description 订阅管理组件 - 显示订阅管理的基本信息
  */
-import { computed, ref } from 'vue';
-import { getPricingPlans, getGuideSteps } from '../const';
-import { NCollapse, NCollapseItem, NTimeline, NTimelineItem, NDataTable } from 'naive-ui';
+import { computed, h, ref } from 'vue';
+import { getPricingPlans, getInvoiceConstants } from '../const';
+import { NDataTable } from 'naive-ui';
 import { formatDate } from '@/utils/date';
 import CommonCard from '@/components/common-card.vue';
+import InvoiceModal from './invoice-modal.vue';
 import type { Order } from '@/api/bos/quota.bo';
 import { useI18n } from 'vue-i18n';
 import { formatAmount, withDefaultRender } from '../hook/useTableRender';
+import { useRouter } from 'vue-router';
 
 // 国际化
 const { t } = useI18n();
 
-// 计算国际化的价格计划
-const pricingPlans = computed(() => getPricingPlans(t));
+// 控制发票弹窗显示
+const showInvoiceModal = ref(false);
+// 当前选中的订单信息
+const currentOrder = ref<{ order_id: string; amount: number } | null>(null);
 
-// 计算国际化的引导步骤
-const guideSteps = computed(() => getGuideSteps(t));
+const router = useRouter();
+
+// 计算国际化的价格计划
+const pricingPlans = computed(() => getPricingPlans(t, router));
+
+// 计算国际化的发票常量
+const invoiceConstants = computed(() => getInvoiceConstants(t));
 
 // Props 定义
 const props = withDefaults(
@@ -263,6 +186,7 @@ const pageSizeRef = ref(props.pageSize);
 const emit = defineEmits<{
     'update:page': [page: number];
     'update:pageSize': [pageSize: number];
+    'refresh-orders': [];
 }>();
 
 // 分页配置
@@ -294,33 +218,28 @@ const recordColumns = computed(() =>
         {
             title: t('subscriptionSection.orderNumber'),
             key: 'order_id',
-            width: 180,
+            minWidth: 180,
         },
         {
             title: t('subscriptionSection.orderType'),
             key: 'quota_type',
-            width: 120,
         },
         {
             title: t('subscriptionSection.orderSource'),
             key: 'order_source',
-            width: 120,
         },
         {
             title: t('subscriptionSection.purchaseCount'),
             key: 'credit_count',
-            width: 100,
         },
         {
             title: t('subscriptionSection.orderAmount'),
             key: 'amount',
-            width: 120,
             render: (row: Order) => formatAmount(row.amount, '￥'),
         },
         {
             title: t('subscriptionSection.orderTime'),
             key: 'created_at',
-            width: 180,
             render: (row: Order) => {
                 const value = formatDate(row.created_at);
                 return value || '-';
@@ -329,10 +248,54 @@ const recordColumns = computed(() =>
         {
             title: t('subscriptionSection.validityPeriod'),
             key: 'credit_expire_date',
-            width: 180,
             render: (row: Order) => {
                 const value = formatDate(row.credit_expire_date);
                 return value || '-';
+            },
+        },
+        {
+            title: t('subscriptionSection.invoiceStatus'),
+            key: 'invoice_status',
+            render: (row: Order) => {
+                const statusText = invoiceConstants.value.STATUS_TEXT[row.invoice_status] || '-';
+                const statusColor =
+                    invoiceConstants.value.STATUS_COLORS[row.invoice_status] || '#FF4D4F';
+
+                return h(
+                    'span',
+                    {
+                        style: {
+                            color: statusColor,
+                            fontWeight: '500',
+                        },
+                    },
+                    statusText,
+                );
+            },
+        },
+        {
+            title: t('subscriptionComments.operation'),
+            key: 'operation',
+            render: (row: Order) => {
+                // 只有待开票状态才能进行开票操作
+                const canInvoice = row.invoice_status === invoiceConstants.value.STATUS.PENDING;
+
+                return h(
+                    'div',
+                    {
+                        class: canInvoice ? 'cursor-pointer text-[#4D99FF]' : 'text-[#999999]',
+                        onClick: canInvoice
+                            ? () => {
+                                  currentOrder.value = {
+                                      order_id: row.order_id,
+                                      amount: row.amount,
+                                  };
+                                  showInvoiceModal.value = true;
+                              }
+                            : undefined,
+                    },
+                    t('subscriptionComments.goToInvoice'),
+                );
             },
         },
     ]),
@@ -340,6 +303,12 @@ const recordColumns = computed(() =>
 
 const toBillingDocs = () => {
     window.open('https://docs.costrict.ai/billing/purchase');
+};
+
+// 处理发票提交成功事件
+const handleInvoiceSubmitted = () => {
+    // 通知父组件刷新订单数据
+    emit('refresh-orders');
 };
 </script>
 
@@ -513,26 +482,6 @@ const toBillingDocs = () => {
 
         .n-base-loading__icon {
             color: #1876f2;
-        }
-    }
-}
-/deep/.jd-step {
-    @media (max-width: 968px) {
-        flex-direction: column;
-
-        img {
-            align-self: start;
-        }
-
-        img:last-of-type {
-            margin-top: 10px;
-            margin-left: 0;
-        }
-    }
-
-    @media (max-width: 768px) {
-        img {
-            height: 300px;
         }
     }
 }
