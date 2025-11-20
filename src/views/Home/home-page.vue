@@ -96,6 +96,7 @@
                             :loading="ordersLoading"
                             @update:page="handleOrdersPageChange"
                             @update:pageSize="handleOrdersPageSizeChange"
+                            @refresh-orders="fetchOrders"
                         />
                     </section>
 
@@ -489,11 +490,11 @@ watch(activeMenuKey, (newKey) => {
         padding: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-        /deep/ .n-menu-item {
+        :deep(.n-menu-item) {
             margin-right: 0;
         }
 
-        /deep/ .n-menu-item-content {
+        :deep(.n-menu-item-content) {
             opacity: 0.7;
             border-radius: 0;
             transition: all 0.3s ease;
@@ -552,11 +553,11 @@ watch(activeMenuKey, (newKey) => {
             height: 100%;
         }
 
-        /deep/.n-menu-item-content {
+        :deep(.n-menu-item-content) {
             opacity: 0.7;
         }
 
-        /deep/.n-menu-item-content--selected {
+        :deep(.n-menu-item-content--selected) {
             opacity: 1;
         }
     }
@@ -746,7 +747,7 @@ watch(activeMenuKey, (newKey) => {
     text-align: center;
 }
 
-/deep/.card-header-extra {
+:deep(.card-header-extra) {
     @media (max-width: 640px) {
         align-self: baseline;
         position: absolute;
@@ -756,7 +757,7 @@ watch(activeMenuKey, (newKey) => {
 
 // 英文版本的响应式样式
 &.responsive-en {
-    /deep/.card-header-extra {
+    :deep(.card-header-extra) {
         @media (max-width: 830px) {
             align-self: baseline;
             position: absolute;

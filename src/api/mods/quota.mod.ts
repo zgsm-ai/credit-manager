@@ -18,10 +18,17 @@ import type {
     GetUserInfoRes,
     GetUserQuotaRes,
     GetUserTokenRes,
+    PostCreateOrderReq,
+    PostCreateOrderRes,
+    PostPaymentQrcodeReq,
+    PostPaymentQrcodeRes,
+    PostCreateInvoiceReq,
+    PostCreateInvoiceRes,
     PostQuotaTransferInReq,
     PostQuotaTransferInRes,
     PostQuotaTransferOutReq,
     PostQuotaTransferOutRes,
+    Order,
 } from '../bos/quota.bo';
 
 export interface ApiResponse<T = unknown> {
@@ -82,4 +89,26 @@ export const getUsageStatistics = (
 
 export const getOrders = (params: GetOrdersReq): Promise<ApiResponse<GetOrdersRes>> => {
     return get('/quota-order-manager/api/v1/orders', params);
+};
+
+export const postCreateOrder = (
+    params: PostCreateOrderReq,
+): Promise<ApiResponse<PostCreateOrderRes>> => {
+    return post('/quota-order-manager/api/v1/orders', params);
+};
+
+export const postPaymentQrcode = (
+    params: PostPaymentQrcodeReq,
+): Promise<ApiResponse<PostPaymentQrcodeRes>> => {
+    return post('/quota-order-manager/api/v1/payment/initiate', params);
+};
+
+export const postCreateInvoice = (
+    params: PostCreateInvoiceReq,
+): Promise<ApiResponse<PostCreateInvoiceRes>> => {
+    return post('/quota-order-manager/api/v1/invoices', params);
+};
+
+export const getOrderById = (orderId: string): Promise<ApiResponse<Order>> => {
+    return get(`/quota-order-manager/api/v1/orders/${orderId}`);
 };

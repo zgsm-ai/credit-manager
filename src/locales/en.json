@@ -320,7 +320,8 @@
         "purchaseCount": "Purchase Quantity",
         "orderAmount": "Order Amount",
         "orderTime": "Order Time",
-        "validityPeriod": "Validity Period"
+        "validityPeriod": "Validity Period",
+        "invoiceStatus": "Invoice Status"
     },
     "homePageUi": {
         "personalInfo": "Personal Information",
@@ -334,5 +335,144 @@
         "within30Days": "30 Days",
         "packageBillingDescription": "Package & Billing >>",
         "tips": "🎯 Some models are half-price at night and on weekends, which can be stacked with a 10% discount in auto mode"
+    },
+    "paymentMethods": {
+        "alipay": {
+            "name": "Alipay",
+            "description": "Pay securely with Alipay"
+        },
+        "wechat": {
+            "name": "WeChat Pay",
+            "description": "Pay securely with WeChat Pay"
+        },
+        "unionpay": {
+            "name": "UnionPay",
+            "description": "Pay with UnionPay card"
+        }
+    },
+    "paymentModals": {
+        "paymentFailure": {
+            "title": "Payment Failed",
+            "tip": "Please confirm your payment method and order before trying again",
+            "returnButton": "Return"
+        },
+        "paymentSuccess": {
+            "title": "Payment Successful",
+            "tip": "Credits will be credited to your account within 24 hours after successful payment. Scan the QR code to quickly join the official after-sales group"
+        }
+    },
+    "subscribePage": {
+        "breadcrumb": {
+            "price": "Price",
+            "purchase": "Purchase"
+        },
+        "package": {
+            "description": "Credits deducted based on actual usage, valid for 1 year",
+            "unit": "/ pack"
+        },
+        "total": "Total: ",
+        "paymentMethod": "Payment Method",
+        "agreement": {
+            "prefix": "Click to agree to",
+            "linkText": "Paid Service Agreement",
+            "modalTitle": "Agreement Confirmation",
+            "modalContent": "Please read and agree",
+            "confirm": "Agree",
+            "cancel": "Cancel"
+        },
+        "purchase": "Purchase",
+        "paymentModal": {
+            "title": "Scan to Pay",
+            "unit": " yuan",
+            "instruction": "Please scan to complete payment",
+            "agreementText": "You have agreed to the CoStrict Paid Service Agreement",
+            "loading": "Loading...",
+            "qrCodeError": "Failed to get QR code, please close the modal and try again"
+        },
+        "testButtons": {
+            "simulateSuccess": "Simulate Payment Success",
+            "simulateFailure": "Simulate Payment Failure"
+        },
+        "quantityPlaceholder": "Please enter quantity",
+        "quantityRulesMssage": "The input value must not be less than 0"
+    },
+    "invoiceModal": {
+        "title": "Invoice Application",
+        "tip": "Electronic invoices have the same legal effect as paper invoices. Invoices will be sent to your email within 7 working days after approval.",
+        "headerType": {
+            "label": "Header Type:",
+            "company": "Company/Organization",
+            "personal": "Personal"
+        },
+        "invoiceType": {
+            "label": "Invoice Type:",
+            "vat": "VAT General Invoice",
+            "special": "VAT Special Invoice"
+        },
+        "invoiceTitle": {
+            "label": "Invoice Title",
+            "companyPlaceholder": "Please enter the full name of the company/organization",
+            "personalValue": "Personal"
+        },
+        "taxNumber": {
+            "label": "Tax Identification Number:",
+            "placeholder": "Please enter 18-digit tax identification number"
+        },
+        "address": {
+            "label": "Company Registration Address:",
+            "placeholder": "Please enter the organization address"
+        },
+        "phone": {
+            "label": "Company Registration Phone:",
+            "placeholder": "Please enter the phone number"
+        },
+        "bank": {
+            "label": "Bank Name:",
+            "placeholder": "Please enter the bank name"
+        },
+        "bankAccount": {
+            "label": "Bank Account:",
+            "placeholder": "Please enter the bank account"
+        },
+        "email": {
+            "label": "Invoice Email:",
+            "placeholder": "Please enter your email address, electronic invoices will be sent to this email"
+        },
+        "orderInfo": {
+            "orderNumber": "Order Number:",
+            "amount": "Amount:",
+            "content": "Invoice Content:",
+            "serviceFee": "Software Service Fee"
+        },
+        "buttons": {
+            "submit": "Submit Application",
+            "cancel": "Cancel"
+        },
+        "validation": {
+            "selectHeaderType": "Please select header type",
+            "selectInvoiceType": "Please select invoice type",
+            "enterEmail": "Please enter invoice email",
+            "emailFormatInvalid": "Please enter a valid email format",
+            "enterInvoiceTitle": "Please enter invoice title",
+            "taxNumberTooLong": "Tax identification number cannot exceed 18 digits",
+            "taxNumberDigitsOnly": "Tax identification number can only contain digits",
+            "invoiceTitleEmpty": "Invoice title cannot be empty"
+        },
+        "submitSuccess": "Application submitted successfully",
+        "submitFailed": "Failed to submit application"
+    },
+    "subscriptionComments": {
+        "subscriptionInfo": "Subscription Information",
+        "operationGuide": "Operation Guide",
+        "activationRecords": "Activation Records",
+        "invoiceModal": "Invoice Modal",
+        "operation": "Operation",
+        "goToInvoice": "Go to Invoice"
+    },
+    "invoiceStatus": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
     }
 }

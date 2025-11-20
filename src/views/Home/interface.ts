@@ -42,3 +42,21 @@ export interface ImageTextPair {
     imgUrl?: string | (() => VNode);
     text?: string | (() => VNode);
 }
+
+export interface InvoiceModalProps {
+    show: boolean;
+    orderNo?: string;
+    amount?: number | null;
+}
+
+export interface InvoiceModalFormData {
+    headerType: string;
+    invoiceType: string;
+    title: string;
+    taxNumber: string;
+    address: string;
+    phone: string;
+    bank: string;
+    bankAccount: string;
+    email: string;
+}

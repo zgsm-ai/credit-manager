@@ -168,6 +168,9 @@ export interface Order {
     credit_expire_date: string;
     created_at: string;
     updated_at: string;
+    invoice_status: number;
+    description: string;
+    jd_order_id: string;
 }
 
 export interface GetOrdersRes {
@@ -175,4 +178,85 @@ export interface GetOrdersRes {
     total: number;
     limit: number;
     offset: number;
+}
+
+export interface PostCreateOrderReq {
+    quota_type: string;
+    quantity?: number;
+}
+
+export interface PostCreateOrderRes {
+    id: number;
+    order_id: string;
+    user_id: string;
+    amount: number;
+    credit_count: number;
+    credit_expire_date: string;
+    status: string;
+    quota_type: string;
+    description: string;
+    order_source: string;
+    jd_order_id: string;
+    invoice_status: number;
+    created_at: string;
+    updated_at: string;
+}
+
+export type TPaymentChannel = 'CMB' | 'WECHAT' | 'ALIPAY';
+
+export interface PostPaymentQrcodeReq {
+    order_id: string;
+    payment_channel: TPaymentChannel;
+}
+
+export interface PostPaymentQrcodeRes {
+    version: string;
+    encoding: string;
+    sign: string;
+    signMethod: string;
+    returnCode: string;
+    respCode: string;
+    qrCode: string;
+    cmbOrderId: string;
+    txnTime: string;
+    biz_content: {
+        merId: string;
+        orderId: string;
+        cmbOrderId: string;
+        qrCode: string;
+        txnTime: string;
+    };
+}
+
+export interface PostCreateInvoiceReq {
+    title_type: 1 | 2;
+    invoice_type: 1 | 2;
+    invoice_title: string;
+    taxpayer_id?: string;
+    company_address?: string;
+    company_phone?: string;
+    bank_name?: string;
+    bank_account?: string;
+    receive_email: string;
+    order_id: string;
+    invoice_content: string;
+}
+
+export interface PostCreateInvoiceRes {
+    invoice_id: number;
+    title_type: number;
+    invoice_type: number;
+    invoice_title: string;
+    taxpayer_id?: string;
+    company_address?: string;
+    company_phone?: string;
+    bank_name?: string;
+    bank_account?: string;
+    receive_email: string;
+    order_id: string;
+    amount: number;
+    invoice_content: string;
+    invoice_status: number;
+    apply_time: string;
+    issue_time?: string;
 }
