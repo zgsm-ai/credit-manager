@@ -160,8 +160,8 @@ const fetchPaymentQrcode = async () => {
         isLoadingQrcode.value = false;
     });
 
-    if (response.code === 200 && response.data.biz_content.qrCode) {
-        qrCodeData.value = response.data.biz_content.qrCode;
+    if (response.code === 200 && response.data.qrCode) {
+        qrCodeData.value = response.data.qrCode;
     } else {
         qrCodeData.value = '';
     }
