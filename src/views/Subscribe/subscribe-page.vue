@@ -3,7 +3,7 @@
         <!-- 面包屑导航 -->
         <div class="breadcrumb-container">
             <n-breadcrumb separator=">">
-                <n-breadcrumb-item href="/?tab=subscription">{{
+                <n-breadcrumb-item href="/credit/manager/?tab=subscription">{{
                     $t('subscribePage.breadcrumb.price')
                 }}</n-breadcrumb-item>
                 <n-breadcrumb-item>{{ $t('subscribePage.breadcrumb.purchase') }}</n-breadcrumb-item>
@@ -276,7 +276,6 @@ const {
 .subscribe-page {
     width: 44%;
     margin: auto;
-    min-height: 100vh;
     color: #fff;
 }
 
