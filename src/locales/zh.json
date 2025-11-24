@@ -320,8 +320,8 @@
         "purchaseCount": "购买个数",
         "orderAmount": "订单金额",
         "orderTime": "下单时间",
-        "validityPeriod": "有效期",
-        "invoiceStatus": "状态"
+        "validityPeriod": "过期时间",
+        "invoiceStatus": "发票状态"
     },
     "homePageUi": {
         "personalInfo": "个人信息",

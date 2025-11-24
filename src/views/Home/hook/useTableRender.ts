@@ -25,6 +25,7 @@ export function withDefaultRender<T = Record<string, unknown>>(defaultValue = '-
 
             // 为没有 render 函数的列添加默认渲染逻辑
             return {
+                width: 120,
                 ...column,
                 render: (row: T): VNodeChild => {
                     const value = row[column.key as keyof T];
