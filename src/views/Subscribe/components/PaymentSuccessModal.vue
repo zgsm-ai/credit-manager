@@ -65,6 +65,7 @@
  */
 import { NModal, NButton, NIcon } from 'naive-ui';
 import { CloseOutline } from '@vicons/ionicons5';
+import { useRouter } from 'vue-router';
 
 interface Props {
     modelValue: boolean;
@@ -77,11 +78,18 @@ interface Emits {
 
 defineProps<Props>();
 const emit = defineEmits<Emits>();
+const router = useRouter();
 
 // 关闭弹窗
 const handleClose = () => {
     emit('update:modelValue', false);
-    emit('close');
+    // emit('close');
+    router.push({
+        path: '/',
+        query: {
+            tab: 'subscription',
+        },
+    });
 };
 </script>
 

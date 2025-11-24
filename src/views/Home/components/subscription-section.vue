@@ -114,6 +114,7 @@
                     :loading="loading"
                     :pagination="paginationConfig"
                     remote
+                    :scroll-x="scrollX"
                 />
             </common-card>
         </div>
@@ -143,6 +144,7 @@ import type { Order } from '@/api/bos/quota.bo';
 import { useI18n } from 'vue-i18n';
 import { formatAmount, withDefaultRender } from '../hook/useTableRender';
 import { useRouter } from 'vue-router';
+import newOrderIcon from '@/assets/price/new_order_icon.webp';
 
 // 国际化
 const { t } = useI18n();
@@ -212,21 +214,36 @@ const paginationConfig = computed(() => ({
 // 创建带有默认渲染函数的处理器
 const withDefaultColumnRender = withDefaultRender<Order>();
 
+const isSmallScreen = computed(() => window.innerWidth <= 1366);
+
+const scrollX = computed(() => (isSmallScreen.value ? '1000' : '90%'));
+
 // 开通记录表格列配置
 const recordColumns = computed(() =>
     withDefaultColumnRender([
         {
             title: t('subscriptionSection.orderNumber'),
             key: 'order_id',
-            minWidth: 180,
+            render: (row: Order, index: number) => {
+                // 判断是否是第一条数据且第一页
+                const isFirstItemAndFirstPage = index === 0 && currentPage.value === 1;
+
+                return h('div', { class: 'flex items-end' }, [
+                    h('span', { class: 'text-nowrap' }, row.order_id),
+                    isFirstItemAndFirstPage
+                        ? h('img', {
+                              src: newOrderIcon,
+                              class: 'mb-0.5',
+                              alt: 'new order',
+                          })
+                        : null,
+                ]);
+            },
+            width: 220,
         },
         {
             title: t('subscriptionSection.orderType'),
             key: 'quota_type',
-        },
-        {
-            title: t('subscriptionSection.orderSource'),
-            key: 'order_source',
         },
         {
             title: t('subscriptionSection.purchaseCount'),

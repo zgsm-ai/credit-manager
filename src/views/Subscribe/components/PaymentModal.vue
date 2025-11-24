@@ -94,7 +94,7 @@ import { CMB } from '../const';
 const props = defineProps<PaymentModalProps>();
 const emit = defineEmits<PaymentModalEmits>();
 
-// 使用订单轮询 hook
+// 使用订单轮询 hook，传递支付成功和失败的回调函数
 const { startPolling, stopPolling } = useOrderPolling();
 
 // 计算支付方式图标和名称
@@ -164,6 +164,7 @@ const fetchPaymentQrcode = async () => {
         qrCodeData.value = response.data.qrCode;
     } else {
         qrCodeData.value = '';
+        stopPolling();
     }
 };
 

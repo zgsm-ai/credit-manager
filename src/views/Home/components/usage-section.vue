@@ -119,6 +119,7 @@ const columns = computed(() =>
             title: t('homePage.expiryDate'),
             key: 'expiry_date',
             render: (row: QuotaList) => formatDate(row.expiry_date),
+            width: 120,
         },
         {
             title: t('homePage.creditNum'),
