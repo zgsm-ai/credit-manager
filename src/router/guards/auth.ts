@@ -83,8 +83,14 @@ export function setupAuthGuard(router: Router) {
             tokenManager.cleanUrlState();
         }
 
-        // 如果成功导航到非登录页面，清除可能存在的重定向路径
-        if (to.path !== '/login') {
+        // 只有在成功导航到非登录页面且不是从登录页面重定向过来时才清除重定向路径
+        // 这样可以避免在跳转到登录页面时就清除了重定向路径
+        if (to.path !== '/login' && to.path !== '/') {
+            // 检查是否有重定向路径，如果有且当前路径不是重定向目标，则不清除
+            const redirectPath = getRedirectPath();
+            if (redirectPath && redirectPath !== to.fullPath) {
+                return;
+            }
             clearRedirectPath();
         }
     });

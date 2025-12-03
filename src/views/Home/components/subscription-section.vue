@@ -65,9 +65,11 @@
                     <div class="content-version__item-price flex items-center text-3xl mt-3">
                         <span class="price-unit ml-[-8px]">￥</span>
                         <span class="price">{{ plan.price }}</span>
-                        <span class="text-xs ml-2 mt-2 original-price__tips">{{
-                            t('subscriptionSection.firstRechargeDiscount')
-                        }}</span>
+                        <span
+                            v-if="plan.isFirstPurchase"
+                            class="text-xs ml-2 mt-2 original-price__tips"
+                            >{{ t('subscriptionSection.firstRechargeDiscount') }}</span
+                        >
                         <span
                             v-if="plan.originalPrice"
                             class="original-price text-line-through text-base mt-2"
