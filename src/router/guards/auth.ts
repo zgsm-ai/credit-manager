@@ -38,7 +38,7 @@ export function setupAuthGuard(router: Router) {
                 next();
                 return;
             }
-
+            console.log('xxx');
             // 保存当前访问的路径，用于登录后重定向
             saveRedirectPath(to.fullPath);
 
@@ -81,17 +81,6 @@ export function setupAuthGuard(router: Router) {
         // 这确保了即使在其他地方有导航操作，state参数也会被清理
         if (to.query.state !== undefined) {
             tokenManager.cleanUrlState();
-        }
-
-        // 只有在成功导航到非登录页面且不是从登录页面重定向过来时才清除重定向路径
-        // 这样可以避免在跳转到登录页面时就清除了重定向路径
-        if (to.path !== '/login' && to.path !== '/') {
-            // 检查是否有重定向路径，如果有且当前路径不是重定向目标，则不清除
-            const redirectPath = getRedirectPath();
-            if (redirectPath && redirectPath !== to.fullPath) {
-                return;
-            }
-            clearRedirectPath();
         }
     });
 }
