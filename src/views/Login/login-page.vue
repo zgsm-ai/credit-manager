@@ -55,6 +55,7 @@ onMounted(async () => {
             if (authResult.success) {
                 // 认证成功，检查是否有重定向路径
                 const redirectPath = getRedirectPath();
+                console.log('redirectPath===>', redirectPath);
                 clearRedirectPath();
 
                 if (redirectPath) {
