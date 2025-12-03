@@ -415,7 +415,10 @@ const loadMenuData = async (menuKey: MenuKey) => {
                 await Promise.all([fetchUserQuota(), fetchInviteCode()]);
                 break;
             case 'subscription':
-                await fetchOrders();
+                // 只有在中文环境下才加载订阅数据
+                if (isZh.value) {
+                    await fetchOrders();
+                }
                 break;
             case 'usage':
                 await Promise.all([fetchUserQuota(), fetchUsageConsumptionData()]);

@@ -62,9 +62,37 @@ const router = createRouter({
             name: 'subscribe',
             component: () => import('@/views/Subscribe/subscribe-page.vue'),
         },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'not-found',
+            redirect: '/',
+        },
     ],
 });
 
 export const PUBLIC_ROUTES = ['/credit-reward-plan', '/credit-md-preview'];
+
+// 添加路由守卫，在英文版环境下屏蔽 /subscribe 路由
+router.beforeEach((to, from, next) => {
+    // 获取当前语言设置
+    let currentLocale = 'zh'; // 默认中文
+
+    // 尝试从 localStorage 获取语言设置
+    try {
+        const savedLanguage = localStorage.getItem('app-language');
+        if (savedLanguage === 'zh' || savedLanguage === 'en') {
+            currentLocale = savedLanguage;
+        }
+    } catch (error) {
+        console.warn('Failed to read language from localStorage:', error);
+    }
+
+    // 如果是英文版且访问订阅页面，则重定向到首页
+    if (currentLocale === 'en' && to.path === '/subscribe') {
+        next('/');
+    } else {
+        next();
+    }
+});
 
 export default router;

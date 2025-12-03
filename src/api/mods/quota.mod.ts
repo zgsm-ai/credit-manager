@@ -29,6 +29,9 @@ import type {
     PostQuotaTransferOutReq,
     PostQuotaTransferOutRes,
     Order,
+    GetQuotaTypesRes,
+    GetQuotaTypeByIdReq,
+    GetQuotaTypeByIdRes,
 } from '../bos/quota.bo';
 
 export interface ApiResponse<T = unknown> {
@@ -111,4 +114,15 @@ export const postCreateInvoice = (
 
 export const getOrderById = (orderId: string): Promise<ApiResponse<Order>> => {
     return get(`/quota-order-manager/api/v1/orders/${orderId}`);
+};
+
+// 配额类型查询相关API
+export const getQuotaTypes = (): Promise<ApiResponse<GetQuotaTypesRes>> => {
+    return get('/quota-order-manager/api/v1/quotas/types');
+};
+
+export const getQuotaTypeById = (
+    params: GetQuotaTypeByIdReq,
+): Promise<ApiResponse<GetQuotaTypeByIdRes>> => {
+    return get(`/quota-order-manager/api/v1/quotas/types/${params.id}`);
 };

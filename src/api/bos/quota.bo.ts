@@ -260,3 +260,40 @@ export interface PostCreateInvoiceRes {
     apply_time: string;
     issue_time?: string;
 }
+
+// 配额类型相关接口类型定义
+export interface QuotaMarketingRules {
+    id: number;
+    rule_type: number; // 规则类型：1=首次充值特惠，2=限时特惠，3=渠道专属，4=阶梯充值
+    pay_amount: number; // 优惠后支付金额
+    pay_discount: number; // 优惠支付折扣
+    status: number; // 规则状态：0=未生效，1=生效中，2=已停用
+    apply_user_type: number; // 适用用户类型：1=新用户，2=老用户，3=所有用户
+    created_at: string;
+    updated_at: string;
+}
+
+export interface QuotaTypeWithMarketingRules {
+    id: number;
+    display_name: string;
+    credit_count: number;
+    amount: number;
+    valid_days: number | null;
+    quota_marketing_rules_id: number | null;
+    original_amount: number;
+    equivalent_credits: number;
+    bonus_credits: number;
+    estimated_requests: number;
+    created_at: string;
+    updated_at: string;
+    marketing_rules: QuotaMarketingRules | null;
+    isFirstPurchase?: boolean;
+}
+
+export type GetQuotaTypesRes = Array<QuotaTypeWithMarketingRules>;
+
+export interface GetQuotaTypeByIdReq {
+    id: number;
+}
+
+export type GetQuotaTypeByIdRes = QuotaTypeWithMarketingRules;

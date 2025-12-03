@@ -11,7 +11,7 @@ import MenuIcons from '../components/menu-icons.vue';
 export type MenuKey = 'profile' | 'subscription' | 'usage' | 'activity';
 
 export function useMenu() {
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
     const route = useRoute();
     const router = useRouter();
 
@@ -37,10 +37,12 @@ export function useMenu() {
     // 从URL参数初始化菜单状态
     const initMenuFromRoute = () => {
         const tab = route.query.tab as string;
-        if (
-            tab &&
-            ['profile', 'subscription', 'usage', 'usage-consumption', 'activity'].includes(tab)
-        ) {
+        const availableTabs =
+            locale.value === 'zh'
+                ? ['profile', 'subscription', 'usage', 'usage-consumption', 'activity']
+                : ['profile', 'usage', 'usage-consumption', 'activity'];
+
+        if (tab && availableTabs.includes(tab)) {
             activeMenuKey.value = tab as MenuKey;
         }
     };
@@ -49,15 +51,36 @@ export function useMenu() {
     watch(
         () => route.query.tab,
         (newTab) => {
-            if (
-                newTab &&
-                ['profile', 'subscription', 'usage', 'usage-consumption', 'activity'].includes(
-                    newTab as string,
-                )
-            ) {
+            const availableTabs =
+                locale.value === 'zh'
+                    ? ['profile', 'subscription', 'usage', 'usage-consumption', 'activity']
+                    : ['profile', 'usage', 'usage-consumption', 'activity'];
+
+            if (newTab && availableTabs.includes(newTab as string)) {
                 activeMenuKey.value = newTab as MenuKey;
             }
         },
+    );
+
+    // 监听语言变化，当从英文切换到中文时，如果当前没有选中菜单项，则初始化菜单状态
+    watch(locale, () => {
+        initMenuFromRoute();
+    });
+
+    // 监听语言和路由变化，如果用户在英文环境下尝试访问订阅页面，重定向到profile页面
+    watch(
+        [locale, () => route.query.tab],
+        () => {
+            if (locale.value === 'en' && route.query.tab === 'subscription') {
+                // 使用 history API 重定向到 profile 页面
+                const newUrl = `${window.location.origin}${window.location.pathname}?tab=profile`;
+                window.history.replaceState({}, '', newUrl);
+
+                // 手动更新 activeMenuKey，确保组件状态正确
+                activeMenuKey.value = 'profile';
+            }
+        },
+        { immediate: true },
     );
 
     // 渲染菜单图标
@@ -66,28 +89,36 @@ export function useMenu() {
     };
 
     // 菜单选项
-    const menuOptions: ComputedRef<MenuOption[]> = computed(() => [
-        {
-            label: t('homePage.menu.profile'),
-            key: 'profile',
-            icon: renderMenuIcon('profile'),
-        },
-        {
-            label: t('homePage.menu.subscription'),
-            key: 'subscription',
-            icon: renderMenuIcon('subscription'),
-        },
-        {
-            label: t('homePage.menu.usage'),
-            key: 'usage',
-            icon: renderMenuIcon('usage'),
-        },
-        {
-            label: t('homePage.menu.activity'),
-            key: 'activity',
-            icon: renderMenuIcon('activity'),
-        },
-    ]);
+    const menuOptions: ComputedRef<MenuOption[]> = computed(() => {
+        const baseOptions = [
+            {
+                label: t('homePage.menu.profile'),
+                key: 'profile',
+                icon: renderMenuIcon('profile'),
+            },
+            {
+                label: t('homePage.menu.usage'),
+                key: 'usage',
+                icon: renderMenuIcon('usage'),
+            },
+            {
+                label: t('homePage.menu.activity'),
+                key: 'activity',
+                icon: renderMenuIcon('activity'),
+            },
+        ];
+
+        // 只有在中文版时才显示订阅菜单项
+        if (locale.value === 'zh') {
+            baseOptions.splice(1, 0, {
+                label: t('homePage.menu.subscription'),
+                key: 'subscription',
+                icon: renderMenuIcon('subscription'),
+            });
+        }
+
+        return baseOptions;
+    });
 
     // 处理菜单选择
     const handleMenuSelect = (key: string) => {

@@ -284,29 +284,6 @@
             }
         }
     },
-    "guideSteps": {
-        "step1": {
-            "title": "Select the appropriate package and click \"Buy Now\". You will be redirected to the CoStrict official JD flagship store. For more package details, please check",
-            "packageLink": "Package & Billing Description >>"
-        },
-        "step2": {
-            "title": "Log in to your personal JD account, view the product details at the CoStrict JD flagship store, select the package and quantity, and make payment."
-        },
-        "step3": {
-            "title": "User ID viewing: Log in to the CoStrict backend management page (link: ",
-            "titleSuffix": "), copy the User ID.",
-            "managementLink": "https://zgsm.sangfor.com/credit/manager/",
-            "text1": "After completing the payment, return to the CoStrict official backend to check the Credits arrival status (link: to the usage statistics page)",
-            "text2": "During working hours from Monday to Friday, 9:30-20:30, we guarantee that the recharge will be completed within half an hour. The time may be extended during non-working hours. Users can contact customer service through the enterprise WeChat account for quick addition.",
-            "text3": "Scan the QR code with WeChat to quickly contact official customer service (mobile users can press and hold to recognize the QR code)",
-            "text4": "🎯 Extra Benefits! After placing an order, immediately add CoStrict Assistant - Koko to enjoy an additional [10% Credits bonus]! More VIP customer group exclusive technical services are waiting for you to unlock.",
-            "contactCustomerService": "After payment, please contact customer service and inform them of your CoStrict",
-            "userId": "User ID",
-            "userIdKey": "(This is the key to ensure Credits are properly credited to your account).",
-            "rechargeComplete": "After the recharge is completed, users can return to the CoStrict official backend to check the Credits arrival status (link: ",
-            "rightParenthesis": ")"
-        }
-    },
     "subscriptionSection": {
         "subscriptionTitle": "Subscription Information",
         "billingDescription": "Package & Billing Description >>",
@@ -321,7 +298,8 @@
         "orderAmount": "Order Amount",
         "orderTime": "Order Time",
         "validityPeriod": "Validity Period",
-        "invoiceStatus": "Invoice Status"
+        "invoiceStatus": "Invoice Status",
+        "firstRechargeDiscount": "First recharge discount"
     },
     "homePageUi": {
         "personalInfo": "Personal Information",
@@ -334,7 +312,7 @@
         "within7Days": "7 Days",
         "within30Days": "30 Days",
         "packageBillingDescription": "Package & Billing >>",
-        "tips": "🎯 Some models are half-price at night and on weekends, which can be stacked with a 10% discount in auto mode"
+        "tips": " Some models are half price at night (8:00 PM - 9:00 AM the next day) and all day on weekends, which can be combined with a 10% discount on auto mode."
     },
     "paymentMethods": {
         "alipay": {
@@ -367,7 +345,7 @@
             "purchase": "Purchase"
         },
         "package": {
-            "description": "Credits deducted based on actual usage, valid for 1 year",
+            "description": "Credits deducted based on actual usage, valid for 1 month",
             "unit": "/ pack"
         },
         "total": "Total: ",

@@ -34,9 +34,14 @@
                 >{{ t('subscriptionSection.billingDescription') }}</span
             >
         </div>
-        <div class="mt-4">{{ t('homePageUi.tips') }}</div>
+        <div class="mt-4">
+            🎯<span class="subscription-tips">{{ t('homePageUi.tips') }}</span>
+        </div>
         <div class="subscription-content mt-4">
-            <div class="content-version grid grid-cols-4 gap-5">
+            <div
+                v-if="quotaTypesLoaded"
+                class="content-version grid grid-cols-4 gap-5"
+            >
                 <div
                     v-for="(plan, index) in pricingPlans"
                     :key="index"
@@ -54,13 +59,19 @@
                             t('subscriptionSection.trafficLabel')
                         }}</span>
                     </div>
-                    <div class="content-version__item-title text-base">{{ plan.title }}</div>
+                    <div class="content-version__item-title text-base">
+                        {{ plan.title }}
+                    </div>
                     <div class="content-version__item-price flex items-center text-3xl mt-3">
                         <span class="price-unit ml-[-8px]">￥</span>
                         <span class="price">{{ plan.price }}</span>
+                        <span class="text-xs ml-2 mt-2 original-price__tips">{{
+                            t('subscriptionSection.firstRechargeDiscount')
+                        }}</span>
                         <span
                             v-if="plan.originalPrice"
-                            class="original-price text-line-through text-base ml-2.5 mt-0.5"
+                            class="original-price text-line-through text-base mt-2"
+                            :class="plan.isFirstPurchase ? 'ml-1' : 'ml-2.5'"
                         >
                             ￥{{ plan.originalPrice }}
                         </span>
@@ -72,6 +83,7 @@
                         class="content-version__item-btn h-10 text-center leading-10 mt-6 rounded-sm"
                         :class="{
                             'btn-purchase': plan.buttonType === 'purchase',
+                            'btn-download': plan.buttonType !== 'purchase',
                         }"
                         @click="plan.clickEvent"
                     >
@@ -134,17 +146,18 @@
  * @file subscription-section.vue
  * @description 订阅管理组件 - 显示订阅管理的基本信息
  */
-import { computed, h, ref } from 'vue';
-import { getPricingPlans, getInvoiceConstants } from '../const';
+import { computed, h, ref, onMounted } from 'vue';
+import { getInvoiceConstants, generatePricingPlansFromAPI } from '../const';
 import { NDataTable } from 'naive-ui';
 import { formatDate } from '@/utils/date';
 import CommonCard from '@/components/common-card.vue';
 import InvoiceModal from './invoice-modal.vue';
-import type { Order } from '@/api/bos/quota.bo';
+import type { Order, QuotaTypeWithMarketingRules } from '@/api/bos/quota.bo';
 import { useI18n } from 'vue-i18n';
 import { formatAmount, withDefaultRender } from '../hook/useTableRender';
 import { useRouter } from 'vue-router';
 import newOrderIcon from '@/assets/price/new_order_icon.webp';
+import { getQuotaTypes } from '@/api/mods/quota.mod';
 
 // 国际化
 const { t } = useI18n();
@@ -156,8 +169,20 @@ const currentOrder = ref<{ order_id: string; amount: number } | null>(null);
 
 const router = useRouter();
 
+// 存储API返回的配额类型数据
+const quotaTypes = ref<QuotaTypeWithMarketingRules[]>([]);
+// 标记是否已加载API数据
+const quotaTypesLoaded = ref(false);
+
 // 计算国际化的价格计划
-const pricingPlans = computed(() => getPricingPlans(t, router));
+const pricingPlans = computed(() => {
+    // 只有在请求完成后才展示所有套餐
+    if (quotaTypesLoaded.value) {
+        return generatePricingPlansFromAPI(t, router, quotaTypes.value);
+    }
+    // 否则返回空数组，不展示任何套餐
+    return [];
+});
 
 // 计算国际化的发票常量
 const invoiceConstants = computed(() => getInvoiceConstants(t));
@@ -322,6 +347,21 @@ const toBillingDocs = () => {
     window.open('https://docs.costrict.ai/billing/purchase');
 };
 
+// 加载配额类型数据
+const loadQuotaTypes = async () => {
+    const { code, data } = await getQuotaTypes();
+    if (code !== 200) {
+        return;
+    }
+    quotaTypes.value = data || [];
+    quotaTypesLoaded.value = true;
+};
+
+// 组件挂载时加载配额类型数据
+onMounted(() => {
+    loadQuotaTypes();
+});
+
 // 处理发票提交成功事件
 const handleInvoiceSubmitted = () => {
     // 通知父组件刷新订单数据
@@ -341,6 +381,13 @@ const handleInvoiceSubmitted = () => {
             text-fill-color: transparent;
         }
     }
+
+    .subscription-tips {
+        background: linear-gradient(91deg, #00ffb7 0%, #ffffff 101%, #c5dbff 150%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
     .content-version {
         @media (max-width: 1200px) {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -365,11 +412,18 @@ const handleInvoiceSubmitted = () => {
                 transition: all 0.3s ease;
 
                 &.btn-download {
-                    background: rgba(0, 102, 255, 0.3);
-                    border: 1px solid rgba(0, 102, 255, 0.5);
+                    border: 1px solid;
+                    border-image: linear-gradient(
+                            107deg,
+                            #0066ff 38%,
+                            #00ffb7 52%,
+                            rgba(247, 255, 253, 0.51) 88%,
+                            rgba(0, 94, 255, 0.09) 100%
+                        )
+                        1;
+                    background: rgba(255, 255, 255, 0.2);
 
                     &:hover {
-                        background: rgba(0, 102, 255, 0.5);
                         box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
                     }
                 }
@@ -382,6 +436,12 @@ const handleInvoiceSubmitted = () => {
             .original-price {
                 text-decoration: line-through;
                 color: rgba(255, 255, 255, 0.7);
+
+                &__tips {
+                    background: linear-gradient(102deg, #00ffb7 3%, #ffffff 68%, #ffffff 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
             }
 
             .label-text {

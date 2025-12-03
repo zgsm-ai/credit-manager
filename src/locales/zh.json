@@ -244,7 +244,7 @@
             "description": "官方赠送的 Credit，有效期视情况而定",
             "buttonText": "下载使用",
             "features": {
-                "newUserCredits": "新用户获赠 200 Credits（约等于200次请求）",
+                "newUserCredits": "新用户获赠 400 Credits（约等于400次请求）",
                 "freeCodeCompletion": "免费代码补全，有限使用次数",
                 "freeCodeReview": "免费 CodeReview，有限使用次数",
                 "advancedModelUnavailable": "高级模型不可用"
@@ -282,30 +282,14 @@
                 "freeCodeReview": "免费代码审查，无限使用",
                 "advancedModelAvailable": "高级模型可用"
             }
-        }
-    },
-    "guideSteps": {
-        "step1": {
-            "title": "选择合适套餐，点击\"立即购买\"。跳转至 CoStrict 官方京东旗舰店。了解更多套餐详情可查看",
-            "packageLink": "套餐&计费说明 >>"
         },
-        "step2": {
-            "title": "登录个人京东账号，查看 CoStrict 京东旗舰店商品详情，选择套餐和份数并支付。"
-        },
-        "step3": {
-            "title": "用户ID查看：登录 CoStrict 后台管理页面（链接地址：",
-            "titleSuffix": "），复制用户ID。",
-            "managementLink": "https://zgsm.sangfor.com/credit/manager/",
-            "text1": "完成付费之后，返回 CoStrict 官方后台查看Credits到账情况（链接地址：链接到用量统计页面）",
-            "text2": "工作日周一 至 周五的 9:30-20:30 工作时间保证半小时内充值到账，非工作日时间有所延长，用户可通过企微号联系客服迅速添加",
-            "text3": "微信扫码可快速联系官方客服（手机端可长按识别二维码）",
-            "text4": "🎯 福利加码! 下单后，立即添加 CoStrict 小助手-蔻蔻，即可尊享【10% Credits 额外赠送】！更有 VIP 客户群专享技术服务等您解锁。",
-            "contactCustomerService": "支付完成后请联系客服，告知客服本人的 CoStrict 的",
-            "userId": "用户ID",
-            "userIdKey": "（这是 Credits 能正常到账的关键）。",
-            "rechargeComplete": "充值完成后，用户可返回 CoStrict 官方后台查看 Credits 到账情况（链接地址：",
-            "rightParenthesis": "）"
-        }
+        "defaultPackageTitle": "流量套餐",
+        "creditUnit": "按实际使用用量扣除 Credit，有效期1个月",
+        "creditFeature": "{total}+额外赠送 {bonus}Credits（等于{estimated}次请求）",
+        "purchaseButtonText": "立即购买",
+        "freeCodeCompletion": "免费代码补全，有限使用次数",
+        "freeCodeReview": "免费代码审查，无限使用",
+        "advancedModelAvailable": "高级模型可用"
     },
     "subscriptionSection": {
         "subscriptionTitle": "订阅信息",
@@ -321,7 +305,8 @@
         "orderAmount": "订单金额",
         "orderTime": "下单时间",
         "validityPeriod": "过期时间",
-        "invoiceStatus": "发票状态"
+        "invoiceStatus": "发票状态",
+        "firstRechargeDiscount": "首次充值优惠"
     },
     "homePageUi": {
         "personalInfo": "个人信息",
@@ -334,7 +319,7 @@
         "within7Days": "7天内",
         "within30Days": "30天内",
         "packageBillingDescription": "套餐&计费说明 >>",
-        "tips": "🎯 部分模型夜间和周末半价，可以和auto模式九折叠加"
+        "tips": " 部分模型夜间（每日 20:00 - 次日 09:00）和周末全天半价，可以和auto模式九折叠加"
     },
     "paymentMethods": {
         "alipay": {
@@ -367,7 +352,7 @@
             "purchase": "购买"
         },
         "package": {
-            "description": "接实际使用用量扣除 Credit，有效期1年",
+            "description": "接实际使用用量扣除 Credit，有效期1个月",
             "unit": "/ 套"
         },
         "total": "共计：",
