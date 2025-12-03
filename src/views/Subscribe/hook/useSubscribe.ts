@@ -5,15 +5,9 @@ import { ref, computed, watch, onMounted, type ComputedRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import type { FormInst, FormRules } from 'naive-ui';
-import {
-    getPaymentMethods,
-    getPricingPlans,
-    PAY_TYPE,
-    PRICING_PLAN,
-    type TPayType,
-} from '../const';
+import { getPaymentMethods, getPricingPlans, PAY_TYPE, type TPayType } from '../const';
 import type { PricingPlan } from '../interface';
-import { postCreateOrder } from '@/api/mods/quota.mod';
+import { postCreateOrder, getQuotaTypeById } from '@/api/mods/quota.mod';
 import type { PostCreateOrderReq, PostCreateOrderRes } from '@/api/bos/quota.bo';
 
 export function useSubscribe(
@@ -53,11 +47,26 @@ export function useSubscribe(
         return typeParam ? parseInt(typeParam, 10) : 1; // 默认为 1
     });
 
+    // 获取套餐数据的异步函数
+    const fetchQuotaTypeById = async (id: number) => {
+        const { code, data } = await getQuotaTypeById({ id });
+        if (code !== 200) {
+            return;
+        }
+        // 将API返回的数据转换为PricingPlan格式
+        return {
+            id: data.id.toString(),
+            title: data.display_name,
+            price: data.amount,
+            originalPrice: data.original_amount,
+            type: data.id,
+        } as PricingPlan;
+    };
+
     // 根据 type 获取对应的套餐
-    onMounted(() => {
-        allPlans.value = getPricingPlans(t);
-        const plan = allPlans.value.find((p: PricingPlan) => p.type === urlType.value);
-        currentPlan.value = plan || allPlans.value[0]; // 如果找不到，使用第一个套餐
+    onMounted(async () => {
+        const planFromApi = await fetchQuotaTypeById(urlType.value);
+        currentPlan.value = planFromApi || getPricingPlans(t)[0];
     });
 
     // 表单验证规则
@@ -75,7 +84,7 @@ export function useSubscribe(
 
     // 套餐单价（使用当前套餐的价格）
     const unitPrice = computed(() => {
-        return currentPlan.value ? currentPlan.value.price : 10;
+        return currentPlan.value ? currentPlan.value.price : 0;
     });
 
     // 计算总价
@@ -147,19 +156,17 @@ export function useSubscribe(
                 isPurchasing.value = false;
                 return;
             }
-            const { id = '' } = currentPlan.value;
+            const { type = 1 } = currentPlan.value;
 
-            // 根据当前套餐ID确定quota_type
-            const quotaType = PRICING_PLAN[id as keyof typeof PRICING_PLAN];
-
-            if (!quotaType) {
+            // 使用套餐的type作为quota_type
+            if (!type) {
                 isPurchasing.value = false;
                 return;
             }
 
             // 调用API创建订单
             const orderRequest: PostCreateOrderReq = {
-                quota_type: quotaType,
+                quota_type: type.toString(),
                 quantity: Number(formData.value.quantity),
             };
 

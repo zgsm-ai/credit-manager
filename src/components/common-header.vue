@@ -62,7 +62,10 @@
                     </div>
                 </n-popover>
             </div>
-            <div class="header-lang-switcher">
+            <div
+                class="header-lang-switcher"
+                v-if="!isSubscribePage"
+            >
                 <n-popover
                     trigger="click"
                     :show="isPopoverOpen"
@@ -112,6 +115,7 @@ const router = useRouter();
 const { t, locale } = useI18n();
 
 const isPublicPage = computed(() => PUBLIC_ROUTES.includes(router.currentRoute.value.path));
+const isSubscribePage = computed(() => router.currentRoute.value.path === '/subscribe');
 
 const languageOptions = ref([
     { label: t('common.langZh'), key: 'zh' },

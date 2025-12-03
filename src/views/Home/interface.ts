@@ -30,6 +30,7 @@ export interface PricingPlan {
     showTrafficLabel?: boolean;
     features: Feature[];
     clickEvent: () => void;
+    isFirstPurchase?: boolean;
 }
 
 export interface GuideStep {

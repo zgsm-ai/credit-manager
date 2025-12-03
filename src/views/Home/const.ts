@@ -4,6 +4,7 @@
 
 import type { Router } from 'vue-router';
 import type { PricingPlan } from './interface';
+import type { QuotaTypeWithMarketingRules } from '@/api/bos/quota.bo';
 
 export const BING_TYPE = {
     github: 'github',
@@ -65,8 +66,8 @@ export const getInvoiceConstants = (t: (key: string) => string) => ({
     } as Record<number, string>,
 });
 
-// 套餐配置生成函数，使用国际化
-export const getPricingPlans = (t: (key: string) => string, router: Router): PricingPlan[] => [
+// 套餐配置生成函数，使用国际化 - 只返回免费套餐
+export const getPricingPlans = (t: (key: string) => string): PricingPlan[] => [
     {
         title: t('pricingPlans.personalFree.title'),
         price: 0,
@@ -96,109 +97,93 @@ export const getPricingPlans = (t: (key: string) => string, router: Router): Pri
             window.open('https://costrict.ai/download');
         },
     },
-    {
-        title: t('pricingPlans.trafficPackage1.title'),
-        price: 25,
-        originalPrice: 50,
-        description: t('pricingPlans.trafficPackage1.description'),
-        buttonText: t('pricingPlans.trafficPackage1.buttonText'),
-        buttonType: 'purchase',
-        showTrafficLabel: true,
-        features: [
-            {
-                text: t('pricingPlans.trafficPackage1.features.credits'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage1.features.freeCodeCompletion'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage1.features.freeCodeReview'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage1.features.advancedModelAvailable'),
-                available: true,
-            },
-        ],
-        clickEvent() {
-            router.push({
-                path: '/subscribe',
-                query: {
-                    type: 1,
-                },
-            });
-        },
-    },
-    {
-        title: t('pricingPlans.trafficPackage2.title'),
-        price: 98,
-        originalPrice: 200,
-        description: t('pricingPlans.trafficPackage2.description'),
-        buttonText: t('pricingPlans.trafficPackage2.buttonText'),
-        buttonType: 'purchase',
-        showTrafficLabel: true,
-        features: [
-            {
-                text: t('pricingPlans.trafficPackage2.features.credits'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage2.features.freeCodeCompletion'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage2.features.freeCodeReview'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage2.features.advancedModelAvailable'),
-                available: true,
-            },
-        ],
-        clickEvent() {
-            router.push({
-                path: '/subscribe',
-                query: {
-                    type: 2,
-                },
-            });
-        },
-    },
-    {
-        title: t('pricingPlans.trafficPackage3.title'),
-        price: 248,
-        originalPrice: 500,
-        description: t('pricingPlans.trafficPackage3.description'),
-        buttonText: t('pricingPlans.trafficPackage3.buttonText'),
-        buttonType: 'purchase',
-        showTrafficLabel: true,
-        features: [
-            {
-                text: t('pricingPlans.trafficPackage3.features.credits'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage3.features.freeCodeCompletion'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage3.features.freeCodeReview'),
-                available: true,
-            },
-            {
-                text: t('pricingPlans.trafficPackage3.features.advancedModelAvailable'),
-                available: true,
-            },
-        ],
-        clickEvent() {
-            router.push({
-                path: '/subscribe',
-                query: {
-                    type: 3,
-                },
-            });
-        },
-    },
 ];
+
+// 根据API返回的配额类型数据生成套餐列表
+export const generatePricingPlansFromAPI = (
+    t: (key: string, params?: { [key: string]: unknown }) => string,
+    router: Router,
+    quotaTypes: QuotaTypeWithMarketingRules[],
+): PricingPlan[] => {
+    // 基础免费套餐
+    const freePlan: PricingPlan = {
+        title: t('pricingPlans.personalFree.title'),
+        price: 0,
+        description: t('pricingPlans.personalFree.description'),
+        buttonText: t('pricingPlans.personalFree.buttonText'),
+        buttonType: 'download',
+        showTrafficLabel: false,
+        features: [
+            {
+                text: t('pricingPlans.personalFree.features.newUserCredits'),
+                available: true,
+            },
+            {
+                text: t('pricingPlans.personalFree.features.freeCodeCompletion'),
+                available: true,
+            },
+            {
+                text: t('pricingPlans.personalFree.features.freeCodeReview'),
+                available: true,
+            },
+            {
+                text: t('pricingPlans.personalFree.features.advancedModelUnavailable'),
+                available: false,
+            },
+        ],
+        clickEvent() {
+            window.open('https://costrict.ai/download');
+        },
+    };
+
+    // 从API数据生成付费套餐
+    const paidPlans = quotaTypes.map((quotaType, index) => {
+        return {
+            title:
+                quotaType.display_name || `${t('pricingPlans.defaultPackageTitle')} ${index + 1}`,
+            price: quotaType.amount,
+            originalPrice:
+                quotaType.original_amount && quotaType.original_amount > quotaType.amount
+                    ? quotaType.original_amount
+                    : undefined,
+            description: t('pricingPlans.creditUnit'),
+            buttonText: t('pricingPlans.purchaseButtonText'),
+            buttonType: 'purchase' as const,
+            showTrafficLabel: true,
+            isFirstPurchase: quotaType.marketing_rules?.id === 1,
+            features: [
+                {
+                    text: t('pricingPlans.creditFeature', {
+                        total: quotaType.equivalent_credits,
+                        bonus: quotaType.bonus_credits,
+                        estimated: quotaType.estimated_requests,
+                    }),
+                    available: true,
+                },
+                {
+                    text: t('pricingPlans.freeCodeCompletion'),
+                    available: true,
+                },
+                {
+                    text: t('pricingPlans.freeCodeReview'),
+                    available: true,
+                },
+                {
+                    text: t('pricingPlans.advancedModelAvailable'),
+                    available: true,
+                },
+            ],
+            clickEvent() {
+                router.push({
+                    path: '/subscribe',
+                    query: {
+                        type: quotaType.id,
+                    },
+                });
+            },
+        };
+    });
+
+    // 合并免费套餐和付费套餐
+    return [freePlan, ...paidPlans];
+};
