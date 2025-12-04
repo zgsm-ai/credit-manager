@@ -3,44 +3,22 @@ import { authService } from '@/services/auth';
 import { PUBLIC_ROUTES } from '@/router';
 import { tokenManager } from '@/utils/token';
 
-// 保存重定向路径的键名
-const REDIRECT_KEY = 'auth_redirect_path';
-
 export function setupAuthGuard(router: Router) {
     router.beforeEach(async (to, from, next) => {
         try {
-            // 检查是否为公开路由
-            if (PUBLIC_ROUTES.includes(to.path)) {
+            // 检查是否为公开路由或登录页面
+            if (PUBLIC_ROUTES.includes(to.path) || to.path === '/login') {
                 next();
                 return;
             }
-
             // 检查是否已经认证过
             const isAuthenticated = await authService.isAuthenticated();
 
             if (isAuthenticated) {
-                // 已经认证，检查是否有重定向路径
-                const redirectPath = getRedirectPath();
-                if (redirectPath && redirectPath !== to.path) {
-                    // 有重定向路径且不是当前路径，则跳转到重定向路径
-                    clearRedirectPath();
-                    next(redirectPath);
-                    return;
-                }
                 // 已经认证，直接放行
                 next();
                 return;
             }
-
-            // 未认证的情况
-            if (to.path === '/login') {
-                // 如果是登录页面，直接放行
-                next();
-                return;
-            }
-            console.log('xxx');
-            // 保存当前访问的路径，用于登录后重定向
-            saveRedirectPath(to.fullPath);
 
             // 对于非公开路由，先放行让页面渲染，然后在后台进行认证
             next();
@@ -52,14 +30,6 @@ export function setupAuthGuard(router: Router) {
                     if (!authResult.success) {
                         // 认证失败，重定向到登录页
                         router.replace('/login');
-                    } else {
-                        // 认证成功，检查是否有重定向路径
-                        const redirectPath = getRedirectPath();
-                        if (redirectPath && redirectPath !== window.location.pathname) {
-                            // 有重定向路径且不是当前路径，则跳转到重定向路径
-                            clearRedirectPath();
-                            router.replace(redirectPath);
-                        }
                     }
                 })
                 .catch((error) => {
@@ -68,10 +38,6 @@ export function setupAuthGuard(router: Router) {
                 });
         } catch (error) {
             console.error('Authentication error:', error);
-            // 确保在出错时也保存重定向路径
-            if (to.path !== '/login' && !PUBLIC_ROUTES.includes(to.path)) {
-                saveRedirectPath(to.fullPath);
-            }
             next('/login');
         }
     });
@@ -84,34 +50,3 @@ export function setupAuthGuard(router: Router) {
         }
     });
 }
-
-// 保存重定向路径
-function saveRedirectPath(path: string): void {
-    try {
-        localStorage.setItem(REDIRECT_KEY, path);
-    } catch (error) {
-        console.warn('Failed to save redirect path:', error);
-    }
-}
-
-// 获取重定向路径
-function getRedirectPath(): string | null {
-    try {
-        return localStorage.getItem(REDIRECT_KEY);
-    } catch (error) {
-        console.warn('Failed to get redirect path:', error);
-        return null;
-    }
-}
-
-// 清除重定向路径
-function clearRedirectPath(): void {
-    try {
-        localStorage.removeItem(REDIRECT_KEY);
-    } catch (error) {
-        console.warn('Failed to clear redirect path:', error);
-    }
-}
-
-// 导出工具函数，供其他地方使用
-export { saveRedirectPath, getRedirectPath, clearRedirectPath };
