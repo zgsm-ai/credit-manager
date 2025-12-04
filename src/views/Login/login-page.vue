@@ -30,47 +30,13 @@
 /**
  * @file 登录页
  */
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 import { getLoginUrl } from '@/api/mods/quota.mod';
-import { authService } from '@/services/auth';
 import { NEmpty, NButton } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
-import { getRedirectPath, clearRedirectPath } from '@/router/guards/auth';
 
 const { t } = useI18n();
-const router = useRouter();
 const isLoggingIn = ref(false);
-
-// 检查是否有 hashToken，如果有则进行认证
-onMounted(async () => {
-    const hashToken = new URLSearchParams(window.location.search).get('state');
-
-    if (hashToken) {
-        isLoggingIn.value = true;
-        try {
-            // 直接调用认证服务处理 hashToken
-            const authResult = await authService.authenticate();
-
-            if (authResult.success) {
-                // 认证成功，检查是否有重定向路径
-                const redirectPath = getRedirectPath();
-                console.log('redirectPath===>', redirectPath);
-                clearRedirectPath();
-
-                if (redirectPath) {
-                    router.replace(redirectPath);
-                } else {
-                    router.replace('/');
-                }
-            }
-        } catch (error) {
-            console.error('自动登录失败:', error);
-        } finally {
-            isLoggingIn.value = false;
-        }
-    }
-});
 
 const toLogin = async () => {
     if (isLoggingIn.value) return;
