@@ -156,7 +156,7 @@ export function useSubscribe(
                 isPurchasing.value = false;
                 return;
             }
-            const { type = 1 } = currentPlan.value;
+            const { type = 1, title } = currentPlan.value;
 
             // 使用套餐的type作为quota_type
             if (!type) {
@@ -166,7 +166,7 @@ export function useSubscribe(
 
             // 调用API创建订单
             const orderRequest: PostCreateOrderReq = {
-                quota_type: type.toString(),
+                quota_type: title,
                 quantity: Number(formData.value.quantity),
             };
 
