@@ -150,7 +150,7 @@ export const generatePricingPlansFromAPI = (
             buttonText: t('pricingPlans.purchaseButtonText'),
             buttonType: 'purchase' as const,
             showTrafficLabel: true,
-            isFirstPurchase: quotaType.marketing_rules?.id === 1,
+            isFirstPurchase: quotaType.quota_marketing_rules_id === 1,
             features: [
                 {
                     text: t('pricingPlans.creditFeature', {
