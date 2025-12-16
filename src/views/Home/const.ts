@@ -153,11 +153,16 @@ export const generatePricingPlansFromAPI = (
             isFirstPurchase: quotaType.quota_marketing_rules_id === 1,
             features: [
                 {
-                    text: t('pricingPlans.creditFeature', {
-                        total: quotaType.equivalent_credits,
-                        bonus: quotaType.bonus_credits,
-                        estimated: quotaType.estimated_requests,
-                    }),
+                    text: quotaType.bonus_credits
+                        ? t('pricingPlans.creditFeature', {
+                              total: quotaType.equivalent_credits,
+                              bonus: quotaType.bonus_credits,
+                              estimated: quotaType.estimated_requests,
+                          })
+                        : t('pricingPlans.creditFeatureWithoutBonus', {
+                              total: quotaType.equivalent_credits,
+                              estimated: quotaType.estimated_requests,
+                          }),
                     available: true,
                 },
                 {
