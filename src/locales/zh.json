@@ -36,7 +36,7 @@
         "redeemCodeError": "兑换码错误，请重新输入",
         "expiredTag": "已过期",
         "invalidUUID": "请输入有效的UUID格式",
-        "onlySupportCreditTransfer": "当前仅支持转出在 GitHub 上点击 star 收藏获赠的 Credit，",
+        "onlySupportCreditTransfer": "在 GitHub 上点击 star 后支持转出 Credit",
         "effectiveIn": "5分钟内生效"
     },
     "creditsPage": {
@@ -285,11 +285,12 @@
         },
         "defaultPackageTitle": "流量套餐",
         "creditUnit": "按实际使用用量扣除 Credit，有效期1个月",
-        "creditFeature": "{total}+额外赠送 {bonus}Credits（等于{estimated}次请求）",
+        "creditFeature": "{total}+额外赠送 {bonus}Credits（约等于{estimated}次请求）",
         "purchaseButtonText": "立即购买",
         "freeCodeCompletion": "免费代码补全，有限使用次数",
         "freeCodeReview": "免费代码审查，无限使用",
-        "advancedModelAvailable": "高级模型可用"
+        "advancedModelAvailable": "高级模型可用",
+        "creditFeatureWithoutBonus": "{total} Credits（约等于{estimated}次请求）"
     },
     "subscriptionSection": {
         "subscriptionTitle": "订阅信息",

@@ -36,7 +36,7 @@
         "redeemCodeError": "Invalid redemption code. Please try again",
         "expiredTag": "Expired",
         "invalidUUID": "Please enter a valid UUID format",
-        "onlySupportCreditTransfer": "Currently, only Credits received by starring the project on GitHub can be transferred,",
+        "onlySupportCreditTransfer": "Support credit transfer by clicking 'star' on GitHub,",
         "effectiveIn": "Takes effect within 5 minutes"
     },
     "creditsPage": {
@@ -282,7 +282,14 @@
                 "freeCodeReview": "Free code review, unlimited usage",
                 "advancedModelAvailable": "Advanced models available"
             }
-        }
+        },
+        "defaultPackageTitle": "Traffic package",
+        "creditUnit": "Credit will be deducted based on actual usage, valid for one month.",
+        "creditFeature": "{total} + additional {bonus} credits (equivalent to {estimated} requests)",
+        "purchaseButtonText": "Buy it now",
+        "freeCodeCompletion": "Free code completion, limited uses.",
+        "freeCodeReview": "Free code review, unlimited use",
+        "advancedModelAvailable": "Premium models available"
     },
     "subscriptionSection": {
         "subscriptionTitle": "Subscription Information",
