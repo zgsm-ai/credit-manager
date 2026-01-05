@@ -349,15 +349,19 @@ const {
 }
 
 :deep(.n-input__suffix) {
-    .n-button:hover {
+    .n-button {
         color: #fff;
     }
 }
 
 :deep(.n-input__prefix) {
-    .n-button:hover {
+    .n-button {
         color: #fff;
     }
+}
+
+:deep(.cancel-btn) {
+    color: #000;
 }
 
 :deep(.cancel-btn):hover {

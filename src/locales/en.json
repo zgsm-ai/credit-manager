@@ -342,7 +342,7 @@
             "returnButton": "Return"
         },
         "paymentSuccess": {
-            "title": "Payment Successful",
+            "title": "Payment successful. Please log in to the plugin again to get the latest services!",
             "tip": "Credits will be credited to your account within 24 hours after successful payment. Scan the QR code to quickly join the official after-sales group"
         }
     },
