@@ -82,25 +82,27 @@ export function useSubscribe(
         ],
     }));
 
-    // 套餐单价（使用当前套餐的价格）
+    // 套餐单价（使用当前套餐的价格，转换为元）
     const unitPrice = computed(() => {
-        return currentPlan.value ? currentPlan.value.price : 0;
+        return currentPlan.value ? (currentPlan.value.price).toFixed(2) : '0.00';
     });
 
     // 计算总价
     const totalPrice = computed(() => {
         // 如果quantity为null或undefined，返回0
         if (quantity.value === null || quantity.value === undefined) {
-            return 0;
+            return '0.00';
         }
 
         // 如果quantity小于1，返回0
         if (quantity.value < 1) {
-            return 0;
+            return '0.00';
         }
 
         // 否则计算总价
-        return quantity.value * unitPrice.value;
+        const price = currentPlan.value?.price || 0;
+        const total = quantity.value * price;
+        return total.toFixed(2);
     });
 
     // 表单数据
