@@ -51,6 +51,7 @@
             <!-- 二维码区域 -->
             <div class="text-center mt-auto">
                 <img
+                    class="w-65"
                     src="../../../assets/subscribe/qrCode.webp"
                     alt=""
                 />
