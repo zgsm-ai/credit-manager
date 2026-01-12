@@ -5,7 +5,7 @@ import { ref, computed, watch, onMounted, type ComputedRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import type { FormInst, FormRules } from 'naive-ui';
-import { getPaymentMethods, getPricingPlans, PAY_TYPE, type TPayType } from '../const';
+import { FIRST_PURCHASE_ID, getPaymentMethods, getPricingPlans, PAY_TYPE, type TPayType } from '../const';
 import type { PricingPlan } from '../interface';
 import { postCreateOrder, getQuotaTypeById } from '@/api/mods/quota.mod';
 import type { PostCreateOrderReq, PostCreateOrderRes } from '@/api/bos/quota.bo';
@@ -41,6 +41,12 @@ export function useSubscribe(
     // 购买按钮加载状态
     const isPurchasing = ref(false);
 
+    // 从接口返回的总金额
+    const totalPriceFromApi = ref<number>(0);
+
+    // 防抖定时器
+    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
     // 获取 URL 参数中的 type
     const urlType = computed(() => {
         const typeParam = route.query.type as string;
@@ -53,6 +59,8 @@ export function useSubscribe(
         if (code !== 200) {
             return;
         }
+        // 将API返回的amount保存到totalPriceFromApi
+        totalPriceFromApi.value = data.amount || 0;
         // 将API返回的数据转换为PricingPlan格式
         return {
             id: data.id.toString(),
@@ -60,6 +68,7 @@ export function useSubscribe(
             price: data.amount,
             originalPrice: data.original_amount,
             type: data.id,
+            isFirstPurchase: data.quota_marketing_rules_id === FIRST_PURCHASE_ID,
         } as PricingPlan;
     };
 
@@ -84,25 +93,23 @@ export function useSubscribe(
 
     // 套餐单价（使用当前套餐的价格，转换为元）
     const unitPrice = computed(() => {
-        return currentPlan.value ? (currentPlan.value.price).toFixed(2) : '0.00';
+        return currentPlan.value ? (currentPlan.value.price) : 0;
     });
 
-    // 计算总价
+    // 计算总价（使用从API返回的金额）
     const totalPrice = computed(() => {
         // 如果quantity为null或undefined，返回0
         if (quantity.value === null || quantity.value === undefined) {
-            return '0.00';
+            return 0;
         }
 
         // 如果quantity小于1，返回0
         if (quantity.value < 1) {
-            return '0.00';
+            return 0;
         }
 
-        // 否则计算总价
-        const price = currentPlan.value?.price || 0;
-        const total = quantity.value * price;
-        return total.toFixed(2);
+        // 使用从API返回的金额
+        return totalPriceFromApi.value;
     });
 
     // 表单数据
@@ -123,10 +130,39 @@ export function useSubscribe(
         { immediate: true },
     );
 
+    // 通过API获取带数量的价格信息（防抖处理）
+    const fetchQuotaTypeByIdWithQuantity = (id: number, qty: number) => {
+        // 清除之前的定时器
+        if (debounceTimer) {
+            clearTimeout(debounceTimer);
+        }
+
+        // 设置新的定时器，延迟300ms执行
+        debounceTimer = setTimeout(async () => {
+            try {
+                const { code, data } = await getQuotaTypeById({ id, quantity: qty });
+                if (code === 200 && data) {
+                    // 更新从API返回的总金额
+                    totalPriceFromApi.value = data.amount;
+                }
+            } catch (error) {
+                console.error('获取价格信息失败:', error);
+            }
+        }, 300);
+    };
+
     // 处理数量输入变化
     const handleQuantityChange = (value: number | null) => {
         quantity.value = value;
         formData.value.quantity = value;
+
+        // 如果数量有效且有当前套餐，调用API获取价格
+        if (value && value >= 1 && currentPlan.value) {
+            fetchQuotaTypeByIdWithQuantity(currentPlan.value.type, value);
+        } else {
+            // 如果数量无效，重置金额
+            totalPriceFromApi.value = 0;
+        }
     };
 
     // 获取支付方式数据

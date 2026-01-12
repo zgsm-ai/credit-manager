@@ -354,7 +354,8 @@
         },
         "package": {
             "description": "接实际使用用量扣除 Credit，有效期1个月",
-            "unit": "/ 套"
+            "unit": "/ 套",
+            "tips": "（首充¥9.9｜续购 ¥25）"
         },
         "total": "共计：",
         "paymentMethod": "支付方式",

@@ -13,6 +13,7 @@ export interface PricingPlan {
     price: number;
     originalPrice?: number;
     type: number;
+    isFirstPurchase?: boolean;
 }
 
 export interface PaymentMethod {

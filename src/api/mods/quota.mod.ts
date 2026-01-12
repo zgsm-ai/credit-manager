@@ -124,5 +124,7 @@ export const getQuotaTypes = (): Promise<ApiResponse<GetQuotaTypesRes>> => {
 export const getQuotaTypeById = (
     params: GetQuotaTypeByIdReq,
 ): Promise<ApiResponse<GetQuotaTypeByIdRes>> => {
-    return get(`/quota-order-manager/api/v1/quotas/types/${params.id}`);
+    return get(`/quota-order-manager/api/v1/quotas/types/${params.id}`, {
+        quantity: params.quantity
+    });
 };
