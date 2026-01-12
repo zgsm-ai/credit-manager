@@ -29,6 +29,11 @@
                     <span class="unit text-base text-[#A7ABB4] self-end mb-0.5 ml-1">{{
                         $t('subscribePage.package.unit')
                     }}</span>
+                    <span
+                        v-if="currentPlan?.isFirstPurchase"
+                        class="text-xs price__tips"
+                        >{{ $t('subscribePage.package.tips') }}</span
+                    >
                 </div>
 
                 <div class="quantity-selector ml-auto">
@@ -238,7 +243,6 @@ const { startPolling } = useOrderPolling({
 // 使用订阅页面Hook
 const {
     // 表单相关
-    formRef,
     formData,
     formRules,
 
@@ -342,6 +346,12 @@ const {
     background: linear-gradient(90deg, #005eff -9%, #00ffb7 80%);
     backdrop-filter: blur(10px);
     height: 50px;
+}
+
+.price__tips {
+    background: linear-gradient(102deg, #00ffb7 3%, #ffffff 68%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 :deep(.n-divider) {

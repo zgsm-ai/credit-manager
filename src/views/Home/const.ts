@@ -5,6 +5,7 @@
 import type { Router } from 'vue-router';
 import type { PricingPlan } from './interface';
 import type { QuotaTypeWithMarketingRules } from '@/api/bos/quota.bo';
+import { FIRST_PURCHASE_ID } from '../Subscribe/const';
 
 export const BING_TYPE = {
     github: 'github',
@@ -150,19 +151,19 @@ export const generatePricingPlansFromAPI = (
             buttonText: t('pricingPlans.purchaseButtonText'),
             buttonType: 'purchase' as const,
             showTrafficLabel: true,
-            isFirstPurchase: quotaType.quota_marketing_rules_id === 1,
+            isFirstPurchase: quotaType.quota_marketing_rules_id === FIRST_PURCHASE_ID,
             features: [
                 {
                     text: quotaType.bonus_credits
                         ? t('pricingPlans.creditFeature', {
-                              total: quotaType.equivalent_credits,
-                              bonus: quotaType.bonus_credits,
-                              estimated: quotaType.estimated_requests,
-                          })
+                            total: quotaType.equivalent_credits,
+                            bonus: quotaType.bonus_credits,
+                            estimated: quotaType.estimated_requests,
+                        })
                         : t('pricingPlans.creditFeatureWithoutBonus', {
-                              total: quotaType.equivalent_credits,
-                              estimated: quotaType.estimated_requests,
-                          }),
+                            total: quotaType.equivalent_credits,
+                            estimated: quotaType.estimated_requests,
+                        }),
                     available: true,
                 },
                 {

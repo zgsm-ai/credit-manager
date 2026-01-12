@@ -353,7 +353,8 @@
         },
         "package": {
             "description": "Credits deducted based on actual usage, valid for 1 month",
-            "unit": "/ pack"
+            "unit": "/ pack",
+            "tips": "(First purchase ¥9.9 | Subsequent purchases ¥25)"
         },
         "total": "Total: ",
         "paymentMethod": "Payment Method",

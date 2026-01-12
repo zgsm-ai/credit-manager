@@ -294,6 +294,7 @@ export type GetQuotaTypesRes = Array<QuotaTypeWithMarketingRules>;
 
 export interface GetQuotaTypeByIdReq {
     id: number;
+    quantity?: number;
 }
 
 export type GetQuotaTypeByIdRes = QuotaTypeWithMarketingRules;

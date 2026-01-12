@@ -77,3 +77,6 @@ export const PRICING_PLAN = {
     'traffic-package-2': '流量套餐2',
     'traffic-package-3': '流量套餐3',
 } as const;
+
+// 首次购买id
+export const FIRST_PURCHASE_ID = 1;
