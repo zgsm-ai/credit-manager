@@ -78,5 +78,9 @@ export const PRICING_PLAN = {
     'traffic-package-3': '流量套餐3',
 } as const;
 
-// 首次购买id
+/**
+ * 首次购买营销规则ID
+ * 对应后端quota_marketing_rules表的rule_type字段
+ * 注意：如果后端数据库中该ID发生变化，必须同步更新此常量
+ */
 export const FIRST_PURCHASE_ID = 1;
