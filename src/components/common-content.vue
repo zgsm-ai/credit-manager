@@ -3,7 +3,7 @@
         <div class="common-content-view">
             <router-view />
         </div>
-        <common-footer />
+        <common-footer v-if="!isNoFooterPage" />
     </div>
 </template>
 
@@ -11,11 +11,20 @@
 /**
  * @file common-content.vue
  */
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import CommonFooter from '@/components/common-footer.vue';
 import { setI18nComposer } from '@/utils/i18n';
 import { setMessageInstance } from '@/utils/request';
 import { useMessage } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
+import { NO_FOOTER_ROUTES } from '@/router';
+
+const route = useRoute();
+
+const isNoFooterPage = computed(() => {
+    return NO_FOOTER_ROUTES.includes(route.path);
+});
 
 const message = useMessage();
 setMessageInstance(message);

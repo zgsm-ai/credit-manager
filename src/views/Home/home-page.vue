@@ -783,4 +783,16 @@ watch(activeMenuKey, (newKey) => {
         }
     }
 }
+
+// 菜单项new图标样式
+.menu-label-with-new-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .new-icon {
+        flex-shrink: 0;
+    }
+}
 </style>

@@ -1,11 +1,14 @@
 <template>
-    <div class="common-header">
+    <div
+        class="common-header"
+        v-if="!isAnnualSummaryPage"
+    >
         <div
             class="logo cursor-pointer"
             @click="() => router.push('/')"
         >
             <img
-                src="../assets/logo.png"
+                src="../assets/logo.webp"
                 alt=""
             />
             <span>{{ t('common.header.appName') }}</span>
@@ -116,6 +119,7 @@ const { t, locale } = useI18n();
 
 const isPublicPage = computed(() => PUBLIC_ROUTES.includes(router.currentRoute.value.path));
 const isSubscribePage = computed(() => router.currentRoute.value.path === '/subscribe');
+const isAnnualSummaryPage = computed(() => router.currentRoute.value.path === '/annual-summary');
 
 const languageOptions = ref([
     { label: t('common.langZh'), key: 'zh' },

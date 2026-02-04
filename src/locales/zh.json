@@ -115,7 +115,7 @@
         },
         "request": {
             "requestFailed": "请求失败",
-            "unauthorized": "未授权，请前往VSCODE重新登录",
+            "unauthorized": "请重新登录",
             "requestTimeout": "请求超时",
             "networkConnectionError": "网络连接错误",
             "networkError": "网络错误"
@@ -225,7 +225,10 @@
             "rule2a": "a. 新用户再获300 Credits（累计500 Credits）。",
             "rule2b": "b. 邀请人再获300 Credits（累计400 Credits）。",
             "rule3": "奖励可叠加，邀请新用户越多，Credits越多。"
-        }
+        },
+        "annualReport": "解锁2025年度副本报告",
+        "annualReportDesc": "回顾您的年度使用数据，解锁专属年度成就。",
+        "goAnnualReport": "去解锁 >"
     },
     "login": {
         "notLogged": "尚未登录",
@@ -461,5 +464,36 @@
         "processing": "开票中",
         "completed": "已开票",
         "cancelled": "已作废"
+    },
+    "annualSummary": {
+        "dataLoadFailed": "数据加载失败，请刷新页面重试",
+        "dataLoading": "数据正在加载中，请稍候",
+        "dear": "亲爱的",
+        "unlockItem": "恭喜解锁道具：CoStrict",
+        "pastOneYear": "过去一年里",
+        "days": "天",
+        "year": "年",
+        "month": "月",
+        "day": "日",
+        "notOneTimeTool": "你没有把它当成一次性工具",
+        "stayInWorkflow": "而是让它留在了你的工作流里",
+        "youInitiated": "你发起了",
+        "challenges": "次挑战",
+        "skillUnlocked": "技能已解锁：",
+        "codeModeSkill": "Code模式 技能点已修炼",
+        "askModeSkill": "Ask模式 技能点已修炼",
+        "architectModeSkill": "Architect 技能点已修炼",
+        "tokenConsumption": "Token消耗量：",
+        "yearlyCreditsConsumption": "本年度Credits消耗",
+        "annualReport": "2025年度报告",
+        "scanQRCode": "扫描二维码·解锁专属年度副本",
+        "youUsed": "你使用了",
+        "inviteCode": "邀请码:",
+        "savePoster": "保存海报",
+        "generating": "生成中...",
+        "saveFailedTip": "*如保存失败可截图分享",
+        "reviewAgain": "重新回顾",
+        "ifOnlyCaloriesConsumed": "如果这是消耗的卡路里就好了",
+        "yearlySummary": "年度总结-"
     }
 }
