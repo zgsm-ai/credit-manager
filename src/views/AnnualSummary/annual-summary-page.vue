@@ -60,6 +60,9 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * @file 年度总结页面
+ */
 import { ref, onMounted, computed } from 'vue';
 import AnnualSummaryStep1 from './components/annual-summary-step1.vue';
 import AnnualSummaryStep2 from './components/annual-summary-step2.vue';
