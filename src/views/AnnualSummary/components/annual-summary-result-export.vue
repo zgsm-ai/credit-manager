@@ -46,13 +46,31 @@
                         </p>
                     </div>
 
-                    <div class="flex flex-col items-center">
-                        <img
+                    <div class="flex gap-3 items-center">
+                        <div class="flex flex-col items-center">
+                            <img
+                                src="../../../assets/summary/qr.webp"
+                                alt="official-qrcode"
+                                class="w-14 h-14 block"
+                                crossorigin="anonymous"
+                            />
+                            <span class="text-[10px] text-[#D1D1D1] mt-1.5">
+                                {{ t('annualSummary.learnProduct') }}
+                            </span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center"
                             v-if="qrCodeDataUrl"
-                            :src="qrCodeDataUrl"
-                            alt="invite-qrcode"
-                            class="w-19.5 h-19.5 block"
-                        />
+                        >
+                            <img
+                                :src="qrCodeDataUrl"
+                                alt="invite-qrcode"
+                                class="w-14 h-14 block"
+                            />
+                            <span class="text-[10px] text-[#D1D1D1] mt-1.5">
+                                {{ t('annualSummary.loginExperience') }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
