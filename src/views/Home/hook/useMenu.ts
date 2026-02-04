@@ -6,6 +6,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { type MenuOption } from 'naive-ui';
 import MenuIcons from '../components/menu-icons.vue';
+import newIcons from '@/assets/new.svg';
 
 // 定义菜单键的类型
 export type MenuKey = 'profile' | 'subscription' | 'usage' | 'activity';
@@ -102,7 +103,15 @@ export function useMenu() {
                 icon: renderMenuIcon('usage'),
             },
             {
-                label: t('homePage.menu.activity'),
+                label: () =>
+                    h('div', { class: 'menu-label-with-new-icon flex' }, [
+                        h('span', t('homePage.menu.activity')),
+                        h('img', {
+                            src: newIcons,
+                            alt: 'new',
+                            class: 'new-icon ml-3 w-8',
+                        }),
+                    ]),
                 key: 'activity',
                 icon: renderMenuIcon('activity'),
             },

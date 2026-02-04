@@ -90,6 +90,36 @@
                     </ul>
                 </template>
             </common-card>
+            <common-card
+                v-if="isZh"
+                class="mt-3 relative"
+            >
+                <template #default>
+                    <div class="activity-annual-report">
+                        <div class="activity-annual-report__header flex">
+                            <img
+                                class="w-3"
+                                src="../../assets/calendar.svg"
+                                alt=""
+                            />
+                            <span class="text-white ml-3 text-sm">{{
+                                t('activityCard.annualReport')
+                            }}</span>
+                        </div>
+                        <div
+                            class="activity-annual-report__content text-sm ml-6 text-white mt-3 max-w-[70%]"
+                        >
+                            {{ t('activityCard.annualReportDesc') }}
+                        </div>
+                        <div
+                            class="activity-annual-report__btn rounded-[20px] absolute right-4 top-7.5 px-4 py-1 w-29 h-7 flex items-center justify-center cursor-pointer"
+                            @click="toAnnualReport"
+                        >
+                            <span class="text-sm">{{ t('activityCard.goAnnualReport') }}</span>
+                        </div>
+                    </div>
+                </template>
+            </common-card>
         </template>
     </common-card>
 </template>
@@ -103,7 +133,9 @@ import { useI18n } from 'vue-i18n';
 import CommonCard from '@/components/common-card.vue';
 import { getInviteCode } from '@/api/mods/quota.mod';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+
+const isZh = computed(() => locale.value === 'zh');
 
 const inviteRules = computed(() => [
     {
@@ -141,6 +173,10 @@ const toInvite = async () => {
     } finally {
         isInviteLoading.value = false;
     }
+};
+
+const toAnnualReport = () => {
+    window.location.href = '/credit/manager/annual-summary';
 };
 </script>
 
@@ -226,6 +262,48 @@ const toInvite = async () => {
 }
 
 .activity-invite-user {
+    &__header {
+        span {
+            letter-spacing: normal;
+            background: linear-gradient(95deg, #00ffb7 0%, #ffffff 68%, #c5dbff 101%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    }
+
+    &__btn {
+        border: 0.5px solid transparent;
+        background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(84deg, #0167ff -2%, #48ffcb 52%, #005eff 115%) border-box;
+
+        span {
+            letter-spacing: 0.2px;
+            background: linear-gradient(96deg, #00ffb7 0%, #ffffff 68%, #c5dbff 101%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    }
+
+    &__btn {
+        border: 0.5px solid transparent;
+        background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(84deg, #0167ff -2%, #48ffcb 52%, #005eff 115%) border-box;
+
+        span {
+            letter-spacing: 0.2px;
+            background: linear-gradient(96deg, #00ffb7 0%, #ffffff 68%, #c5dbff 101%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    }
+}
+
+.activity-annual-report {
     &__header {
         span {
             letter-spacing: normal;

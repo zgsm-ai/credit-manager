@@ -63,6 +63,11 @@ const router = createRouter({
             component: () => import('@/views/Subscribe/subscribe-page.vue'),
         },
         {
+            path: '/annual-summary',
+            name: 'annual-summary',
+            component: () => import('@/views/AnnualSummary/annual-summary-page.vue'),
+        },
+        {
             path: '/:pathMatch(.*)*',
             name: 'not-found',
             redirect: '/',
@@ -72,7 +77,13 @@ const router = createRouter({
 
 export const PUBLIC_ROUTES = ['/credit-reward-plan', '/credit-md-preview'];
 
-// 添加路由守卫，在英文版环境下屏蔽 /subscribe 路由
+// 不显示 footer 的路由
+export const NO_FOOTER_ROUTES = ['/annual-summary'];
+
+// 仅在中文版下可访问的路由
+export const ZH_ONLY_ROUTES = ['/subscribe', '/annual-summary'];
+
+// 添加路由守卫，在英文版环境下屏蔽仅中文路由
 router.beforeEach((to, from, next) => {
     // 获取当前语言设置
     let currentLocale = 'zh'; // 默认中文
@@ -87,8 +98,8 @@ router.beforeEach((to, from, next) => {
         console.warn('Failed to read language from localStorage:', error);
     }
 
-    // 如果是英文版且访问订阅页面，则重定向到首页
-    if (currentLocale === 'en' && to.path === '/subscribe') {
+    // 如果是英文版且访问仅中文路由，则重定向到首页
+    if (currentLocale === 'en' && ZH_ONLY_ROUTES.includes(to.path)) {
         next('/');
     } else {
         next();

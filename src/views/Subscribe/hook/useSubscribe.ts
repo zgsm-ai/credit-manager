@@ -5,7 +5,13 @@ import { ref, computed, watch, onMounted, type ComputedRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import type { FormInst, FormRules } from 'naive-ui';
-import { FIRST_PURCHASE_ID, getPaymentMethods, getPricingPlans, PAY_TYPE, type TPayType } from '../const';
+import {
+    FIRST_PURCHASE_ID,
+    getPaymentMethods,
+    getPricingPlans,
+    PAY_TYPE,
+    type TPayType,
+} from '../const';
 import type { PricingPlan } from '../interface';
 import { postCreateOrder, getQuotaTypeById } from '@/api/mods/quota.mod';
 import type { PostCreateOrderReq, PostCreateOrderRes } from '@/api/bos/quota.bo';
@@ -93,7 +99,7 @@ export function useSubscribe(
 
     // 套餐单价（使用当前套餐的价格，转换为元）
     const unitPrice = computed(() => {
-        return currentPlan.value ? (currentPlan.value.price) : 0;
+        return currentPlan.value ? currentPlan.value.price : 0;
     });
 
     // 计算总价（使用从API返回的金额）
