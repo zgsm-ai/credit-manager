@@ -119,7 +119,9 @@ const { t, locale } = useI18n();
 
 const isPublicPage = computed(() => PUBLIC_ROUTES.includes(router.currentRoute.value.path));
 const isSubscribePage = computed(() => router.currentRoute.value.path === '/subscribe');
-const isAnnualSummaryPage = computed(() => router.currentRoute.value.path === '/annual-summary');
+const isAnnualSummaryPage = computed(() =>
+    ['/annual-summary', '/annual-summary-cover'].includes(router.currentRoute.value.path),
+);
 
 const languageOptions = ref([
     { label: t('common.langZh'), key: 'zh' },

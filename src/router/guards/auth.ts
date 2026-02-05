@@ -6,6 +6,21 @@ import { tokenManager } from '@/utils/token';
 export function setupAuthGuard(router: Router) {
     router.beforeEach(async (to, from, next) => {
         try {
+            // 处理年度总结封面页的特殊逻辑
+            if (to.path === '/annual-summary-cover') {
+                // 先尝试认证（包括从 URL 获取 token 等逻辑）
+                const authResult = await authService.authenticate();
+
+                if (authResult.success) {
+                    // 认证成功，重定向到年度总结页面
+                    next('/annual-summary');
+                } else {
+                    // 认证失败，让页面正常加载（静态封面页）
+                    next();
+                }
+                return;
+            }
+
             // 检查是否为公开路由或登录页面
             if (PUBLIC_ROUTES.includes(to.path) || to.path === '/login') {
                 next();

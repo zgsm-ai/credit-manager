@@ -68,6 +68,11 @@ const router = createRouter({
             component: () => import('@/views/AnnualSummary/annual-summary-page.vue'),
         },
         {
+            path: '/annual-summary-cover',
+            name: 'annual-summary-cover',
+            component: () => import('@/views/AnnualSummary/annual-summary-cover.vue'),
+        },
+        {
             path: '/:pathMatch(.*)*',
             name: 'not-found',
             redirect: '/',
@@ -75,13 +80,17 @@ const router = createRouter({
     ],
 });
 
-export const PUBLIC_ROUTES = ['/credit-reward-plan', '/credit-md-preview'];
+export const PUBLIC_ROUTES = [
+    '/credit-reward-plan',
+    '/credit-md-preview',
+    '/annual-summary-cover',
+];
 
 // 不显示 footer 的路由
-export const NO_FOOTER_ROUTES = ['/annual-summary'];
+export const NO_FOOTER_ROUTES = ['/annual-summary', '/annual-summary-cover'];
 
 // 仅在中文版下可访问的路由
-export const ZH_ONLY_ROUTES = ['/subscribe', '/annual-summary'];
+export const ZH_ONLY_ROUTES = ['/subscribe', '/annual-summary', '/annual-summary-cover'];
 
 // 添加路由守卫，在英文版环境下屏蔽仅中文路由
 router.beforeEach((to, from, next) => {
