@@ -189,9 +189,9 @@ watch(
             loadData();
         }
     },
-    // {
-    //     immediate: true,
-    // },
+    {
+        immediate: true,
+    },
 );
 </script>
 
