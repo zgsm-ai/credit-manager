@@ -36,6 +36,7 @@
                     @update:value="handleMenuSelect"
                 />
             </n-layout-sider>
+
             <n-layout-content class="content-area ml-2">
                 <div class="page-content">
                     <!-- 个人信息 -->
@@ -43,8 +44,15 @@
                         class="info"
                         v-if="activeMenuKey === 'profile'"
                     >
-                        <div class="info-title text-white text-xl mb-9">
+                        <div class="info-title text-white text-xl mb-9 flex">
                             {{ t('homePageUi.personalInfo') }}
+                            <img
+                                v-if="isMobileLayout && isZh"
+                                src="../../assets/summary_icon.webp"
+                                alt="summary_icon"
+                                class="w-18 absolute right-0 cursor-pointer"
+                                @click="toAnnualSummary"
+                            />
                         </div>
                         <!-- 基本信息 -->
                         <common-card :title="t('homePage.basicInfo')">
@@ -280,6 +288,7 @@
  */
 import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 import { NLayout, NLayoutSider, NLayoutContent, NLayoutHeader, NMenu } from 'naive-ui';
 import CommonCard from '@/components/common-card.vue';
 import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue';
@@ -297,6 +306,7 @@ import { useResponsive } from './hook/useResponsive';
 import usageConsumptionSection from './components/usage-consumption-section.vue';
 
 const { t, locale } = useI18n();
+const router = useRouter();
 const isZh = computed(() => locale.value === 'zh');
 
 // 使用响应式布局hook
@@ -435,6 +445,10 @@ const loadMenuData = async (menuKey: MenuKey) => {
 
 const toBillingDocs = () => {
     window.open('https://docs.costrict.ai/billing/purchase');
+};
+
+const toAnnualSummary = () => {
+    router.push('/annual-summary');
 };
 
 // 初始化时加载默认菜单数据

@@ -31,11 +31,13 @@
  * @file 登录页
  */
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import { getLoginUrl } from '@/api/mods/quota.mod';
 import { NEmpty, NButton } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+const route = useRoute();
 const isLoggingIn = ref(false);
 
 const toLogin = async () => {
@@ -43,11 +45,20 @@ const toLogin = async () => {
 
     isLoggingIn.value = true;
     try {
+        const inviteCode = route.query.inviteCode as string;
+        const isShare = route.query.isShare as string;
+        const params = inviteCode ? { inviter_code: inviteCode } : undefined;
         const {
             data: { url },
-        } = await getLoginUrl();
+        } = await getLoginUrl(params);
 
-        window.location.href = url;
+        let loginUrl = url;
+        if (isShare === 'true') {
+            loginUrl = `${url}&isShare=true`;
+        }
+
+        // console.log(loginUrl);
+        window.location.href = loginUrl;
     } catch (error) {
         console.error('登录失败:', error);
         isLoggingIn.value = false;

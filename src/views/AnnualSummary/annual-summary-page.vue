@@ -72,7 +72,7 @@ import AnnualSummaryStep5 from './components/annual-summary-step5.vue';
 import AnnualSummaryStep6 from './components/annual-summary-step6.vue';
 import AnnualSummaryStep7 from './components/annual-summary-step7.vue';
 import AnnualSummaryResult from './components/annual-summary-result.vue';
-import { getInviteCode, getLoginUrl } from '@/api/mods/quota.mod';
+import { getInviteCode } from '@/api/mods/quota.mod';
 import { getUserMe } from '@/api/mods/activity.mod';
 import type { UserMeData } from '@/api/bos/activity.bo';
 import { DEFAULT_RESULT_TYPE, BACKEND_TYPE_MAP } from './const';
@@ -132,10 +132,8 @@ const fetchInviteCode = async () => {
 const fetchLoginUrl = async () => {
     if (!inviteCode.value) return;
     try {
-        const {
-            data: { url },
-        } = await getLoginUrl({ inviter_code: inviteCode.value });
-        loginUrl.value = `${url}&isShare=true`;
+        // 直接构建年度总结封面页的 URL，带上分享标识和邀请码
+        loginUrl.value = `${window.location.origin}/credit/manager/annual-summary-cover?isShare=true&inviteCode=${inviteCode.value}`;
         isDataLoaded.value = true;
     } catch (error) {
         hasFetchError.value = true;
