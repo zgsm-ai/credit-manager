@@ -47,14 +47,25 @@ const toLogin = async () => {
     try {
         const inviteCode = route.query.inviteCode as string;
         const isShare = route.query.isShare as string;
-        const params = inviteCode ? { inviter_code: inviteCode } : undefined;
+
+        const params: {
+            inviter_code?: string;
+            redirect_service?: string;
+        } = {};
+        if (inviteCode) {
+            params.inviter_code = inviteCode;
+        }
+        if (isShare === 'true') {
+            params.redirect_service = 'act_2026';
+        }
+
         const {
             data: { url },
         } = await getLoginUrl(params);
 
         let loginUrl = url;
         if (isShare === 'true') {
-            loginUrl = `${url}&isShare=true`;
+            loginUrl = url + '&isShare=true';
         }
 
         // console.log(loginUrl);
