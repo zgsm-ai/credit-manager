@@ -63,7 +63,7 @@
 /**
  * @file 年度总结页面
  */
-import { ref, onMounted, computed } from 'vue';
+import { ref, watch, computed } from 'vue';
 import AnnualSummaryStep1 from './components/annual-summary-step1.vue';
 import AnnualSummaryStep2 from './components/annual-summary-step2.vue';
 import AnnualSummaryStep3 from './components/annual-summary-step3.vue';
@@ -80,6 +80,8 @@ import type { UserMeData } from '@/api/bos/activity.bo';
 import { DEFAULT_RESULT_TYPE, BACKEND_TYPE_MAP } from './const';
 import { useMessage } from 'naive-ui';
 import { getT } from '@/utils/i18n';
+import { useUserStore } from '@/store/user';
+import { storeToRefs } from 'pinia';
 
 const message = useMessage();
 const t = getT();
@@ -90,6 +92,10 @@ const resultType = ref(DEFAULT_RESULT_TYPE);
 const userData = ref<UserMeData | null>(null);
 const isDataLoaded = ref(false);
 const hasFetchError = ref(false);
+
+// 获取用户状态
+const userStore = useUserStore();
+const { isTokenInitialized } = storeToRefs(userStore);
 
 // 1. 动态计算 Transition Mode
 // 当进入结果页(Step 8)时，去掉 'out-in'，实现“重叠过渡”。
@@ -162,7 +168,8 @@ const handleReset = () => {
 
 const handleAfterEnter = () => {};
 
-onMounted(async () => {
+// 初始化时加载页面数据
+const loadData = async () => {
     try {
         await fetchUserMe();
         await fetchInviteCode();
@@ -172,7 +179,20 @@ onMounted(async () => {
         hasFetchError.value = true;
         isDataLoaded.value = false;
     }
-});
+};
+
+// 等待 token 初始化完成后加载数据
+watch(
+    isTokenInitialized,
+    (val) => {
+        if (val) {
+            loadData();
+        }
+    },
+    {
+        immediate: true,
+    },
+);
 </script>
 
 <style scoped lang="less">

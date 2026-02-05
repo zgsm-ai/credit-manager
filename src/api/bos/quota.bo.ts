@@ -144,7 +144,8 @@ export interface GetInviteCodeRes {
 }
 
 export interface GetLoginUrlReq {
-    inviter_code: string;
+    inviter_code?: string;
+    redirect_service?: string;
 }
 
 export interface GetLoginUrlRes {
