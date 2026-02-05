@@ -71,6 +71,8 @@ import AnnualSummaryStep4 from './components/annual-summary-step4.vue';
 import AnnualSummaryStep5 from './components/annual-summary-step5.vue';
 import AnnualSummaryStep6 from './components/annual-summary-step6.vue';
 import AnnualSummaryStep7 from './components/annual-summary-step7.vue';
+// 导出结果步骤（默认注释，暂不使用）
+// import AnnualSummaryResultExport from './components/annual-summary-result-export.vue';
 import AnnualSummaryResult from './components/annual-summary-result.vue';
 import { getInviteCode } from '@/api/mods/quota.mod';
 import { getUserMe } from '@/api/mods/activity.mod';

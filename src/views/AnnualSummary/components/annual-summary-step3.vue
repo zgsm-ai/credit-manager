@@ -146,7 +146,7 @@ const handleIcon2Click = async () => {
     showText2.value = true;
     showIcon5.value = true;
 
-    await safeWait(800);
+    await safeWait(1100);
     showIcon6.value = true;
 };
 

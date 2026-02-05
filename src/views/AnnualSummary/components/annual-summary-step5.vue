@@ -31,7 +31,7 @@
                     class="absolute z-3 font-zcool top-116.5 text-white w-full"
                 >
                     <p class="text-5xl ml-7.25 truncate max-w-full">
-                        {{ userData?.creditUsage || '-' }} <span class="text-3xl">⚡</span>
+                        {{ userData?.creditUsage || '---' }} <span class="text-3xl">⚡</span>
                     </p>
                 </div>
             </Transition>
@@ -102,10 +102,10 @@ onMounted(async () => {
     await safeWait(500);
     showText2.value = true;
 
-    await safeWait(800);
+    await safeWait(1300);
     showText3.value = true;
 
-    await safeWait(800);
+    await safeWait(1300);
     showNextIcon.value = true;
 });
 
