@@ -5,6 +5,10 @@ import typeAgentImg from '@/assets/summary/type_agent.webp';
 import typeBugImg from '@/assets/summary/type_bug.webp';
 import typeFirstImg from '@/assets/summary/type_first.webp';
 import typeSpeedImg from '@/assets/summary/type_speed.webp';
+import exportAgentImg from '@/assets/summary/export_agent.webp';
+import exportBugImg from '@/assets/summary/export_bug.webp';
+import exportFirstImg from '@/assets/summary/export_first.webp';
+import exportSpeedImg from '@/assets/summary/export_speed.webp';
 import agentVideo from '@/assets/summary/video/agent.mp4';
 import bugVideo from '@/assets/summary/video/bug.mp4';
 import firstVideo from '@/assets/summary/video/first.mp4';
@@ -28,6 +32,16 @@ export const TYPE_IMAGE_MAP: Record<string, string> = {
     bug: typeBugImg,
     first: typeFirstImg,
     speed: typeSpeedImg,
+};
+
+/**
+ * 结果导出类型图片映射
+ */
+export const EXPORT_IMAGE_MAP: Record<string, string> = {
+    agent: exportAgentImg,
+    bug: exportBugImg,
+    first: exportFirstImg,
+    speed: exportSpeedImg,
 };
 
 /**

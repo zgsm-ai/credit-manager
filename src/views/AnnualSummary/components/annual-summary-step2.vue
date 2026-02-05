@@ -123,7 +123,7 @@ onMounted(async () => {
     await safeWait(1200);
     showCoverText.value = true;
 
-    await safeWait(2000);
+    await safeWait(1300);
     showCoverIcon3.value = true;
 });
 </script>

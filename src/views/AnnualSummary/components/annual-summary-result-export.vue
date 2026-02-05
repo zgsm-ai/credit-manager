@@ -13,14 +13,14 @@
             <img
                 class="block absolute z-2 w-full"
                 :src="typeImageSrc"
-                :alt="`type_${type}`"
+                :alt="`export_${type}`"
                 crossorigin="anonymous"
             />
 
-            <div class="absolute z-2 max-w-67.75 w-full top-117.5 left-0 right-0 mx-auto">
+            <div class="absolute z-2 max-w-67.75 w-full top-120.5 left-0 right-0 mx-auto">
                 <p class="text-sm">{{ typeText }}</p>
 
-                <div class="flex mt-8.5 justify-between items-start">
+                <div class="flex mt-7 justify-between items-start">
                     <div class="flex flex-col justify-start">
                         <div class="flex items-center">
                             <img
@@ -54,7 +54,7 @@
                                 class="w-14 h-14 block"
                                 crossorigin="anonymous"
                             />
-                            <span class="text-[10px] text-[#D1D1D1] mt-1.5">
+                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 truncate">
                                 {{ t('annualSummary.learnProduct') }}
                             </span>
                         </div>
@@ -67,7 +67,7 @@
                                 alt="invite-qrcode"
                                 class="w-14 h-14 block"
                             />
-                            <span class="text-[10px] text-[#D1D1D1] mt-1.5">
+                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 truncate">
                                 {{ t('annualSummary.loginExperience') }}
                             </span>
                         </div>
@@ -85,7 +85,7 @@
 import { ref, computed, watch } from 'vue';
 import QRCode from 'qrcode';
 import { getT } from '@/utils/i18n';
-import { TYPE_IMAGE_MAP, TYPE_TEXT_MAP, DEFAULT_RESULT_TYPE } from '../const';
+import { EXPORT_IMAGE_MAP, TYPE_TEXT_MAP, DEFAULT_RESULT_TYPE } from '../const';
 
 const t = getT();
 
@@ -103,7 +103,7 @@ const props = withDefaults(
 );
 
 const typeImageSrc = computed(
-    () => TYPE_IMAGE_MAP[props.type] || TYPE_IMAGE_MAP[DEFAULT_RESULT_TYPE],
+    () => EXPORT_IMAGE_MAP[props.type] || EXPORT_IMAGE_MAP[DEFAULT_RESULT_TYPE],
 );
 const typeText = computed(() => TYPE_TEXT_MAP[props.type] || TYPE_TEXT_MAP[DEFAULT_RESULT_TYPE]);
 

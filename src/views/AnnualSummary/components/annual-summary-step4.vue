@@ -235,10 +235,10 @@ const handleStarClick = async () => {
     await safeWait(300);
     showIcon2.value = true;
 
-    await safeWait(300);
+    await safeWait(500);
     showText2.value = true;
 
-    await safeWait(1000);
+    await safeWait(1600);
     showNextIcon.value = true;
 };
 
