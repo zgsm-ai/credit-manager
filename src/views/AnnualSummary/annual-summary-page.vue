@@ -130,10 +130,10 @@ const fetchInviteCode = async () => {
             data: { invite_code = '' },
         } = await getInviteCode();
         inviteCode.value = invite_code;
-        isDataLoaded.value = true;
     } catch (error) {
-        hasFetchError.value = true;
-        throw error;
+        // 邀请码获取失败不影响下一步操作，仅记录空值
+        inviteCode.value = '';
+        console.warn('获取邀请码失败，但不影响流程:', error);
     }
 };
 
@@ -141,7 +141,7 @@ const fetchLoginUrl = async () => {
     if (!inviteCode.value) return;
     try {
         // 直接构建年度总结封面页的 URL，带上分享标识和邀请码
-        loginUrl.value = `${window.location.origin}/credit/manager/annual-summary-cover?isShare=true&inviteCode=${inviteCode.value}`;
+        loginUrl.value = `https://zgsm.sangfor.com/credit/manager/annual-summary-cover?isShare=true&inviteCode=${inviteCode.value}`;
         isDataLoaded.value = true;
     } catch (error) {
         hasFetchError.value = true;
