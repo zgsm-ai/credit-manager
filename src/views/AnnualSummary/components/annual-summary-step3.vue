@@ -42,7 +42,7 @@
             </Transition>
             <img
                 v-if="!showSecondCover"
-                class="block absolute z-2 w-17 right-7.5 top-3.75 cursor-pointer"
+                class="block absolute z-2 w-17 right-[29.5px] top-[17.5px] cursor-pointer"
                 src="../../../assets/summary/step3_icon_2.webp"
                 alt="icon_2"
                 @click="handleIcon2Click"
