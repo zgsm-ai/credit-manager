@@ -54,7 +54,7 @@
                                 class="w-15 h-15 block"
                                 crossorigin="anonymous"
                             />
-                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 truncate">
+                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 whitespace-nowrap">
                                 {{ t('annualSummary.learnProduct') }}
                             </span>
                         </div>
@@ -67,7 +67,7 @@
                                 alt="invite-qrcode"
                                 class="w-15 h-15 block"
                             />
-                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 truncate">
+                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 whitespace-nowrap">
                                 {{ t('annualSummary.loginExperience') }}
                             </span>
                         </div>
