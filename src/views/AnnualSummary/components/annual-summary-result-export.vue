@@ -51,7 +51,7 @@
                             <img
                                 src="../../../assets/summary/qr.webp"
                                 alt="official-qrcode"
-                                class="w-14 h-14 block"
+                                class="w-15 h-15 block"
                                 crossorigin="anonymous"
                             />
                             <span class="text-[10px] text-[#D1D1D1] mt-1.5 truncate">
@@ -65,7 +65,7 @@
                             <img
                                 :src="qrCodeDataUrl"
                                 alt="invite-qrcode"
-                                class="w-14 h-14 block"
+                                class="w-15 h-15 block"
                             />
                             <span class="text-[10px] text-[#D1D1D1] mt-1.5 truncate">
                                 {{ t('annualSummary.loginExperience') }}

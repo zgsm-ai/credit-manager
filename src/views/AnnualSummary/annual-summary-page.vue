@@ -182,17 +182,11 @@ const loadData = async () => {
 };
 
 // 等待 token 初始化完成后加载数据
-watch(
-    isTokenInitialized,
-    (val) => {
-        if (val) {
-            loadData();
-        }
-    },
-    {
-        immediate: true,
-    },
-);
+watch(isTokenInitialized, (val) => {
+    if (val) {
+        loadData();
+    }
+});
 </script>
 
 <style scoped lang="less">
