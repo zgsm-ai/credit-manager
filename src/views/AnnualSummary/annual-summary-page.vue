@@ -85,7 +85,7 @@ import { storeToRefs } from 'pinia';
 
 const message = useMessage();
 const t = getT();
-const currentStep = ref(8);
+const currentStep = ref(1);
 const inviteCode = ref('');
 const loginUrl = ref('');
 const resultType = ref(DEFAULT_RESULT_TYPE);
