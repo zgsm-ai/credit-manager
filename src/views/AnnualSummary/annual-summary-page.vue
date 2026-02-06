@@ -46,7 +46,7 @@
                     :type="resultType"
                     @next="handleNext"
                 />
-                <AnnualSummaryResultExport
+                <AnnualSummaryResult
                     v-else
                     :step-id="8"
                     :type="resultType"
@@ -72,8 +72,8 @@ import AnnualSummaryStep5 from './components/annual-summary-step5.vue';
 import AnnualSummaryStep6 from './components/annual-summary-step6.vue';
 import AnnualSummaryStep7 from './components/annual-summary-step7.vue';
 // 导出结果步骤（默认注释，暂不使用）
-import AnnualSummaryResultExport from './components/annual-summary-result-export.vue';
-// import AnnualSummaryResult from './components/annual-summary-result.vue';
+// import AnnualSummaryResultExport from './components/annual-summary-result-export.vue';
+import AnnualSummaryResult from './components/annual-summary-result.vue';
 import { getInviteCode } from '@/api/mods/quota.mod';
 import { getUserMe } from '@/api/mods/activity.mod';
 import type { UserMeData } from '@/api/bos/activity.bo';
@@ -85,7 +85,7 @@ import { storeToRefs } from 'pinia';
 
 const message = useMessage();
 const t = getT();
-const currentStep = ref(8);
+const currentStep = ref(1);
 const inviteCode = ref('');
 const loginUrl = ref('');
 const resultType = ref(DEFAULT_RESULT_TYPE);
