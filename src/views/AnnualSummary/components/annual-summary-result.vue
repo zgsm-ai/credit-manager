@@ -1,5 +1,6 @@
 <template>
     <div class="flex items-center justify-center h-full w-full">
+        <!-- ================== 1. 正常展示区域 (保持不变) ================== -->
         <div
             ref="posterRef"
             class="relative max-w-93.75 aspect-375/667 w-full bg-white overflow-hidden"
@@ -74,12 +75,25 @@
             </div>
         </div>
 
-        <!-- 导出专用区域：平时 hidden，导出时固定定位渲染以便截图 -->
-        <div :class="isExporting ? 'fixed top-0 left-0 -z-[9999] w-[375px]' : 'hidden'">
+        <!-- ================== 2. 导出专用区域 (关键修改) ================== -->
+        <!-- 
+            修改说明：
+            1. 移除 v-if/hidden，确保 DOM 始终存在。
+            2. 使用 fixed 将其移出屏幕左侧 (-9999px)，并置于底层。
+            3. 必须保持 visibility: visible (默认) 和 opacity: 1，否则截图也是透明的。
+        -->
+        <div
+            class="fixed top-0 left-[-9999px] w-[375px] z-[-1]"
+            style="pointer-events: none"
+        >
             <div
                 ref="exportWrapperRef"
                 class="w-full relative bg-white"
             >
+                <!-- 
+                    注意：请确保 AnnualSummaryResultExport 组件内部的所有 img 标签
+                    如果是网络图片，都加上了 crossorigin="anonymous" 
+                -->
                 <AnnualSummaryResultExport
                     :type="type"
                     :invite-code="inviteCode"
@@ -127,14 +141,12 @@ const exportWrapperRef = ref<HTMLElement>();
 const isGenerating = ref(false);
 const qrCodeDataUrl = ref('');
 
-// 控制导出组件是否渲染
-const isExporting = ref(false);
-
 const typeImageSrc = computed(
     () => TYPE_IMAGE_MAP[props.type] || TYPE_IMAGE_MAP[DEFAULT_RESULT_TYPE],
 );
 const typeText = computed(() => TYPE_TEXT_MAP[props.type] || TYPE_TEXT_MAP[DEFAULT_RESULT_TYPE]);
 
+// 生成二维码
 const generateQRCode = async (url: string) => {
     if (!url) return;
     try {
@@ -159,63 +171,112 @@ watch(
 
 const handleReset = () => emit('reset');
 
+/**
+ * 辅助函数：检测目标元素内的所有图片是否加载完毕
+ * 这是解决 Safari 白屏的关键步骤之一
+ */
+const ensureImagesLoaded = async (element: HTMLElement) => {
+    const images = Array.from(element.querySelectorAll('img'));
+
+    const promises = images.map((img) => {
+        // 如果图片已经完成且有高度，直接成功
+        if (img.complete && img.naturalHeight > 0) return Promise.resolve();
+
+        // 否则等待加载事件
+        return new Promise<void>((resolve) => {
+            img.onload = () => resolve();
+            img.onerror = () => resolve(); // 即使失败也 resolve，防止死锁
+        });
+    });
+
+    // 最多等待 3 秒，防止某张图挂了导致程序卡死
+    await Promise.race([
+        Promise.all(promises),
+        new Promise((resolve) => setTimeout(resolve, 3000)),
+    ]);
+};
+
 const handleSavePoster = async () => {
     if (isGenerating.value) return;
 
-    console.log('Login URL:', props.loginUrl);
-
+    // 1. 确保二维码存在
     if (!qrCodeDataUrl.value && props.loginUrl) {
         await generateQRCode(props.loginUrl);
     }
 
-    // 调用埋点接口记录分享
+    // 2. 埋点
     try {
         await recordShare();
     } catch (error) {
-        console.error('error:', error);
+        console.error('Record share error:', error);
     }
 
     isGenerating.value = true;
 
-    // 开启导出渲染
-    isExporting.value = true;
-
     try {
-        // 等待 Vue 响应式更新 DOM
+        // 等待 Vue DOM 更新
         await nextTick();
 
-        // 关键：浏览器解码 base64 图片需要时间，必须等待确保图片已渲染
-        await new Promise((resolve) => setTimeout(resolve, 300));
+        if (!exportWrapperRef.value) {
+            throw new Error('Export wrapper not found');
+        }
 
-        if (!exportWrapperRef.value) return;
+        // 3. 显式等待图片加载
+        await ensureImagesLoaded(exportWrapperRef.value);
+
+        // 4. 额外缓冲时间 (给 Safari 渲染管线一点时间)
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
         const targetNode = exportWrapperRef.value;
         const contentHeight = targetNode.scrollHeight || 667;
 
-        const dataUrl = await toPng(targetNode, {
-            cacheBust: true,
-            pixelRatio: 3,
+        // ★★★ 核心配置 ★★★
+        const options = {
+            // Safari 必须禁用 cacheBust，否则 CORS 会挂
+            cacheBust: false,
+            // 像素比：2 倍通常足够清晰，过高会导致 iOS Safari 内存溢出白屏
+            pixelRatio: 2,
             backgroundColor: '#ffffff',
-            width: 375, // 强制宽度
+            width: 375,
             height: contentHeight,
             style: {
-                transform: 'none', // 防止父级样式影响
+                transform: 'none', // 确保没有 transform 干扰
                 margin: '0',
-                width: '375px',
             },
-        });
+            // 过滤掉不需要的标签
+            filter: (node: HTMLElement) => {
+                return (
+                    node.tagName !== 'LINK' && node.tagName !== 'STYLE' && node.tagName !== 'SCRIPT'
+                );
+            },
+        };
 
+        // 5. 双重渲染机制 (Double Render)
+        // 第一次渲染：强制浏览器“预热” Canvas 上下文，加载字体和解码图片
+        try {
+            await toPng(targetNode, options);
+        } catch (e) {
+            // 忽略第一次可能的报错
+            console.warn('First pass render warning:', e);
+        }
+
+        // 稍微停顿
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        // 第二次渲染：正式生成
+        const dataUrl = await toPng(targetNode, options);
+
+        // 6. 下载处理
         const link = document.createElement('a');
-        link.download = `${t('annualSummary.yearlySummary')}${new Date().getTime()}.png`;
+        link.download = `${t('annualSummary.yearlySummary')}_${new Date().getTime()}.png`;
         link.href = dataUrl;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     } catch (error) {
         console.error('海报生成失败:', error);
+        // 这里可以加一个 Toast 提示用户重试
     } finally {
-        // 恢复隐藏状态
-        isExporting.value = false;
         isGenerating.value = false;
     }
 };
