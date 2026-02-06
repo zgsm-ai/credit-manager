@@ -47,7 +47,7 @@
                         <div class="info-title text-white text-xl mb-9 flex">
                             {{ t('homePageUi.personalInfo') }}
                             <img
-                                v-if="isMobileLayout && isZh"
+                                v-if="isZh"
                                 src="../../assets/summary_icon.webp"
                                 alt="summary_icon"
                                 class="w-18 absolute right-0 cursor-pointer"
