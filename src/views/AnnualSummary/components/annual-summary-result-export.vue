@@ -47,17 +47,6 @@
                     </div>
 
                     <div class="flex gap-3 items-center">
-                        <div class="flex flex-col items-center">
-                            <img
-                                src="../../../assets/summary/qr.webp"
-                                alt="official-qrcode"
-                                class="w-15 h-15 block"
-                                crossorigin="anonymous"
-                            />
-                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 whitespace-nowrap">
-                                {{ t('annualSummary.learnProduct') }}
-                            </span>
-                        </div>
                         <div
                             class="flex flex-col items-center"
                             v-if="qrCodeDataUrl"
@@ -69,6 +58,18 @@
                             />
                             <span class="text-[10px] text-[#D1D1D1] mt-1.5 whitespace-nowrap">
                                 {{ t('annualSummary.loginExperience') }}
+                            </span>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <img
+                                src="../../../assets/summary/qr.webp"
+                                alt="official-qrcode"
+                                class="w-15 h-15 block"
+                                crossorigin="anonymous"
+                            />
+                            <span class="text-[10px] text-[#D1D1D1] mt-1.5 whitespace-nowrap">
+                                {{ t('annualSummary.learnProduct') }}
                             </span>
                         </div>
                     </div>
