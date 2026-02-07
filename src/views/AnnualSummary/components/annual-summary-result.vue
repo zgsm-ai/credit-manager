@@ -21,7 +21,7 @@
             <div class="absolute z-2 max-w-67.75 w-full top-107.5 left-0 right-0 mx-auto">
                 <p class="text-sm">{{ typeText }}</p>
 
-                <div class="flex mt-8.5 justify-between items-start">
+                <div class="flex mt-5 justify-between items-start">
                     <div class="flex flex-col justify-start">
                         <div class="flex items-center">
                             <img
@@ -35,7 +35,7 @@
                         <p class="font-semibold text-[8px] mt-1">
                             {{ t('annualSummary.annualReport') }}
                         </p>
-                        <p class="font-semibold text-[8px] mt-0.5">
+                        <p class="font-semibold text-[8px] mt-1">
                             {{ t('annualSummary.scanQRCode') }}
                         </p>
                     </div>
@@ -45,7 +45,7 @@
                             v-if="qrCodeDataUrl"
                             :src="qrCodeDataUrl"
                             alt="invite-qrcode"
-                            class="w-10 h-10 block"
+                            class="w-15 h-15 block"
                         />
                     </div>
                 </div>
