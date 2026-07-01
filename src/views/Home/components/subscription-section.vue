@@ -26,31 +26,37 @@
             alt=""
         />
         <div class="subscription-survey">
-            <div class="subscription-survey__copy">
-                <div class="subscription-survey__title">
-                    {{ t('subscriptionSection.survey.prefix') }}
-                    <span class="subscription-survey__credits">{{
-                        t('subscriptionSection.survey.credits')
-                    }}</span>
-                </div>
-                <div class="subscription-survey__meta">
-                    <span class="subscription-survey__text">
-                        {{ t('subscriptionSection.survey.extraPrefix') }}
-                        <span class="subscription-survey__highlight">{{
-                            t('subscriptionSection.survey.extraAmount')
+            <div class="subscription-survey__copy flex items-center">
+                <img
+                    src="../../../assets/subscription/gift.webp"
+                    alt=""
+                />
+                <div class="flex flex-col">
+                    <div class="subscription-survey__title">
+                        {{ t('subscriptionSection.survey.prefix') }}
+                        <span class="subscription-survey__credits">{{
+                            t('subscriptionSection.survey.credits')
                         }}</span>
-                        {{ t('subscriptionSection.survey.extraSuffix') }}
-                    </span>
-                    <span
-                        class="subscription-survey__divider"
-                        aria-hidden="true"
-                    ></span>
-                    <span class="subscription-survey__text">
-                        {{ t('subscriptionSection.survey.deadlinePrefix') }}
-                        <span class="subscription-survey__highlight">{{
-                            t('subscriptionSection.survey.deadlineDate')
-                        }}</span>
-                    </span>
+                    </div>
+                    <div class="subscription-survey__meta">
+                        <span class="subscription-survey__text">
+                            {{ t('subscriptionSection.survey.extraPrefix') }}
+                            <span class="subscription-survey__highlight">{{
+                                t('subscriptionSection.survey.extraAmount')
+                            }}</span>
+                            {{ t('subscriptionSection.survey.extraSuffix') }}
+                        </span>
+                        <span
+                            class="subscription-survey__divider"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="subscription-survey__text">
+                            {{ t('subscriptionSection.survey.deadlinePrefix') }}
+                            <span class="subscription-survey__highlight">{{
+                                t('subscriptionSection.survey.deadlineDate')
+                            }}</span>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="subscription-survey__actions">
@@ -464,8 +470,7 @@ const handleInvoiceSubmitted = () => {
         align-items: center;
         justify-content: space-between;
         gap: 16px 24px;
-        height: 92px;
-        padding: 0 18px;
+        padding: 16px 18px;
         border-radius: 4px;
         background: radial-gradient(
                 36.88% 213.56% at 34.25% -0.79%,
