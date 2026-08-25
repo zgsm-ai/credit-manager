@@ -38,7 +38,9 @@ export default defineConfig(({ command, mode }) => ({
                 secure: false,
             },
             '/oidc-auth': {
-                target: 'https://zgsmtest.cn:30443/',
+                target: 'http://127.0.0.1:8084',
+                // target: 'http://127.0.0.1:8080',
+                // target: 'https://zgsmtest.cn:30443/',
                 // target: 'https://zgsm.sangfor.com',
                 // target: 'http://10.48.19.11:8080',
                 changeOrigin: true,
