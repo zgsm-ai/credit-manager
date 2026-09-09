@@ -85,4 +85,82 @@ describe('maintenance window', () => {
         expect(store.quotaAffected).toBe(false);
         error.mockRestore();
     });
+
+    it('treats 404 as no maintenance, including after an active announcement', async () => {
+        const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+        try {
+            const store = useMaintenanceStore();
+            vi.mocked(getCreditMaintenance).mockRejectedValue({
+                isAxiosError: true,
+                response: { status: 404 },
+            });
+            await store.refresh();
+            expect(store.ready).toBe(true);
+            expect(store.active).toBe(false);
+
+            store.announcement = structuredClone(config);
+            store.announcement.impacts.order.affected = true;
+            store.now = start;
+            expect(store.quotaAffected).toBe(true);
+            expect(store.orderAffected).toBe(true);
+
+            await store.refresh();
+            store.now = start;
+            expect(store.announcement).toBeNull();
+            expect(store.active).toBe(false);
+            expect(store.isTabBlocked('usage')).toBe(false);
+            expect(store.isTabBlocked('subscription')).toBe(false);
+            expect(store.orderAffected).toBe(false);
+            expect(error).not.toHaveBeenCalled();
+        } finally {
+            error.mockRestore();
+        }
+    });
+    it.each([
+        null,
+        [],
+        '',
+        '{"maintain": true,',
+        '<html>Not found</html>',
+        {},
+        { ...config, maintain: 'true' },
+        { ...config, title: {} },
+        { ...config, title: ' ' },
+        { ...config, start_time: 123 },
+        { ...config, start_time: '2026-02-30 16:30:00' },
+        { ...config, end_time: config.start_time },
+        { ...config, end_time: '2026-09-08 17:00:00' },
+        { ...config, impacts: null },
+        { ...config, impacts: { quota: { affected: 'true', description: '维护' } } },
+        { ...config, impacts: { ...config.impacts, order: { affected: true, description: {} } } },
+    ])('ignores malformed content and clears previous restrictions: %j', async (data) => {
+        const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+        try {
+            const store = useMaintenanceStore();
+            vi.mocked(getCreditMaintenance).mockResolvedValue(data);
+            for (const previous of [null, config]) {
+                store.announcement = previous;
+                await store.refresh();
+                store.now = start;
+                expect(store.ready).toBe(true);
+                expect(store.announcement).toBeNull();
+                expect(store.active).toBe(false);
+                expect(store.isTabBlocked('usage')).toBe(false);
+                expect(store.isTabBlocked('subscription')).toBe(false);
+            }
+        } finally {
+            error.mockRestore();
+        }
+    });
+
+    it('clears maintenance if JSON parsing throws', async () => {
+        const store = useMaintenanceStore();
+        store.announcement = structuredClone(config);
+        vi.mocked(getCreditMaintenance).mockRejectedValue(new SyntaxError('Invalid JSON'));
+        await store.refresh();
+        store.now = start;
+        expect(store.ready).toBe(true);
+        expect(store.active).toBe(false);
+        expect(store.announcement).toBeNull();
+    });
 });
