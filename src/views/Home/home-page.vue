@@ -39,16 +39,7 @@
 
             <n-layout-content class="content-area ml-2">
                 <div class="page-content">
-                    <NResult
-                        v-if="menuBlocked"
-                        status="warning"
-                        :title="t('maintenance.title')"
-                        :description="
-                            t('maintenance.unavailable', {
-                                end: maintenance.announcement?.end_time,
-                            })
-                        "
-                    />
+                    <MaintenanceState v-if="menuBlocked" />
                     <!-- 个人信息 -->
                     <section
                         class="info"
@@ -298,9 +289,10 @@
 import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 // import { useRouter } from 'vue-router';
-import { NResult, NLayout, NLayoutSider, NLayoutContent, NLayoutHeader, NMenu } from 'naive-ui';
+import { NLayout, NLayoutSider, NLayoutContent, NLayoutHeader, NMenu } from 'naive-ui';
 import { useMaintenanceStore } from '@/store/maintenance';
 import CommonCard from '@/components/common-card.vue';
+import MaintenanceState from '@/components/maintenance-state.vue';
 import CreditTransferModal from '@/views/Home/credit-transfer-modal.vue';
 import CreditCodeModal from './credit-code-modal.vue';
 import ProfileSection from './components/profile-section.vue';

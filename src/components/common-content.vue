@@ -1,27 +1,23 @@
 <template>
     <div class="common-content">
         <div class="common-content-view">
-            <MaintenanceNotice />
+            <MaintenanceNotice v-if="!isLoginPage" />
             <p
-                v-if="!maintenance.ready"
+                v-if="!isLoginPage && !maintenance.ready"
                 role="status"
             >
                 {{ t('maintenance.loading') }}
             </p>
-            <NResult
+            <MaintenanceState
                 v-else-if="purchaseBlocked"
-                status="warning"
-                :title="t('maintenance.title')"
-                :description="
-                    t('maintenance.unavailable', { end: maintenance.announcement?.end_time })
-                "
+                class="purchase-maintenance"
             >
                 <template #footer>
                     <NButton @click="router.push('/?tab=profile')">{{
                         t('maintenance.back')
                     }}</NButton>
                 </template>
-            </NResult>
+            </MaintenanceState>
             <RouterView v-else />
         </div>
         <common-footer v-if="!isNoFooterPage" />
@@ -33,17 +29,19 @@
  * @file common-content.vue
  */
 import { computed, onMounted, onUnmounted } from 'vue';
-import { NButton, NResult, useMessage } from 'naive-ui';
+import { NButton, useMessage } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import CommonFooter from '@/components/common-footer.vue';
 import MaintenanceNotice from '@/components/maintenance-notice.vue';
+import MaintenanceState from '@/components/maintenance-state.vue';
 import { NO_FOOTER_ROUTES } from '@/router';
 import { useMaintenanceStore } from '@/store/maintenance';
 import { setI18nComposer } from '@/utils/i18n';
 import { setMessageInstance } from '@/utils/request';
 
 const route = useRoute();
+const isLoginPage = computed(() => route.name === 'login');
 
 const isNoFooterPage = computed(() => {
     return NO_FOOTER_ROUTES.includes(route.path);
@@ -91,6 +89,16 @@ onUnmounted(() => {
 </script>
 
 <style lang="less" scoped>
+.purchase-maintenance {
+    width: 90%;
+    margin: 32px auto;
+
+    @media (max-width: 1440px) {
+        width: calc(100% - 40px);
+        margin: 20px auto;
+    }
+}
+
 .common-content {
     height: calc(100vh - 68px);
     display: flex;

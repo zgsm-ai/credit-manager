@@ -6,7 +6,10 @@
         class="maintenance-notice"
         role="status"
     >
-        <p>
+        <template #icon>
+            <NIcon aria-hidden="true"><BuildOutline /></NIcon>
+        </template>
+        <p class="maintenance-time">
             {{
                 t('maintenance.time', {
                     start: announcement.start_time,
@@ -28,7 +31,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { NAlert } from 'naive-ui';
+import { BuildOutline } from '@vicons/ionicons5';
+import { NAlert, NIcon } from 'naive-ui';
 import { useI18n } from 'vue-i18n';
 import { useMaintenanceStore } from '@/store/maintenance';
 
@@ -39,8 +43,32 @@ const { announcement } = storeToRefs(maintenance);
 
 <style scoped lang="less">
 .maintenance-notice {
-    margin: 20px auto;
-    max-width: 1300px;
+    width: 90%;
+    margin: 24px auto 0;
+    padding: 20px 24px;
+    box-sizing: border-box;
+
+    :deep(.n-alert__title) {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+
+    .maintenance-time {
+        margin: 8px 0 12px;
+        color: rgba(255, 255, 255, 0.7);
+        font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 1440px) {
+        width: calc(100% - 40px);
+        margin-top: 20px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 16px;
+    }
+
     p {
         margin: 6px 0;
         overflow-wrap: anywhere;
